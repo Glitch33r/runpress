@@ -1,0 +1,12 @@
+{% for item in elements %}
+    {% include 'news/_element.html.twig' with {
+        'item': item,
+    } %}
+{% else %}
+    <div class="page-title">
+        По вашему запросу нет рузультотов.
+    </div>
+{% endfor %}
+{% if isKnpPaginationRender == true %}
+    {{ knp_pagination_render(elements) }}
+{% endif %}

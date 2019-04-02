@@ -1,0 +1,24 @@
+{% set flashbags = app.session.flashbag.all %}
+{% if flashbags|length > 0 %}
+    {% for flashbag in flashbags %}
+        {% for flashMessage in flashbag %}
+            <div class="popup popup--flush">
+                <div class="popup__inner">
+                    {% if flashMessage['title'] is defined %}
+                        <div class="popup__title">
+                            {{ flashMessage['title']|raw }}
+                        </div>
+                    {% endif %}
+                    <div class="static-content">
+                        {% if flashMessage['message'] is defined %}
+                            {{ flashMessage['message']|raw }}
+                        {% else %}
+                            {{ flashMessage|raw }}
+                        {% endif %}
+                    </div>
+                    <button class="popup__close-btn js-popup-close"></button>
+                </div>
+            </div>
+        {% endfor %}
+    {% endfor %}
+{% endif %}

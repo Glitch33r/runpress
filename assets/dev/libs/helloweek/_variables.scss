@@ -1,0 +1,20 @@
+$hello-week-color-primary :#194382;
+$hello-week-color-secondary :#194382;
+$hello-week-color-highlight :#1D9CD8;
+$hello-week-color-days :#1D9CD8;
+
+$hello-week-transition: .2s cubic-bezier(.25, .1, .49, .9);
+
+:root {
+  --hello-week-bg-color: #fff;
+  --hello-week-bg-day: #fff;
+  --hello-week-color-day: #{$hello-week-color-secondary};
+  --hello-week-bg-week: #fff;
+  --hello-week-color-week: #{$hello-week-color-secondary};
+  --hello-week-bg-tody: #{$hello-week-color-days};
+  --hello-week-color-tody: #fff;
+  --hello-week-bg-selected: #{$hello-week-color-primary};
+  --hello-week-color-selected: #fff;
+  --hello-week-bg-highlight: #{$hello-week-color-highlight};
+  --hello-week-color-highlight: #fff;
+}

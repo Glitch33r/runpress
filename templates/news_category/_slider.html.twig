@@ -1,0 +1,42 @@
+<div class="row">
+    <div class="slider hero-slider hero-slider--fluid--left owl-carousel single-news__slider">
+        {% for item in news %}
+            {% set newsCategory = item.newsCategory %}
+            {% set newsSlug = item.translations[item.defaultLocale].slug %}
+
+            {% if newsCategory is not null %}
+                {% set url =  path('frontend_news_show_with_category', {
+                    'slug': newsSlug,
+                    'category': newsCategory.translations[newsCategory.defaultLocale].slug,
+                }) %}
+            {% else %}
+                {% set url =  path('frontend_news_show', {
+                    'slug': newsSlug,
+                }) %}
+            {% endif %}
+
+            <div class="hero" style="background-image: url({{ asset(item.poster|json_decode['640x385']|default(asset('bundles/upload/images/no-image-400.png'))) }})">
+                {% if newsCategory is not null %}
+                    <a class="label" href="{{ path('frontend_news_category_show', {
+                        'slug': newsCategory.translations[newsCategory.defaultLocale].slug
+                    }) }}">
+                        {{ newsCategory.translate.title }}
+                    </a>
+                {% endif %}
+                <br>
+                <time class="hero__time">
+                    {#{{ item.publishAt|localizeddate('short', 'none', 'ru') }}#}
+                    {{ item.publishAt|date('Y.m.d H:i') }}
+                </time>
+                <a class="hero__title" href="{{ url }}">
+                    {{ item.translate.title }}
+                </a>
+                {% if item.translate.shortDescription is not empty %}
+                    <p class="hero__text">
+                        {{ item.translate.shortDescription }}
+                    </p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+</div>

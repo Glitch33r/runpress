@@ -1,0 +1,9 @@
+@include font-face('Georgia', '../fonts/Georgia/Georgia', 400, normal, ttf);
+@include font-face('Georgia', '../fonts/Georgia/GeorgiaItalic', 400, italic, ttf);
+
+@include font-face('MuseoSans', '../fonts/MuseoSans/MuseoSansBlack', 900, normal, eot ttf woff);
+@include font-face('MuseoSans', '../fonts/MuseoSans/MuseoSansBold', 700, normal, eot ttf woff);
+@include font-face('MuseoSans', '../fonts/MuseoSans/MuseoSansMedium', 500, normal, eot ttf woff);
+
+@include font-face('Muller', '../fonts/Muller/MullerExtraBold', 900, normal, otf);
+

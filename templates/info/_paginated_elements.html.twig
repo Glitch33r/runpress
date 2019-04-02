@@ -1,0 +1,9 @@
+{% for item in elements %}
+    {% include 'info/_element.html.twig' with {
+        'info': item,
+    } %}
+{% endfor %}
+
+{% if isKnpPaginationRender == true %}
+    {{ knp_pagination_render(elements) }}
+{% endif %}

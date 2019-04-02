@@ -1,0 +1,147 @@
+//Media
+@mixin md() {
+    @media (min-width: map-get($map: $grid-breakpoints, $key: md)) {
+        @content;
+    }
+}
+
+@mixin lg() {
+    @media (min-width: map-get($map: $grid-breakpoints, $key: lg)) {
+        @content;
+    }
+}
+
+@mixin xl() {
+    @media (min-width: map-get($map: $grid-breakpoints, $key: xl)) {
+        @content;
+    }
+}
+
+@mixin from-xs-to-lg() {
+    @if $is-em-media {}
+    @else {
+        @media (min-width: map-get($map: $grid-breakpoints, $key: xs)) and (max-width: map-get($map: $grid-breakpoints, $key: lg) - 1px) {
+            @content;
+        }
+    }
+}
+
+//Presudo elements
+@mixin pseudo($pos: absolute, $content: '') {
+    content: $content;
+    position: $pos;
+}
+
+//Placeholder
+@mixin input-placeholder {
+    &:-moz-placeholder {
+        @content;
+    }
+    &::-moz-placeholder {
+        @content;
+    }
+    &:-ms-input-placeholder {
+        @content;
+    }
+    &::-webkit-input-placeholder {
+        @content;
+    }
+}
+
+//Centering
+@mixin center($position) {
+    position: absolute;
+    @if $position=='vertical' {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    @else if $position=='horizontal' {
+        left: 50%;
+        transform: translate(-50%);
+    }
+    @else if $position=='both' {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+//REM
+@function cRem($size, $base: 16px) {
+    $remSize: $size / $base;
+    @return #{$remSize}rem;
+}
+
+//EM
+@function cEm($size, $base: 16px) {
+    $emSize: $size / $base;
+    @return #{$emSize}em;
+}
+
+//Fonts
+@function str-replace($string, $search, $replace: "") {
+    $index: str-index($string, $search);
+    @if $index {
+        @return str-slice($string, 1, $index - 1)+$replace+str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+    }
+    @return $string;
+}
+
+@mixin font-face($name, $path, $weight: null, $style: null, $exts: eot woff2 woff ttf svg) {
+    $src: null;
+    $extmods: ( eot: "?", svg: "#" + str-replace($name, " ", "_"));
+    $formats: ( otf: "opentype", ttf: "truetype");
+    @each $ext in $exts {
+        $extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
+        $format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+        $src: append($src, url(quote($path + "." + $extmod)) format(quote($format)), comma);
+    }
+    @font-face {
+        font-family: quote($name);
+        font-style: $style;
+        font-weight: $weight;
+        src: $src;
+    }
+}
+
+//Sizing
+@mixin box($width,
+$height: $width) {
+    width: $width;
+    height: $height;
+}
+
+//Retina
+@mixin retina() {
+    @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+        @content;
+    }
+}
+
+//Positioning
+@mixin position($position,
+$args) {
+    @each $o in top right bottom left {
+        $i: index($args, $o);
+        @if $i and $i+1 <=length($args) and type-of(nth($args, $i + 1))==number {
+            #{$o}: nth($args, $i + 1);
+        }
+    }
+    position: $position;
+} 
+
+// Positioning helpers
+@mixin absolute($args: '') {
+    @include position(absolute,
+    $args);
+}
+
+@mixin fixed($args: '') {
+    @include position(fixed,
+    $args);
+}
+
+@mixin relative($args: '') {
+    @include position(relative,
+    $args);
+}

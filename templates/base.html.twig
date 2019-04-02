@@ -1,0 +1,69 @@
+{% htmlcompress %}
+    <!DOCTYPE html>
+    <html lang="ru-RU">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <link rel="icon" type="image/png" href="{{ asset('bundles/frontend/img/favicon.png') }}">
+        {% block seo_title %}
+            {% include '@Seo/frontend/_head_meta.html.twig' %}
+        {% endblock %}
+        <link rel="stylesheet" href="{{ asset('build/frontend/css/main.css') }}">
+        {% block ogp %}{% endblock %}
+        {% block head_stylesheets %}{% endblock %}
+        {% block head_javascript %}{% endblock %}
+        <!-- Yandex.Metrika counter -->
+        <script type="text/javascript">
+            (function (m, e, t, r, i, k, a) {
+                m[i] = m[i] || function () {
+                    (m[i].a = m[i].a || []).push(arguments)
+                };
+                m[i].l = 1 * new Date();
+                k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+            })
+            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+            ym(51840686, "init", {
+                id: 51840686,
+                clickmap: true,
+                trackLinks: true,
+                accurateTrackBounce: true
+            });
+        </script>
+        <noscript>
+            <div><img src="https://mc.yandex.ru/watch/51840686" style="position:absolute; left:-9999px;" alt="" /></div>
+        </noscript>
+        <!-- /Yandex.Metrika counter -->
+
+    </head>
+    <body class="page">
+    <!--LiveInternet counter-->
+    <script type="text/javascript">
+        new Image().src = "//counter.yadro.ru/hit?r" +
+            escape(document.referrer) + ((typeof (screen) == "undefined") ? "" :
+                ";s" + screen.width + "" + screen.height + "" + (screen.colorDepth ?
+                screen.colorDepth : screen.pixelDepth)) + ";u" + escape(document.URL) +
+            ";h" + escape(document.title.substring(0, 150)) +
+            ";" + Math.random();
+    </script>
+    <!--/LiveInternet-->
+    <div class="page__wrapper">
+        {% block header %}
+            {{ render(controller('FrontendBundle:Default:initHeader')) }}
+        {% endblock %}
+        <main class="page__content">
+            {% block main %}{% endblock %}
+        </main>
+        {% block footer %}
+            {{ render(controller('FrontendBundle:Default:initFooter')) }}
+        {% endblock %}
+    </div>
+    {% include 'default/_flashbags.html.twig' %}
+    <script src="{{ asset('bundles/frontend/js/svg4everybody.js') }}"></script>
+    <script>svg4everybody();</script>
+    <script src="{{ asset('build/frontend/js/main.js') }}"></script>
+    {% block script %}{% endblock %}
+    </body>
+    </html>
+{% endhtmlcompress %}

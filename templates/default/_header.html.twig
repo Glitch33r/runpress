@@ -1,0 +1,34 @@
+<header class="page-header page__header">
+    <div class="page-header__inner container">
+        <button class="page-header__btn js-nav-open">
+            <svg class="svg-icon" role="img" title="hamburger">
+                <use xlink:href="{{ asset('bundles/frontend/img/icons/svg/sprite.symbol.svg') }}#hamburger"></use>
+            </svg>
+        </button>
+        <a rel="nofollow" class="page-header__logo-wrap"
+           href="{% if path('frontend_homepage') != request.server.get('REDIRECT_URL') %}{{ path('frontend_homepage', {'_locale': request.locale}) }}{% else %}javascript:void(0);{% endif %}">
+            <img class="page-header__logo" src="{{ asset('bundles/frontend/img/logo.svg') }}" alt="logo">
+        </a>
+        <nav class="page-header__nav">
+            <div class="page-header__nav-inner">
+                <ul class="page-header__nav-list">
+                    {{ render(controller('IhorDrevetskyi\\NewsBundle\\Controller\\Frontend\\NewsCategoryController::initMenu')) }}
+                </ul>
+                <div class="page-header__nav-left-block" data-simplebar>
+                    <ul class="page-header__nav-list page-header__nav-list--column">
+                        {{ render(controller('IhorDrevetskyi\\NewsBundle\\Controller\\Frontend\\NewsCategoryController::initAllMenu')) }}
+                    </ul>
+                    <button class="page-header__nav-close-btn page-header__btn js-nav-close">
+                        <svg class="svg-icon" role="img" title="close">
+                            <use xlink:href="{{ asset('bundles/frontend/img/icons/svg/sprite.symbol.svg') }}#close"></use>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        <div class="page-header__search-holder"></div>
+        {{ render(controller('FrontendBundle\\Controller\\SearchController::initSearchFormAction')) }}
+    </div>
+    <div class="page-header__search-overlay"></div>
+    <div class="mnu-overlay" id="mnu-overlay"></div>
+</header>

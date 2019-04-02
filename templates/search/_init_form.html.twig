@@ -1,0 +1,17 @@
+{{ form_start(form, {'attr': {
+    'class': 'search page-header__search-form',
+    'data-url': path('frontend_search_from_header_get_hint'),
+}}) }}
+<div>
+    {{ form_widget(form.search, {'attr': {
+        'class': 'search__input',
+        'autocomplete': 'off',
+        'placeholder': ''
+    }}) }}
+    <button class="search__btn" type="reset"></button>
+    <div class="search__results">
+        <div class="search__items custom-scrollbar"></div>
+        <button class="search__submit">Посмотреть все результаты</button>
+    </div>
+</div>
+{{ form_end(form) }}

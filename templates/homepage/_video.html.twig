@@ -1,0 +1,18 @@
+{% if video|length > 0 %}
+    <a href="{{ path('frontend_video_list') }}">
+        <h3 class="page__sub-subtitle">Видео</h3>
+    </a>
+    <div class="videos">
+        {% for item in video %}
+            {% if item.iframe is not null %}
+                <div class="video-wrap videos__item">
+                    <iframe class="video-wrap__video" src="{{ item.iframe }}" frameborder="0"
+                            allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="text-center pb-15">
+        <a class="btn" href="{{ path('frontend_video_list') }}">Все видео</a>
+    </div>
+{% endif %}

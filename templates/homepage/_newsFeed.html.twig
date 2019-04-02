@@ -1,0 +1,10 @@
+<div class="col-12 col-lg-6">
+    {{ render(controller('FrontendBundle\\Controller\\DefaultController::newsFeedAction', {
+        'countInPage': 10
+    })) }}
+    <div class="text-center mt-15">
+        <a class="btn" href="{{ path('frontend_news_list') }}">
+            Все новости
+        </a>
+    </div>
+</div>

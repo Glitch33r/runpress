@@ -1,0 +1,140 @@
+{% extends 'base.html.twig' %}
+
+{% block ogp %}
+    <meta property="og:image" content="{{ app.request.getSchemeAndHttpHost() ~ asset(element.poster|json_decode.default_file|default(asset('bundles/upload/images/no-image-400.png'))) }}" />
+{% endblock %}
+
+{% block main %}
+    {% include 'default/_breadcrumbs.html.twig' %}
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-12 col-lg-8 single-news">
+                <h1 class="page__title">
+                    {% include '@Seo/frontend/_h1.html.twig' %}
+                </h1>
+                <blockquote class="quote">
+                    <cite>Иванов Иван</cite>
+                    <br>
+                    <time class="news-date" timestamp="{{ element.publishAt|date('d/m/Y H:i') }}">
+                        {#{{ element.publishAt|localizeddate('short', 'none', 'ru') }}#}
+                        {{ element.publishAt|date('d/m/Y H:i') }}
+                    </time>
+
+                    {% if element.translate.shortDescription is not empty %}
+                        <p class="quote__text">
+                            {{ element.translate.shortDescription }}
+                        </p>
+                    {% endif %}
+                </blockquote>
+
+                {{ render(controller('IhorDrevetskyi\\NewsBundle\\Controller\\Frontend\\NewsController::getNewsGalleryImagesAction', {
+                    'news': element.id
+                })) }}
+
+                <div class="static-content">
+                    {{ element.translate.description|raw }}
+                </div>
+
+                <div class="single-news__share" id="single-news__share"></div>
+
+                <div id="single-news__share-data">
+                    {% set newsCategory = element.newsCategory %}
+                    {% if newsCategory is not null %}
+                        {% set href = url('frontend_news_show_with_category', {
+                            'slug': element.translations[element.defaultLocale].slug,
+                            'category':  newsCategory.translations[newsCategory.defaultLocale].slug
+                        }) %}
+                    {% else %}
+                        {% set href = url('frontend_news_show', {
+                            'slug': element.translations[element.defaultLocale].slug
+                        }) %}
+                    {% endif %}
+
+                    <input type="hidden" id="share-url" value="{{ href }}">
+                    <input type="hidden" id="share-title" value="{{ element.translate.title }}">
+                    <input type="hidden" id="share-descr"
+                           value="{{ element.translate.description|striptags|truncate(250, true)|replace({"\n": "", "\r\n": "", "\t": "", "\n\r": "", "\r": ""})|raw }}">
+                    <input type="hidden" id="share-image"
+                           value="{{ app.request.getSchemeAndHttpHost() ~ asset(element.poster|json_decode.default_file|default(asset('bundles/upload/images/no-image-400.png'))) }}">
+                </div>
+
+                {#<h2 class="page__subtitle">#}
+                    {#Коментарии#}
+                {#</h2>#}
+                {##}
+                {#{{ form_start(commentForm) }}#}
+
+                {#<div class="form__group">#}
+                    {#{{ form_label(commentForm.name, null, {'label_attr': {'class': 'form__label'}}) }}#}
+                    {#{{ form_widget(commentForm.name, {'attr': {'class': 'form__input form__input--line--single'}}) }}#}
+                {#</div>#}
+
+                {#<div class="form__group">#}
+                    {#{{ form_label(commentForm.content, null, {'label_attr': {'class': 'form__label'}}) }}#}
+                    {#{{ form_widget(commentForm.content, {'attr': {'class': 'form__input form__input--line--multi'}}) }}#}
+                {#</div>#}
+
+                {#<div class="form__group text-right">#}
+                    {#<button class="btn">#}
+                        {#Отправить сообщение#}
+                    {#</button>#}
+                {#</div>#}
+                {##}
+                {#{{ form_end(commentForm) }}#}
+                {##}
+                {#<div class="comments single-news__comments">#}
+                    {#{% for comment in element.comments %}#}
+                        {#<div class="comments__item comment">#}
+                            {#<div class="comment__img-wrap comment__img-wrap--with-img">#}
+                                {#<img class="comment__img" src="{{ asset('bundles/frontend/img/temp/comments-1.png') }}"#}
+                                     {#alt="">#}
+                            {#</div>#}
+                            {#<blockqoute class="comment__text"><cite class="comment__author">{{ comment.name }}</cite>#}
+                                {#<br>#}
+                                {#<time class="comment__date">{{ comment.publishAtWithTime }}</time>#}
+                                {#<p>{{ comment.content }}</p>#}
+                            {#</blockqoute>#}
+                        {#</div>#}
+                    {#{% endfor %}#}
+                {#</div>#}
+            </div>
+
+            <aside class="col-12 col-lg-4 sidebar sidebar--with-padding">
+                {% include 'default/_sidebar_socials.html.twig' %}
+                {{ render(controller('FrontendBundle\\Controller\\DefaultController::initSidebarBannerAction')) }}
+                {{ render(controller('FrontendBundle\\Controller\\DefaultController::newsFeedAction', {
+                    'countInPage': 3
+                })) }}
+            </aside>
+        </div>
+    </div>
+
+    <section class="bnnr-section">
+        <div class="container">
+            <a class="bnnr bnnr--small" style="background-image: linear-gradient(to right, #1D9CD8, #194382)"></a>
+        </div>
+    </section>
+{% endblock %}
+
+{% block script %}
+    <script src="{{ asset('bundles/frontend/js/share2.js') }}"></script>
+    <script>
+        let shareEl = document.getElementById('single-news__share');
+
+        Ya.share2(shareEl, {
+            content: {
+                url: document.getElementById('share-url')
+                    .getAttribute('value'),
+                title: document.getElementById('share-title')
+                    .getAttribute('value'),
+                description: document.getElementById('share-descr')
+                    .getAttribute('value'),
+                image: document.getElementById('share-image')
+                    .getAttribute('value')
+            },
+            theme: {services: 'facebook,vkontakte,odnoklassniki'}
+        });
+    </script>
+{% endblock %}

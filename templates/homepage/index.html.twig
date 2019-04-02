@@ -1,0 +1,117 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <div class="container pt-25">
+        <div class="row">
+
+            <div class="col-12 col-lg-8">
+                <div class="row">
+                    {% include 'homepage/_newsSlider.html.twig' %}
+                    {% include 'homepage/_newsFeed.html.twig' %}
+                    <div class="col-12 col-lg-6">
+                        {% include 'homepage/_video.html.twig' %}
+                        {% include 'homepage/_newsRAND.html.twig' %}
+                    </div>
+                </div>
+            </div>
+
+            <aside class="col-12 col-lg-4 sidebar">
+                {% set day = {
+                    '1': 'Понедельник',
+                    '2': 'Вторник',
+                    '3': 'Среда',
+                    '4': 'Четверг',
+                    '5': 'Пятница',
+                    '6': 'Суббота',
+                    '0': 'Воскресенье',
+                } %}
+                <div class="date sidebar__date">
+                    <span class="date__day">
+                        {{ day["now"|date('w')] }}
+                    </span>
+                    <br>
+                    <time class="date__date" timestamp="">
+                        {{ "now"|date()|localizeddate('long', 'none', 'ru', null, 'd') }} {{ "now"|date()|localizeddate('long', 'none', 'ru', null, 'MMMM') }}
+                        , {{ "now"|date()|localizeddate('long', 'none', 'ru', null, 'YYYY') }}
+                    </time>
+                </div>
+
+                <div class="logo sidebar__logo">
+                    <img src="{{ asset('bundles/frontend/img/logo-blue.svg') }}">
+                </div>
+
+                {% include 'default/_sidebar_socials.html.twig' %}
+
+                {{ render(controller('FrontendBundle\\Controller\\DefaultController::initSidebarBannerAction')) }}
+
+                <div style="padding-left: 67.5px;">
+                    {% if opinion|length > 0 %}
+                        <a href="{{ path('frontend_opinion_index') }}">
+                            <h3 class="page__sub-subtitle">
+                                Мнения
+                            </h3>
+                        </a>
+                        <div class="opinions">
+                            {% for item in opinion %}
+
+                                {% set href = url('frontend_opinion_show', {
+                                    'slug': item.translations[item.defaultLocale].slug
+                                }) %}
+
+                                <div class="opinion opinions__item">
+                                    <a href="{{ href }}" class="opinion__img-wrap">
+                                        <img class="opinion__img"
+                                             src="{{ item.poster|json_decode.default_file|default(asset('bundles/upload/images/no-image-400.png')) }}"
+                                             alt="{{ item.translate.posterAlt }}">
+                                    </a>
+                                    <div class="opinion__info">
+                                        <a href="{{ href }}">
+                                        <span class="opinion__author">
+                                            {{ item.translate.title }}
+                                        </span>
+                                        </a>
+                                        <p class="opinion__text">
+                                            {{ item.translate.shortDescription }}
+                                        </p>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    {% if info|length > 0 %}
+                        <a href="{{ path('frontend_info_index') }}">
+                            <h3 class="page__sub-subtitle">
+                                Инфографика
+                            </h3>
+                        </a>
+                        <div class="infographics">
+                            {% for item in info %}
+                                {% set href = url('frontend_info_show', {
+                                    'slug': item.translations[item.defaultLocale].slug
+                                }) %}
+                                <div class="infographics-item">
+                                    <a href="{{ href }}" class="infographics-item__img-wrap">
+                                        <img class="infographics-item__img"
+                                             src="{{ item.poster|json_decode.default_file|default(asset('bundles/upload/images/no-image-400.png')) }}"
+                                             alt="{{ item.translate.posterAlt }}">
+                                    </a>
+                                    <a href="{{ href }}" class="infographics-item__text">
+                                        {{ item.translate.title }}
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <section class="bnnr-section">
+        <div class="container">
+            <a rel="nofollow" class="bnnr bnnr--small"
+               style="background-image: linear-gradient(to right, #1D9CD8, #194382)"></a>
+        </div>
+    </section>
+{% endblock %}

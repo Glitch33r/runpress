@@ -1,0 +1,27 @@
+User-agent: *
+Host: https://ihor-drevetskyi.com.ua/
+Sitemap: https://ihor-drevetskyi.com.ua/sitemap.xml
+
+Disallow: /
+Disallow: /elfinder/*
+Disallow: /efconnect/*
+Disallow: /_error/*
+Disallow: /_profiler/*
+Disallow: /_wdt/*
+Disallow: /admin
+Disallow: /admin/*
+Disallow: /upload/*
+Disallow: /build/*
+Disallow: /bundles/*
+Disallow: /assets/*
+Disallow: /login/
+Disallow: /logout/
+Disallow: /registration/*
+Disallow: /password-reset/*
+Disallow: /upload-bundle/*
+Disallow: /callback/*
+Disallow: /contact/save/
+Disallow: /cart/*
+Disallow: /ajax/cart/*
+Disallow: /order/*
+Disallow: /search/*

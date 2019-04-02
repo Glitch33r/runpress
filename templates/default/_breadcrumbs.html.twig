@@ -1,0 +1,24 @@
+{% if breadcrumbs is defined and breadcrumbs|length > 0 %}
+    <div class="container">
+        <div class="breadcrumbs">
+            <ul class="breadcrumbs__list">
+                {% for breadcrumb in breadcrumbs %}
+                    {% if loop.last %}
+                        <li class="breadcrumbs__item">
+                            <span class="breadcrumbs__text">
+                                {{ breadcrumb['title'] }}
+                            </span>
+                        </li>
+                    {% else %}
+                        <li class="breadcrumbs__item">
+                            <a class="breadcrumbs__link" href="{{ breadcrumb['url'] }}">{{ breadcrumb['title'] }}</a>
+                            <svg class="svg-icon breadcrumbs__icon" role="img" title="cheveron-right">
+                                <use xlink:href="{{ asset('bundles/frontend/img/icons/svg/sprite.symbol.svg') }}#cheveron-right"></use>
+                            </svg>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endif %}

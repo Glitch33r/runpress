@@ -1,0 +1,203 @@
+{% set static = render(controller('FrontendBundle:Default:getStaticContent', {'page': 'footer'}))|json_decode %}
+
+{% if static['about'] is defined and static['about'].description is not empty %}
+    <section>
+        <div class="container">
+            <h2 class="page__subtitle">О проекте</h2>
+            <div class="static-content">
+                {{ static['about'].description|raw }}
+            </div>
+        </div>
+    </section>
+{% endif %}
+
+<footer class="page-footer page__footer">
+    <div class="page-footer__inner container">
+        <div class="row">
+            <div class="col-12 col-lg-3">
+                <div class="page-footer__logo-wrap">
+                    <img class="page-footer__logo" src="{{ asset('bundles/frontend/img/logo.svg') }}" alt="logo">
+                    <img class="page-footer__logo-map" src="{{ asset('bundles/frontend/img/map.png') }}" alt="">
+                </div>
+            </div>
+            <div class="col-12 col-lg-9">
+                <div class="sitemap">
+                    <ul class="sitemap__list page-footer__sitemap">
+                        <li class="sitemap__item">
+                            <a class="sitemap__link" href="#">Реклама на сайте</a>
+                        </li>
+                        <li class="sitemap__item">
+                            <a class="sitemap__link" download="Material-Use-Agreement.docx" href="{{ asset('bundles/upload/files/Material-Use-Agreement.docx') }}">Использование материалов</a>
+                        </li>
+                        <li class="sitemap__item">
+                            <a class="sitemap__link" download="Privacy-Policy.docx" href="{{ asset('bundles/upload/files/Privacy Policy.docx') }}">Правила пользования</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="page-footer__copyright">
+                    <p>Материалы данного сайта содержат информацию, не предназначенную для несовершеннолетних.</p>
+                    <p>При использовании материала или частичном цитировании, ссылка на ИА «Ранпресс» обязательна.</p>
+                    <p>Свидетельство о регистрации СМИ ИА № ФС 77-73472 от 17.08.2018. выдано Федеральной службой по надзору в сфере связи, информационных технологий и массовых коммуникаций (Роскомнадзор).</p>
+                    <p>Главный редактор — Кривченко Игнат Викторович.Учредитель ООО "Ранпресс".</p>
+                    <br>
+                    <p>Редакция ИА «Ранпресс»</p>
+                    <p>e-mail.:
+                        <a href="mailto:ran-press@yandex.ru">ran-press@yandex.ru</a>
+                       (для связи с нами и приема новостей). тел.:
+
+                        <a href="tel:+79005433311">+7 900 543 33 11 </a>
+                    </p>
+                </div>
+                <div class="socials socials--theme--white page-footer__socials">
+                    <ul class="socials__list">
+                        <li class="socials__item">
+                            <a rel="nofollow" class="socials__link" href="https://www.youtube.com/channel/UCAYjCAuXJkTUXWa0RZ4lGDQ">
+                                <svg class="svg-icon socials__icon" role="img" title="youtube">
+                                    <use xlink:href="{{ asset('bundles/frontend/img/icons/svg/sprite.symbol.svg') }}#youtube"></use>
+                                </svg>
+                            </a>
+                        <li class="socials__item">
+                            <a rel="nofollow" class="socials__link" href="https://vk.com/ranpress35">
+                                <svg class="svg-icon socials__icon" role="img" title="vk">
+                                    <use xlink:href="{{ asset('bundles/frontend/img/icons/svg/sprite.symbol.svg') }}#vk"></use>
+                                </svg>
+                            </a>
+                        </li>
+                        <li class="socials__item">
+                            <a rel="nofollow" class="socials__link" href="https://www.instagram.com/ranpress/">
+                                <svg class="svg-icon socials__icon" role="img" title="instagram">
+                                    <use xlink:href="{{ asset('bundles/frontend/img/icons/svg/sprite.symbol.svg') }}#instagram"></use>
+                                </svg>
+                            </a>
+                        </li>
+                        <li class="socials__item">
+                            <a rel="nofollow" class="socials__link" href="https://www.facebook.com/Региональное-агентство-новостей-292526961353469">
+                                <svg class="svg-icon socials__icon" role="img" title="facebook">
+                                    <use xlink:href="{{ asset('bundles/frontend/img/icons/svg/sprite.symbol.svg') }}#facebook"></use>
+                                </svg>
+                            </a>
+                        </li>
+                        <li class="socials__item">
+                            <a rel="nofollow" class="socials__link" href="https://wa.me/79005433311">
+                                <svg class="svg-icon socials__icon" role="img" title="whatsapp">
+                                    <use xlink:href="{{ asset('bundles/frontend/img/icons/svg/sprite.symbol.svg') }}#whatsapp"></use>
+                                </svg>
+                            </a>
+                        </li>
+                        <li class="socials__item">
+                            <a rel="nofollow" class="socials__link" href="viber://chat?number=79005433311">
+                                <svg class="svg-icon socials__icon" role="img" title="viber">
+                                    <use xlink:href="{{ asset('bundles/frontend/img/icons/svg/sprite.symbol.svg') }}#viber"></use>
+                                </svg>
+                            </a>
+                        </li>
+                        <li class="socials__item">
+                            <a rel="nofollow" class="socials__link" href="https://t.me/ranpress">
+                                <svg class="svg-icon socials__icon" role="img" title="telegram">
+                                    <use xlink:href="{{ asset('bundles/frontend/img/icons/svg/sprite.symbol.svg') }}#telegram"></use>
+                                </svg>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="socials__list">
+                        <li class="socials__item">
+                            <!--LiveInternet logo-->
+                            <a href="//www.liveinternet.ru/click" target="_blank">
+                                <img src="//counter.yadro.ru/logo?52.6" title="LiveInternet: показано число просмотров и посетителей за 24 часа"
+                                     alt="" border="0" width="88" height="31" />
+                            </a>
+                            <!--/LiveInternet-->
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+{#<footer class="page-footer page__footer">#}
+    {#<div class="page-footer__inner container">#}
+        {#<div class="row">#}
+            {#<div class="col-12 col-lg-3">#}
+                {#<div class="page-footer__logo-wrap">#}
+                    {#<img class="page-footer__logo" src="{{ asset('bundles/frontend/img/logo.svg') }}" alt="logo">#}
+                    {#<img class="page-footer__logo-map" src="{{ asset('bundles/frontend/img/map.png') }}" alt="">#}
+                {#</div>#}
+            {#</div>#}
+            {#<div class="col-12 col-lg-9">#}
+                {#<div class="sitemap">#}
+                    {#<ul class="sitemap__list page-footer__sitemap">#}
+                        {#<li class="sitemap__item">#}
+                        {#<a class="sitemap__link"#}
+                        {#href="{{ path('frontend_contact_index', {'_locale': request.locale}) }}">#}
+                        {#Контакты#}
+                        {#</a>#}
+                        {#</li>#}
+                        {#<li class="sitemap__item">#}
+                            {#<a class="sitemap__link" href="javascript:void(0);">#}
+                                {#Реклама на сайте#}
+                            {#</a>#}
+                        {#</li>#}
+                        {#<li class="sitemap__item">#}
+                            {#<a class="sitemap__link" href="javascript:void(0);">#}
+                                {#Использование материалов#}
+                            {#</a>#}
+                        {#</li>#}
+                        {#<li class="sitemap__item">#}
+                            {#<a class="sitemap__link" href="javascript:void(0);">#}
+                                {#Правила пользования#}
+                            {#</a>#}
+                        {#</li>#}
+                    {#</ul>#}
+                {#</div>#}
+
+                {#{% if static['footer'] is defined and static['footer'].description is not empty %}#}
+                    {#<div class="page-footer__copyright">#}
+                        {#{{ static['footer'].description|raw }}#}
+                    {#</div>#}
+                {#{% endif %}#}
+
+                {#<div class="socials socials--theme--white page-footer__socials">#}
+                    {#<ul class="socials__list">#}
+                        {#<li class="socials__item">#}
+                            {#<a rel="nofollow" class="socials__link" href="https://www.youtube.com/channel/UCAYjCAuXJkTUXWa0RZ4lGDQ">#}
+                                {#<svg class="svg-icon socials__icon" role="img" title="youtube">#}
+                                    {#<use xlink:href="{{ asset('bundles/frontend/img/icons/svg/sprite.symbol.svg') }}#youtube"></use>#}
+                                {#</svg>#}
+                            {#</a>#}
+                        {#</li>#}
+                        {#<li class="socials__item">#}
+                            {#<a rel="nofollow" class="socials__link" href="https://vk.com/ranpress35">#}
+                                {#<svg class="svg-icon socials__icon" role="img" title="vk">#}
+                                    {#<use xlink:href="{{ asset('bundles/frontend/img/icons/svg/sprite.symbol.svg') }}#vk"></use>#}
+                                {#</svg>#}
+                            {#</a>#}
+                        {#</li>#}
+                        {#<li class="socials__item">#}
+                            {#<a rel="nofollow" class="socials__link" href="https://www.instagram.com/ranpress/">#}
+                                {#<svg class="svg-icon socials__icon" role="img" title="instagram">#}
+                                    {#<use xlink:href="{{ asset('bundles/frontend/img/icons/svg/sprite.symbol.svg') }}#instagram"></use>#}
+                                {#</svg>#}
+                            {#</a>#}
+                        {#</li>#}
+                        {#<li class="socials__item">#}
+                            {#<a rel="nofollow" class="socials__link" href="https://www.facebook.com/groups/1795566494070509/about/">#}
+                                {#<svg class="svg-icon socials__icon" role="img" title="facebook">#}
+                                    {#<use xlink:href="{{ asset('bundles/frontend/img/icons/svg/sprite.symbol.svg') }}#facebook"></use>#}
+                                {#</svg>#}
+                            {#</a>#}
+                        {#</li>#}
+                        {#<li class="socials__item">#}
+                            {#<!--LiveInternet logo-->#}
+                            {#<a href="//www.liveinternet.ru/click" target="_blank">#}
+                                {#<img src="//counter.yadro.ru/logo?52.6" title="LiveInternet: показано число просмотров и посетителей за 24 часа"#}
+                                     {#alt="" border="0" width="88" height="31" />#}
+                            {#</a>#}
+                            {#<!--/LiveInternet-->#}
+                        {#</li>#}
+                    {#</ul>#}
+                {#</div>#}
+            {#</div>#}
+        {#</div>#}
+    {#</div>#}
+{#</footer>#}

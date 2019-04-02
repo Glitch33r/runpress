@@ -1,0 +1,15 @@
+{% if element is not null or element.poster is not empty %}
+    <div class="slider hero-slider hero-slider--fluid--left owl-carousel single-news__slider">
+        {% if element.poster is not empty %}
+            <div class="hero owl-lazy"
+                 data-src="{{ asset(element.poster|json_decode.default_file|default(asset('bundles/upload/images/no-image-400.png'))) }}">
+            </div>
+        {% endif %}
+
+        {% for item in element.galleryImages %}
+            <div class="hero owl-lazy"
+                 data-src="{{ asset(item.img|json_decode.show|default(asset('bundles/upload/images/no-image-400.png'))) }}">
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}

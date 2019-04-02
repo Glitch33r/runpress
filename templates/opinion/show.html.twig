@@ -1,0 +1,97 @@
+{% extends 'base.html.twig' %}
+
+{% block ogp %}
+    <meta property="og:image"
+          content="{{ app.request.getSchemeAndHttpHost() ~ asset(element.poster|json_decode.default_file|default(asset('bundles/upload/images/no-image-400.png'))) }}"/>
+{% endblock %}
+
+{% block main %}
+    {% include 'default/_breadcrumbs.html.twig' %}
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-12 col-lg-8 single-news">
+                <h1 class="page__title">
+                    {% include '@Seo/frontend/_h1.html.twig' %}
+                </h1>
+                <blockquote class="quote">
+                    <time class="news-date" timestamp="">
+                        {#{{ element.publishAt|localizeddate('short', 'none', 'ru') }}#}
+                        {{ element.publishAt|date('Y.m.d H:i') }}
+                    </time>
+
+                    {% if element.translate.shortDescription is not empty %}
+                        <p class="quote__text">
+                            {{ element.translate.shortDescription }}
+                        </p>
+                    {% endif %}
+                </blockquote>
+
+                {% if element is not null or element.poster is not empty %}
+                    <div class="slider hero-slider hero-slider--fluid--left owl-carousel single-news__slider">
+                        {% if element.poster is not empty %}
+                            <div class="hero owl-lazy"
+                                 data-src="{{ asset(element.poster|json_decode.default_file|default(asset('bundles/upload/images/no-image-400.png'))) }}">
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endif %}
+
+                <div class="static-content">
+                    {{ element.translate.description|raw }}
+                </div>
+
+                <div class="single-news__share" id="single-news__share"></div>
+
+                <div id="single-news__share-data">
+                    {% set href = url('frontend_opinion_show', {
+                        'slug': element.translations[element.defaultLocale].slug
+                    }) %}
+
+                    <input type="hidden" id="share-url" value="{{ href }}">
+                    <input type="hidden" id="share-title" value="{{ element.translate.title }}">
+                    <input type="hidden" id="share-descr"
+                           value="{{ element.translate.description|striptags|truncate(250, true)|replace({"\n": "", "\r\n": "", "\t": "", "\n\r": "", "\r": ""})|raw }}">
+                    <input type="hidden" id="share-image"
+                           value="{{ app.request.getSchemeAndHttpHost() ~ asset(element.poster|json_decode.default_file|default(asset('bundles/upload/images/no-image-400.png'))) }}">
+                </div>
+            </div>
+
+            <aside class="col-12 col-lg-4 sidebar sidebar--with-padding">
+                {% include 'default/_sidebar_socials.html.twig' %}
+                {{ render(controller('FrontendBundle\\Controller\\DefaultController::initSidebarBannerAction')) }}
+                {{ render(controller('FrontendBundle\\Controller\\DefaultController::newsFeedAction', {
+                    'countInPage': 3
+                })) }}
+            </aside>
+        </div>
+    </div>
+
+    <section class="bnnr-section">
+        <div class="container">
+            <a class="bnnr bnnr--small" style="background-image: linear-gradient(to right, #1D9CD8, #194382)"></a>
+        </div>
+    </section>
+{% endblock %}
+
+{% block script %}
+    <script src="{{ asset('bundles/frontend/js/share2.js') }}"></script>
+    <script>
+        let shareEl = document.getElementById('single-news__share');
+
+        Ya.share2(shareEl, {
+            content: {
+                url: document.getElementById('share-url')
+                    .getAttribute('value'),
+                title: document.getElementById('share-title')
+                    .getAttribute('value'),
+                description: document.getElementById('share-descr')
+                    .getAttribute('value'),
+                image: document.getElementById('share-image')
+                    .getAttribute('value')
+            },
+            theme: {services: 'facebook,vkontakte,odnoklassniki'}
+        });
+    </script>
+{% endblock %}

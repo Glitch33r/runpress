@@ -1,0 +1,36 @@
+{% if newsSlider|length > 0 %}
+    <div class="slider hero-slider hero-slider--offset--right hero-slider--fluid--left owl-carousel">
+        {% for item in newsSlider %}
+            {% set newsCategory = item.newsCategory %}
+            {% if newsCategory %}
+                {% set url = path('frontend_news_show_with_category', {
+                    'slug': item.translations[item.defaultLocale].slug,
+                    'category':  newsCategory.translations[newsCategory.defaultLocale].slug
+                }) %}
+            {% else %}
+                {% set url = path('frontend_news_show', {
+                    'slug': item.translations[item.defaultLocale].slug
+                }) %}
+            {% endif %}
+
+            <div class="hero owl-lazy"
+                 data-src="{{ asset(item.poster|json_decode['640x385']|default(asset('bundles/upload/images/no-image-400.png'))) }}">
+                {% if newsCategory is not null %}
+                    <a class="label" href="{{ path('frontend_news_category_show', {
+                        'slug':  newsCategory.translations[ newsCategory.defaultLocale].slug
+                    }) }}">
+                        {{ newsCategory.translate.title }}
+                    </a>
+                {% endif %}
+                <a class="hero__title" href="{{ url }}">
+                    {{ item.translate.title }}
+                </a>
+                {% if item.translate.shortDescription is not empty %}
+                    <p class="hero__text">
+                        {{ item.translate.shortDescription|truncate(220) }}
+                    </p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}

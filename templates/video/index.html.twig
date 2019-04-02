@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    {% include 'default/_breadcrumbs.html.twig' %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-8 single-news">
+                <h1 class="page__title">
+                    {% include '@Seo/frontend/_h1.html.twig' %}
+                </h1>
+
+                <div class="last-news">
+                    <ul class="last-news__list infinite-scroll" data-itemSelector=".infinite-scroll__item">
+                        {{  render(controller('FrontendBundle\\Controller\\VideoController::getVideoElementsAction', {
+                            'page': 1, 'countInPage': 10, 'fromTwig': true
+                        })) }}
+                    </ul>
+                </div>
+            </div>
+
+            <aside class="col-12 col-lg-4 sidebar sidebar--with-padding">
+                {% include 'default/_sidebar_socials.html.twig' %}
+                {{ render(controller('FrontendBundle\\Controller\\DefaultController::initSidebarBannerAction')) }}
+                {{ render(controller('FrontendBundle\\Controller\\DefaultController::initSidebarNewsAction')) }}
+            </aside>
+        </div>
+    </div>
+
+    <section class="bnnr-section">
+        <div class="container">
+            <a rel="nofollow" class="bnnr bnnr--small"
+               style="background-image: linear-gradient(to right, #1D9CD8, #194382)">
+            </a>
+        </div>
+    </section>
+{% endblock %}

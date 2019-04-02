@@ -1,0 +1,264 @@
+@keyframes Gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.page-header {
+  background: linear-gradient(to right, $secondary-color, darken($secondary-color, 10%), darken($secondary-color, 20%), $primary-color);
+  $this: &;
+
+  &--search-opened {
+    @include from-xs-to-lg() {
+      #{$this}__logo {
+        transform: translateY(-85px);
+      }
+      #{$this}__search-form {
+        width: calc(100% - #{$grid-gutter-width} - 48px);
+        z-index: 2;
+      }
+    }
+  }
+
+  @include lg() {
+    animation: Gradient 7.5s linear infinite;
+    background-size: 400% 400%;
+  }
+
+  &__logo-wrap {
+    width: cRem(160px);
+
+    @include from-xs-to-lg() {
+      transition: transform .8s cubic-bezier(0.65, -0.55, 0.25, 1.55);
+    }
+
+    @include lg() {
+      flex-shrink: 0;
+      margin-left: 1rem;
+    }
+  }
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: cRem(18px);
+    padding-bottom: cRem(18px);
+    position: relative;
+  }
+
+  &__btn {
+    width: cRem(32px);
+    height: cRem(32px);
+    border-width: 0;
+    color: #FFF;
+    background-color: transparent;
+    padding: 0;
+    flex-shrink: 0;
+
+    svg {
+      width: cRem(32px);
+      height: cRem(32px);
+    }
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+
+  &__nav {
+    font: 700 1rem "MuseoSans";
+    text-transform: uppercase;
+
+    @include from-xs-to-lg() {
+      @include box(100%, 100%);
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+      align-items: center;
+      position: fixed;
+      background: linear-gradient(to bottom, $secondary-color, rgba($primary-color, .95));
+      transform: translateY(-100%);
+      transition: transform .4s cubic-bezier(.55, .055, .675, .2) .2s, visibility .4s .4s;
+      visibility: hidden;
+      will-change: transform;
+      z-index: 2;
+    }
+
+    @include lg() {
+      font-size: cRem(12px);
+      margin: 0 0 cRem(-12px) 5rem;
+    }
+
+    &--visible {
+      overflow: auto;
+      @include from-xs-to-lg() {
+        transform: translateY(0);
+        visibility: visible;
+      }
+
+      @include lg() {
+        #{$this}__nav-left-block {
+          transform: translateX(0);
+        }
+      }
+
+    }
+  }
+
+  &__nav-inner {
+    @include from-xs-to-lg() {
+      height: 100%;
+      padding: 4rem 0 2rem;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+
+  &__nav-list {
+    @include lg() {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    &--column {
+      @include lg() {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  }
+
+  &__nav-left-block {
+
+
+    @include from-xs-to-lg() {
+      webkit-overflow-scrolling: touch;
+      position: initial !important;
+
+      .simplebar-track {
+        display: none !important;
+      }
+
+      .simplebar-scroll-content {
+        overflow: hidden;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      .simplebar-content {
+        overflow: hidden;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+    }
+
+    @include lg() {
+      overflow: hidden !important;
+      width: 20rem;
+      position: fixed !important;
+      text-align: left;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      flex-direction: column;
+      padding: 4rem 1rem;
+      background: linear-gradient(to bottom, $secondary-color, rgba($primary-color, .95));
+      transition: transform .3s /*cubic-bezier(.55, .055, .675, .2)*/ linear .2s;
+      transform: translateX(-100%);
+      z-index: 1000;
+
+
+        & .simplebar-scroll-content {
+          padding-right: 34px !important;
+        }
+
+        & .simplebar-content {
+          overflow-x: hidden;
+        }
+
+    }
+  }
+
+  &__nav-item {
+    margin-top: cRem(14px);
+
+    @include lg() {
+      margin: 0 cRem(24px) cRem(12px) 0;
+    }
+
+    &--sidebar {
+      @include lg() {
+        padding: 10px 0 10px 25px;
+        width: 100%;
+      }
+    }
+  }
+
+  &__nav-link {
+    color: #FFF;
+
+    &:hover {
+      color: $secondary-color;
+    }
+  }
+
+  &__nav-close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+
+  &__search-overlay {
+    position: fixed;
+    background-color: rgba(#000, .75);
+    left: 0;
+    top: 0;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 1.2s;
+    @include box(0, 0);
+  }
+
+  &__search-holder {
+    width: cRem(32px);
+    height: cRem(32px);
+
+    @include lg() {
+      display: none;
+    }
+  }
+
+  &__search-form {
+    @include from-xs-to-lg() {
+      right: $grid-gutter-width / 2;
+      @include center(vertical);
+    }
+
+    @include lg() {
+      position: relative;
+      width: cRem(224px);
+      flex-shrink: 0;
+    }
+  }
+}
+
+@media (min-width: map-get($grid-breakpoints, $key: md)) {
+}
+
+@media (min-width: map-get($grid-breakpoints, $key: lg)) {
+}
+
+@media (min-width: map-get($grid-breakpoints, $key: xlg)) {
+}

@@ -1,0 +1,91 @@
+<?php
+
+namespace FrontendBundle\EventListener;
+
+use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+use Symfony\Component\HttpKernel\KernelEvents;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\Routing\RouterInterface;
+
+final class LocaleListener implements EventSubscriberInterface
+{
+    private $defaultLocale = 'ru';
+
+    private $currency = 'uah';
+
+    /**
+     * @var \Symfony\Component\DependencyInjection\ContainerInterface
+     */
+    private $router;
+
+    public function __construct(RouterInterface $router)
+    {
+        $this->router = $router;
+    }
+
+    public function onKernelRequest(GetResponseEvent $event)
+    {
+        $request = $event->getRequest();
+        $session = $request->getSession();
+
+        if (!$request->hasPreviousSession()) {
+            return;
+        }
+
+        $routeParams = $this->router->match($request->getPathInfo());
+        $routeName = $routeParams['_route'];
+
+        if ($routeName[0] == '_') {
+            return;
+        }
+
+        unset($routeParams['_route']);
+        $routeData = ['name' => $routeName, 'params' => $routeParams];
+
+        if ($routeName != 'change_locale') {
+            if (empty($routeParams['slug']) or !empty($routeParams['slug']) and $routeParams['slug'] != '_fragment') {
+                $session->set('last_route', $routeData);
+            }
+        }
+
+        $locale = $this->defaultLocale;
+
+//        try {
+        $this->currency = 'uah';
+        $locale = 'ru';
+//        } catch (\Exception $e) {
+//        }
+
+        if (!empty($session->get('client_locale'))) {
+            $locale = $request->attributes->get('_locale');
+        }
+
+        if ($locale) {
+            $session->set('_locale', $locale);
+            $request->setLocale($locale);
+        } else {
+            if (!empty($session->get('_locale'))) {
+                $request->setLocale($session->get('_locale'));
+
+            } else {
+                $request->setLocale($session->get('_locale', $this->defaultLocale));
+            }
+        }
+
+        //Skipping duplicates
+        $thisRoute = $session->get('this_route', []);
+
+        if ($thisRoute == $routeData) {
+            return;
+        }
+
+        $session->set('currency', $this->currency);
+    }
+
+    public static function getSubscribedEvents()
+    {
+        return [
+            KernelEvents::REQUEST => [['onKernelRequest', 15]],
+        ];
+    }
+}

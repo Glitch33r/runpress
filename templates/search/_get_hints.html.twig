@@ -1,0 +1,32 @@
+{% for item in elements %}
+
+    {% set newsCategory = item.newsCategory %}
+    {% if newsCategory is not null %}
+        {% set href = path('frontend_news_show_with_category', {
+            'slug': item.translations[item.defaultLocale].slug,
+            'category':  newsCategory.translations[newsCategory.defaultLocale].slug
+        }) %}
+    {% else %}
+        {% set href = path('frontend_news_show', {
+            'slug': item.translations[item.defaultLocale].slug
+        }) %}
+    {% endif %}
+    <a class="search__item" href="{{ href }}">
+        <img class="search__item-img"
+             src="{{ asset(item.poster|json_decode['218x150']|default(asset('bundles/upload/images/no-image-400.png'))) }}"
+             alt="{{ item.translate.posterAlt }}"/>
+        <div class="search__item-info">
+            <span class="search__item-title">
+                {{ item.translate.title }}
+               </span>
+            <time class="search__item-date" timestamp="">
+                {{ item.publishAt|localizeddate('short', 'none', 'ru') }}
+            </time>
+            {% if newsCategory is not null %}
+                <br/><span class="label label--small">
+                {{ newsCategory.translate.title }}
+            </span>
+            {% endif %}
+        </div>
+    </a>
+{% endfor %}

@@ -1,0 +1,155 @@
+.search {
+    $this: &;
+
+    &--results-visible {
+        #{$this}__results {
+            display: block;
+        }
+    }
+
+    &__input {
+        width: cRem(32px);
+        height: cRem(32px);
+        border: 2px solid #FFFFFF;
+        border-radius: 50%;
+        background-color: transparent;
+        color: #FFF;
+        transition: width 0.4s ease-in-out, border-radius 1.4s ease-in-out, padding 0.2s, border-width .2s;
+        transition-delay: 0.4s;
+        float: right;
+        font: 400 cRem(14px) sans-serif;
+        transform: translateZ(0);
+		
+        &--active {
+            padding: 0 cRem(32px) 0 cRem(16px);
+            width: 100%;
+            border-radius: cRem(16px);
+            background-color: transparent;
+            color: #FFF;
+            transition: width 0.4s ease-in-out, border-radius 0.4s ease-in-out, padding 0.2s;
+            transition-delay: 0.4s, 0s, 0.4s;
+        }
+    }
+
+    &__btn {
+        @include absolute(top 0 right 0);
+        border-width: 0;
+        background-color: transparent;
+        height: cRem(32px);
+        width: cRem(32px);
+        padding: 0;
+        transition: 0.2s ease-in-out;
+
+        &::before {
+            content: "";
+            position: absolute;
+            width: cRem(16px);
+            height: 2px;
+            background-color: #FFF;
+            transform: rotate(45deg) translateZ(0);
+            margin-top: cRem(16px);
+            margin-left: cRem(8px);
+            transition: 0.2s ease-in-out;
+		}
+		
+        &--active {
+            transition: 0.4s ease-in-out;
+			transition-delay: 0.4s;
+			
+            &::before {
+                margin-top: cRem(-1px);
+                margin-left: cRem(-8px);
+            }
+            &::after {
+                @include pseudo();
+                width: cRem(16px);
+                height: cRem(2px);
+                background-color: #FFF;
+                margin-top: cRem(-1px);
+                margin-left: cRem(-8px);
+                transform: rotate(-45deg);
+                transition: opacity 0.2s ease-in-out;
+            }
+        }
+    }
+
+    &__results {
+        @include absolute(top 2.5rem right 0);
+        background-color: rgba(#FFF, .95);
+        
+        padding-top: cRem(16px);
+        display: none;
+
+        @include from-xs-to-lg() {
+            width: 100%;
+        }
+
+        @include lg() {
+            width: cRem(320px);
+        }
+    }
+
+    &__items {
+        max-height: cRem(320px);
+        overflow: auto;
+        padding: 0 cRem(8px);
+    }
+
+    &__item {
+        display: flex;
+        align-items: flex-start;
+        animation: fadeIn .4s both;
+    }
+
+    &__item:hover &__item-title {
+        color: $primary-color;
+    }
+
+    @for $i from 2 through 4 {
+        &__item:nth-child(#{$i}) {
+            animation-delay: $i * 0.1s;
+        } 
+    }
+
+    &__item ~ &__item {
+        margin-top: cRem(16px);
+        border-top: cRem(1px) solid rgba($grey-color, .5);
+        padding-top: cRem(8px);
+    }
+
+    &__item-img {
+        width: cRem(80px);
+        margin-right: cRem(8px);
+    }
+
+    &__item-title {
+        font: 900 cRem(12px)/cRem(14px) "MuseoSans";
+        display: inline-block;
+        margin-bottom: cRem(8px);
+        color: #000;
+        transition: color .35s;
+    }
+
+    &__item-date {
+        font: 500 cRem(12px) "MuseoSans";
+        color: $grey-color;
+        display: inline-block;
+        margin-bottom: cRem(8px);
+    }
+
+    &__submit {
+        width: 100%;
+        background-color: transparent;
+        text-align: center;
+        border-width: 0;
+        margin-top: cRem(16px);
+        padding: cRem(12px);
+        font: 700 cRem(12px) "MuseoSans";
+        color: #FFF;
+        background-color: $primary-color;
+
+        &:hover {
+            background-color: $secondary-color;
+        }
+    }
+}

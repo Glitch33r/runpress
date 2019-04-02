@@ -1,0 +1,26 @@
+{% set newsCategory = item.newsCategory %}
+{% if newsCategory is not null %}
+    {% set href = path('frontend_news_show_with_category', {
+        'slug': item.translations[item.defaultLocale].slug,
+        'category':  newsCategory.translations[newsCategory.defaultLocale].slug
+    }) %}
+{% else %}
+    {% set href = path('frontend_news_show', {
+        'slug': item.translations[item.defaultLocale].slug
+    }) %}
+{% endif %}
+
+<li class="last-news__item news-item infinite-scroll__item">
+    <div class="d-flex">
+        <time class="news-item__date news-date" timestamp="">
+            {#{{ item.publishAt|localizeddate('short', 'none', 'ru') }}#}
+            {{ item.publishAt|date('Y.m.d H:i') }}
+        </time>
+        <a class="news-item__title" href="{{ href }}">
+            {{ item.translate.title }}
+        </a>
+    </div>
+    <p class="news-item__text">
+        {{ item.translate.shortDescription }}
+    </p>
+</li>

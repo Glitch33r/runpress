@@ -1,0 +1,13 @@
+<li class="last-news__item news-item infinite-scroll__item">
+    <div class="d-flex">
+        <time class="news-item__date news-date" timestamp="">
+            {#{{ item.translate.updatedAt|localizeddate('short', 'none', 'ru') }}#}
+            {{ item.translate.updatedAt|date('Y.m.d H:i') }}
+        </time>
+        <a class="news-item__title" href="{{ path('frontend_opinion_show', {
+            'slug': item.translations[item.defaultLocale].slug
+        }) }}">
+            {{ item.translate.title }}
+        </a>
+    </div>
+</li>

@@ -1,0 +1,20 @@
+.owl-dots {
+    text-align: right;
+
+    .owl-dot span {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        display: inline-block;
+        border: 1px solid $grey-color;
+        background-color:$grey-color;
+    }
+    
+    .owl-dot.active span {
+        background-color: transparent;
+    }
+
+    .owl-dot ~.owl-dot  {
+        margin-left: 35px;
+    }
+}

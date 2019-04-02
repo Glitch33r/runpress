@@ -1,0 +1,55 @@
+.page-footer {
+    background: linear-gradient(to right, $secondary-color, $primary-color);
+    
+    &__inner {
+        padding: {
+            top: 2rem;
+            bottom: 2rem;
+        }
+
+        .row {
+            align-items: center;
+        }
+    }
+
+    &__logo-wrap {
+        text-align: center;
+        position: relative;
+    }
+
+    &__logo-map {
+        @include center('horizontal');
+        width: 12rem;
+        top: -1rem;
+    }
+
+    &__logo {
+        width: cRem(160px);
+        position: relative;
+        z-index: 1;
+    }
+
+    &__sitemap {
+        @include from-xs-to-lg() {
+            margin-top: 2rem;
+        } 
+    }
+
+    &__copyright {
+        font: 500 cRem(14px)/cRem(20px) "MuseoSans";
+        color: #FFF;
+        margin-top: 2rem;
+
+        a {
+            color: #fff;
+            text-decoration: underline;
+        }
+    }
+
+    &__socials {
+        margin-top: 2rem;
+    }
+}
+@media (min-width: map-get($grid-breakpoints, $key: md)) {}
+@media (min-width: map-get($grid-breakpoints, $key: lg)) {}
+@media (min-width: map-get($grid-breakpoints, $key: xlg)) {}

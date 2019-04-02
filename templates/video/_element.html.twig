@@ -1,0 +1,6 @@
+{% if item.iframe is not null %}
+    <div class="video-wrap videos__item infinite-scroll__item">
+        <iframe class="video-wrap__video" src="{{ item.iframe }}" frameborder="0"
+                allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+{% endif %}

@@ -1,0 +1,109 @@
+@import "variables";
+
+.hello-week {
+  margin: 0 auto;
+  background-color: var(--hello-week-bg-color);
+  user-select: none;
+
+  &__prev,
+  &__next {
+    background-color: transparent;
+    border-width: 0;
+    color: $primary-color;
+    font-size: 0;
+
+    svg {
+      width: cRem(32px);
+      height: cRem(32px);
+    }
+
+    &:hover {
+      color: $secondary-color;
+    }
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 1rem;
+  }
+
+  &__label {
+    font: 500 1rem "MuseoSans";
+    margin: 0 1rem;
+    text-align: center;
+  }
+
+  &__week {
+    display: flex;
+    color: var(--hello-week-color-week);
+    padding: .5rem 0 1rem;
+
+    &__day {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 14.28%;
+      font: 900 .95rem "MuseoSans";
+      padding: 0 .5rem;
+      text-transform: uppercase;
+    }
+  }
+
+  &__month {
+    display: flex;
+    flex-wrap: wrap;
+    font: 500 14px "MuseoSans";
+  }
+
+  &__day {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 14.28%;
+    
+    transition: background-color $hello-week-transition;
+
+    &::before {
+      content: "";
+      display: block;
+      padding-bottom: 100%;
+    }
+
+    span {
+      @include center('both');
+    }
+
+    &.is-active {
+      cursor: pointer;
+    }
+
+    &:hover {
+      background-color: var(--hello-week-bg-selected) !important;
+      color: var(--hello-week-color-selected) !important;
+    }
+
+    &.is-disabled {
+      border-radius: 0;
+      background-color: var(--hello-week-bg-disabled);
+      color: var(--hello-week-color-disabled);
+      cursor: not-allowed;
+    }
+
+    &.is-highlight {
+      background-color: var(--hello-week-bg-highlight);
+      color: var(--hello-week-color-highlight);
+    }
+
+    &.is-today {
+      background-color: var(--hello-week-bg-tody);
+      color: var(--hello-week-color-tody);
+    }
+
+    &.is-hover {
+      background-color: rgba(29, 156, 216, 0.975);
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{% if newsRAND|length > 0 %}
+    <h3 class="page__sub-subtitle">
+        Популярное
+    </h3>
+    <ul class="last-news__list">
+        {% for item in newsRAND %}
+            {% set newsCategory = item.newsCategory %}
+
+            {% if newsCategory %}
+                {% set url = path('frontend_news_show_with_category', {
+                    'slug': item.translations[item.defaultLocale].slug,
+                    'category':  newsCategory.translations[newsCategory.defaultLocale].slug
+                }) %}
+            {% else %}
+                {% set url = path('frontend_news_show', {
+                    'slug': item.translations[item.defaultLocale].slug
+                }) %}
+            {% endif %}
+
+            <li class="last-news__item news-item">
+                <a rel="nofollow" class="news-item__img-wrap lazy-container {% if item.poster is null %}news-item__img-wrap--empty{% endif %}"
+                   href="{{ url }}">
+                    <img class="b-lazy news-item__img"
+                         data-src="{{ asset(item.poster|json_decode['324x235']|default(asset('bundles/upload/images/no-image-400.png'))) }}" alt="">
+                </a>
+                {% if newsCategory is not null %}
+                    <a class="label news-item__label" href="{{ path('frontend_news_category_show', {
+                        'slug':  newsCategory.translations[ newsCategory.defaultLocale].slug
+                    }) }}">
+                        {{ newsCategory.translate.title }}
+                    </a>
+                {% endif %}
+
+                <div class="d-flex">
+                    <time class="news-item__date news-date" timestamp="{{ item.publishAt|date('d/m/Y H:i') }}">
+                        {#{{ item.publishAt|localizeddate('short', 'none', 'ru') }}#}
+                        {{ item.publishAt|date('d/m/Y') }} <span>{{ item.publishAt|date('H:i') }}</span>
+                    </time>
+                    <a class="news-item__title" href="{{ url }}">
+                        {{ item.translate.title }}
+                    </a>
+                </div>
+                {% if item.translate.shortDescription is not empty %}
+                    <p class="news-item__text">
+                        {{ item.translate.shortDescription|truncate(120) }}
+                    </p>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
