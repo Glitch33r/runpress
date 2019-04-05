@@ -10,6 +10,5 @@ final class FileUpdateConfig
     public $elements = [
         'Info' => ['poster'],
         'Opinion' => ['poster'],
-        'Video' => ['poster'],
     ];
 }

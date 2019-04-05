@@ -167,8 +167,8 @@ final class HomepageController extends AbstractController
         $newsSlider = $em->getRepository(News::class)->getLimitElements(6);
         $newsRAND = $em->getRepository(News::class)->getLimitRANDElements(2);
         $video = $em->getRepository(Video::class)->getLimitElements(2);
-        $opinion = $em->getRepository(Opinion::class)->getLimitElements(2);
-        $info = $em->getRepository(Info::class)->getLimitElements(4);
+        $opinion = [];//$em->getRepository(Opinion::class)->getLimitElements(2);
+        $info = [];//$em->getRepository(Info::class)->getLimitElements(4);
         $asideCategories = $em->getRepository(NewsCategory::class)->getAsideElementsOnMain();
 
         return $this->render('homepage/index.html.twig', [
