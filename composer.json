@@ -93,7 +93,13 @@
             "App\\": "src/",
             "BackendBundle\\": "src/BackendBundle",
             "FrontendBundle\\": "src/FrontendBundle",
-            "IhorDrevetskyi\\NewsBundle\\": "bundles/NewsBundle/src",
+            "DashboardBundle\\": "src/DashboardBundle",
+            "NewsBundle\\": "src/NewsBundle",
+            "ComponentBundle\\": "src/ComponentBundle",
+            "SeoBundle\\": "src/SeoBundle",
+            "StaticBundle\\": "src/StaticBundle",
+            "UploadBundle\\": "src/UploadBundle",
+            "UserBundle\\": "src/UserBundle",
             "IhorDrevetskyi\\SupportCenter\\ContactBundle\\": "bundles/SupportCenter/ContactBundle/src"
         }
     },

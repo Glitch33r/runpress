@@ -1,0 +1,202 @@
+{{ elfinder_tinymce_init4('default') }}
+
+<script src="{{ asset('bundles/dashboard/assets/app/custom/general/crud/forms/widgets/bootstrap-maxlength.js') }}"
+        type="text/javascript"></script>
+<script src="{{ asset('bundles/dashboard/assets/app/custom/general/crud/forms/widgets/autosize.js') }}"
+        type="text/javascript"></script>
+
+{% if app.request.locale == 'ru' %}
+    <script src="{{ asset('bundles/dashboard/assets/demo/default/custom/crud/forms/jquery-validation/js/localization/messages_ru.min.js') }}"
+            type="text/javascript"></script>
+{% elseif app.request.locale == 'uk' %}
+    <script src="{{ asset('bundles/dashboard/assets/demo/default/custom/crud/forms/jquery-validation/js/localization/messages_uk.min.js') }}"
+            type="text/javascript"></script>
+{% endif %}
+
+{% if app.request.locale == 'uk' %}
+  <script type="text/javascript"
+          src="{{ asset('bundles/dashboard/assets/demo/default/custom/crud/forms/bootstrap-datetimepicker.uk.js') }}"></script>
+{% elseif app.request.locale == 'ru' %}
+  <script type="text/javascript"
+          src="{{ asset('bundles/dashboard/assets/demo/default/custom/crud/forms/bootstrap-datetimepicker.ru.js') }}"></script>
+{% endif %}
+
+<script>
+    Dropzone.autoDiscover = false;
+
+    var BootstrapTouchspin = function () {
+        //== Private functions
+        var demos = function () {
+            // vertical buttons with custom icons:
+            $('.js-kt-touch-spin-position').TouchSpin({
+                min: 0,
+                max: 1000000000,
+                buttondown_class: 'btn btn-secondary',
+                buttonup_class: 'btn btn-secondary',
+                verticalbuttons: true,
+                verticalup: '<i class="la la-angle-up"></i>',
+                verticaldown: '<i class="la la-angle-down"></i>'
+            });
+        };
+
+        return {
+            // public functions
+            init: function () {
+                demos();
+            }
+        };
+    }();
+    var FormControls = function () {
+        //== Private functions
+        var form = function () {
+            var form = $('form[name="{{ form.vars.name }}"]');
+            var alert = $('#kt_form_msg');
+            var rules = {};
+            {% include '@Dashboard/default/crud/new_edit/_validate_form.html.twig' with {
+                'form': form
+            } %}
+            form.validate({
+                // define validation rules
+                rules: rules,
+                //display error alert on form submit
+                invalidHandler: function (event, validator) {
+                    var validateMassage = '';
+
+                    for (error in validator.errorList) {
+                        validateMassage = validateMassage + ' ' +
+                            '<b>' + validator.errorList[error].element.labels[0].innerText + '</b>: ' +
+                            validator.errorList[error].message + "<br>";
+                    }
+                    var alert = $('#kt_form_msg');
+                    alert.find('.alert-text').html(validateMassage);
+                    alert.removeClass('kt-hide');
+                    KTUtil.scrollTop();
+
+                    swal.fire({
+                        "title": "{{ 'ui.error'|trans([], 'DashboardBundle')~'!' }}",
+                        "html": validateMassage,
+                        "type": "error",
+                        "confirmButtonClass": "btn btn-info"
+                    });
+
+                    event.preventDefault();
+                },
+                submitHandler: function (form) {
+                    alert.addClass('kt-hide');
+                    form.submit(); // submit the form
+                    return false;
+                }
+            });
+        };
+
+        return {
+            init: function () {
+                form();
+            }
+        };
+    }();
+    var FormWidgets = function () {
+        var initWidgets = function () {
+            // datetimepicker
+            $('.js-date-time-picker').datetimepicker({
+                pickerPosition: 'bottom-left',
+                todayHighlight: true,
+                autoclose: true,
+                format: 'dd.mm.yyyy hh:ii',
+                language: '{{ app.request.locale }}'
+            });
+        };
+
+        return {
+            init: function () {
+                initWidgets();
+            }
+        };
+    }();
+    var Select2 = function () {
+        var demos = function () {
+            $('.js-kt-select-allow-clear').select2({
+                language: {
+                    "noResults": function () {
+                        return "{{ 'ui.no.no_results'|trans([], 'DashboardBundle') }}";
+                    }
+                },
+                width: '100%',
+                placeholder: "{{ 'ui.nothing_is_selected'|trans([], 'DashboardBundle') }}",
+                allowClear: true
+            });
+            $('.js-kt-select').select2({
+                width: '100%',
+                placeholder: "{{ 'ui.nothing_is_selected'|trans([], 'DashboardBundle') }}",
+                language: {
+                    "noResults": function () {
+                        return "{{ 'ui.no.no_results'|trans([], 'DashboardBundle') }}";
+                    }
+                }
+            });
+        };
+
+        return {
+            init: function () {
+                demos();
+            }
+        };
+    }();
+
+    var body = $('body');
+
+    jQuery(document).ready(function () {
+        BootstrapTouchspin.init();
+        FormControls.init();
+        Select2.init();
+        FormWidgets.init();
+
+        // Get that holds the collection
+        var collectionHolder = $('.js-collection-widgets');
+        // add a delete link to all of the existing form elements
+        collectionHolder.find('div.collection-elements').each(function () {
+            addCollectionWidgetFormDeleteLink($(this));
+        });
+
+        body.on('click', '.add-another-collection-widget', function (e) {
+            e.preventDefault();
+            var list = jQuery(jQuery(this).attr('data-list'));
+            // Try to find the counter of the list
+            var counter = list.data('widget-counter') | list.children().length;
+            // If the counter does not exist, use the length of the list
+            if (!counter) {
+                counter = list.children().length;
+            }
+            // grab the prototype template
+            var newWidget = list.attr('data-prototype');
+            // replace the "__name__" used in the id and name of the prototype
+            // with a number that's unique to your emails
+            // end name attribute looks like name="contact[emails][2]"
+            newWidget = newWidget.replace(/__name__/g, counter);
+            // Increase the counter
+            counter++;
+            // And store it, the length cannot be used if deleting widgets is allowed
+            list.data('widget-counter', counter);
+            // create a new list element and add it to the list
+            var newElem = jQuery(list.attr('data-widget-tags')).html(newWidget);
+            newElem.appendTo(list);
+            addCollectionWidgetFormDeleteLink(newElem);
+
+            BootstrapTouchspin.init();
+            FormControls.init();
+            Select2.init();
+            FormWidgets.init();
+        });
+    });
+
+    function addCollectionWidgetFormDeleteLink($collectionWidget) {
+        var $removeFormA = $('<div class="col-lg-1"> <a title="{{ 'ui.action.action_delete'|trans([], 'DashboardBundle') }}" href="javascript:void(0);" class="btn-sm btn btn-outline-danger btn--icon"> <i class="la la-trash-o"></i></a> </div>');
+        $collectionWidget.append($removeFormA);
+        $removeFormA.on('click', function (e) {
+            // prevent the link from creating a "#" on the URL
+            e.preventDefault();
+            // remove the li for the tag form
+            $collectionWidget.remove();
+        });
+    }
+</script>

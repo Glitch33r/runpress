@@ -1,0 +1,11 @@
+<span>
+    {% if element == 1 %}
+        <span class="btn btn-bold btn-sm btn-font-sm  btn-label-success">
+            {{ 'ui.yes_label'|trans([], 'DashboardBundle') }}
+        </span>
+    {% elseif element == 0 %}
+        <span class="btn btn-bold btn-sm btn-font-sm  btn-label-danger">
+            {{ 'ui.no.no_label'|trans([], 'DashboardBundle') }}
+        </span>
+    {% endif %}
+</span>

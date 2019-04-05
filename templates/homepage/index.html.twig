@@ -45,6 +45,42 @@
                 {{ render(controller('FrontendBundle\\Controller\\DefaultController::initSidebarBannerAction')) }}
 
                 <div style="padding-left: 67.5px;">
+                    {% if asideCategories|length %}
+                        {% for category in asideCategories %}
+                            <a href="{{ path('frontend_opinion_index') }}">
+                                <h3 class="page__sub-subtitle">
+                                    {{ category.translate.title }}
+                                </h3>
+                            </a>
+                            <div class="opinions">
+                                {% for k, item in category.getNews() if k < 2 %}
+
+                                    {% set href = url('frontend_news_show', {
+                                        'slug': item.translations[item.defaultLocale].slug
+                                    }) %}
+
+                                    <div class="opinion opinions__item">
+                                        <a href="{{ href }}" class="opinion__img-wrap">
+                                            <img class="opinion__img"
+                                                 src="{{ (item.newsAuthor is not null ? item.newsAuthor.poster|json_decode.default_file : item.poster|json_decode['218x150'])|default(asset('bundles/upload/images/no-image-400.png')) }}"
+                                                 alt="{{ item.translate.posterAlt }}">
+                                        </a>
+                                        <div class="opinion__info">
+                                            <a href="{{ href }}">
+                                            <span class="opinion__author">
+                                                {{ item.translate.title }}
+                                            </span>
+                                            </a>
+                                            <p class="opinion__text">
+                                                {{ item.translate.shortDescription }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
                     {% if opinion|length > 0 %}
                         <a href="{{ path('frontend_opinion_index') }}">
                             <h3 class="page__sub-subtitle">
@@ -54,7 +90,7 @@
                         <div class="opinions">
                             {% for item in opinion %}
 
-                                {% set href = url('frontend_opinion_show', {
+                                {% set href = url('frontend_news_show', {
                                     'slug': item.translations[item.defaultLocale].slug
                                 }) %}
 

@@ -12,11 +12,11 @@
         <nav class="page-header__nav">
             <div class="page-header__nav-inner">
                 <ul class="page-header__nav-list">
-                    {{ render(controller('IhorDrevetskyi\\NewsBundle\\Controller\\Frontend\\NewsCategoryController::initMenu')) }}
+                    {{ render(controller('NewsBundle\\Controller\\Frontend\\NewsCategoryController::initMenu')) }}
                 </ul>
                 <div class="page-header__nav-left-block" data-simplebar>
                     <ul class="page-header__nav-list page-header__nav-list--column">
-                        {{ render(controller('IhorDrevetskyi\\NewsBundle\\Controller\\Frontend\\NewsCategoryController::initAllMenu')) }}
+                        {{ render(controller('NewsBundle\\Controller\\Frontend\\NewsCategoryController::initAllMenu')) }}
                     </ul>
                     <button class="page-header__nav-close-btn page-header__btn js-nav-close">
                         <svg class="svg-icon" role="img" title="close">

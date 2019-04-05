@@ -6,17 +6,17 @@ use BackendBundle\Entity\Opinion;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Form\FormBuilderInterface;
-use IhorDrevetskyi\UploadBundle\Form\Type\UploadType;
+use UploadBundle\Form\Type\UploadType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use IhorDrevetskyi\SeoBundle\Form\Type\Dashboard\SeoType;
-use IhorDrevetskyi\DashboardBundle\Form\Type\NewEdit\DashboardTextType;
-use IhorDrevetskyi\DashboardBundle\Form\Type\NewEdit\DashboardYesNoType;
-use IhorDrevetskyi\DashboardBundle\Form\Type\NewEdit\AddSaveBtnSubscriber;
-use IhorDrevetskyi\DashboardBundle\Form\Type\NewEdit\DashboardWYSIWYGType;
-use IhorDrevetskyi\DashboardBundle\Form\Type\NewEdit\DashboardPositionType;
-use IhorDrevetskyi\DashboardBundle\Form\Type\NewEdit\DashboardTextareaType;
-use IhorDrevetskyi\DashboardBundle\Form\Type\NewEdit\DashboardDateTimeType;
-use IhorDrevetskyi\DashboardBundle\Form\Type\NewEdit\DashboardTranslationsType;
+use SeoBundle\Form\Type\Dashboard\SeoType;
+use DashboardBundle\Form\Type\DashboardTextType;
+use DashboardBundle\Form\Type\DashboardYesNoType;
+use DashboardBundle\Form\Type\AddSaveBtnSubscriber;
+use DashboardBundle\Form\Type\DashboardWYSIWYGType;
+use DashboardBundle\Form\Type\DashboardPositionType;
+use DashboardBundle\Form\Type\DashboardTextareaType;
+use DashboardBundle\Form\Type\DashboardDateTimeType;
+use DashboardBundle\Form\Type\DashboardTranslationsType;
 
 /**
  * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>

@@ -12,7 +12,7 @@
                 </h1>
 
                 {{ render(controller('FrontendBundle\\Controller\\DefaultController::initNewsCategorySliderAction', {
-                    'slug': slug, 'countInPage': 3
+                    'slug': category, 'countInPage': 3
                 })) }}
 
                 <h3 class="page__sub-subtitle">
@@ -21,8 +21,8 @@
 
                 <div class="last-news">
                     <ul class="last-news__list infinite-scroll" data-itemSelector=".infinite-scroll__item">
-                        {{  render(controller('IhorDrevetskyi\\NewsBundle\\Controller\\Frontend\\NewsController::getNewsElementsByCategoryAction',{
-                            'page': 1, 'countInPage': 10, 'category': slug, 'fromTwig': true
+                        {{  render(controller('NewsBundle\\Controller\\Frontend\\NewsController::getNewsElementsByCategoryAction',{
+                            'page': 1, 'countInPage': 10, 'category': category, 'fromTwig': true
                         })) }}
                     </ul>
                 </div>

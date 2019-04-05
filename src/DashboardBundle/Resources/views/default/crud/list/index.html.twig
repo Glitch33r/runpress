@@ -1,0 +1,169 @@
+{% extends '@Dashboard/templates/'~templateNumber~'/_template.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12">
+            <!--begin::Portlet-->
+            <div class="kt-portlet kt-portlet--bordered kt-portlet--head--noborder kt-portlet--last kt-portlet--head-lg kt-portlet--responsive-mobile"
+                 id="kt_page_portlet">
+                <div class="kt-portlet__head kt-portlet__head--lg">
+                    <div class="kt-portlet__head-label">
+                        <h3 class="kt-portlet__head-title">
+                            {% if portletHeadIcon is defined and portletHeadIcon is not empty %}
+                                {% if portletHeadIcon['useSvg'] is defined and portletHeadIcon['useSvg'] == true %}
+                                    <span>
+                                        {{ portletHeadIcon['svg']|raw }}
+                                    </span>
+                                {% elseif portletHeadIcon['icon'] is defined %}
+                                    <span>
+                                        <i class="{{ portletHeadIcon['icon'] }}"></i>
+                                    </span>
+                                {% endif %}
+                            {% endif %}
+                            {% block head_title %}
+                                {{ headTitle|raw }}
+                            {% endblock %}
+                            {#<small>try to scroll the page</small>#}
+                        </h3>
+                    </div>
+                    <div class="kt-portlet__head-toolbar">
+                        {% include '@Dashboard/default/crud/list/_portlet_head_tools.html.twig' %}
+                        {% include '@Dashboard/default/crud/list/_add_new_entry.html.twig' with {
+                            path: routeForGetElementsForNew, role: grantedRoleForNew,
+                        } %}
+                    </div>
+                </div>
+                <div class="kt-portlet__body">
+                    {% include '@Dashboard/default/crud/_flashes.html.twig' %}
+                    {% if isUseWidgetsForList == true and widgetsForList is defined and widgetsForList is not null %}
+                        {{ widgetsForList|raw }}
+                    {% endif %}
+                    {% include '@Dashboard/default/crud/list/_search_form.html.twig' %}
+                    <!--begin: Datatable -->
+                    <div class="kt-datatable" id="api_events"></div>
+                    <!--end: Datatable -->
+                </div>
+            </div>
+            <!--end::Portlet-->
+        </div>
+    </div>
+{% endblock %}
+
+{% block script_page_scripts %}
+    {{ parent() }}
+    {% include '@Dashboard/default/crud/_js_flashes.html.twig' %}
+    <script>
+        var KTDefaultDatatableDemo = function() {
+            // basic demo
+            var demo = function() {
+                var datatable = $('.kt-datatable').KTDatatable({
+                    // datasource definition
+                    data: {
+                        type: 'remote',
+                        source: {
+                            read: {
+                                url: '{{ routeForGetElementsForIndex }}',
+                            },
+                        },
+                        pageSize: {{ configForListDashboard['pageLength'] }},
+                        serverPaging: true,
+                        serverFiltering: true,
+                        serverSorting: true,
+                        saveState: {
+                            cookie: false,
+                            webstorage: false
+                        }
+                    },
+                    // layout definition
+                    layout: {
+                        minHeight: '0px',
+                        theme: 'default',
+                        class: '',
+                        scroll: true, // enable/disable datatable scroll both horizontal and vertical when needed.
+                        height: null, // datatable's body's fixed height
+                        footer: true, // display/hide footer
+                    },
+                    // column sorting
+                    sortable: true,
+                    filterable: false,
+                    pagination: true,
+
+                    // toolbar
+                    toolbar: {
+                        layout: ['pagination', 'info'],
+                        placement: ['bottom'],
+                        items: {
+                            pagination: {
+                                type: 'default',
+                                navigation: {
+                                    prev: true,
+                                    next: true,
+                                    first: true,
+                                    last: true
+                                },
+                                pageSizeSelect: [{{ configForListDashboard['lengthMenu'] }}],
+                            },
+                            info: true
+                        },
+                    },
+
+                    search: {
+                        input: $('#generalSearch'),
+                    },
+
+                    // columns definition
+                    columns: [
+                        {
+                            field: 'id',
+                            title: '№',
+                            sortable: true,
+                            textAlign: 'center',
+                        },
+                        {% include '@Dashboard/default/crud/list/_helper_for_th.html.twig' with {
+                            'listElements': listElements,
+                        } %}
+                        {
+                            field: 'Actions',
+                            title: '{{ 'ui.actions'|trans([], 'DashboardBundle') }}',
+                            sortable: false,
+                            locked: {right: 'xl'},
+                            overflow: 'visible'
+                        }],
+                    translate: {
+                        records: {
+                            processing: "{{ 'ui.table.loadingMessage'|trans([], 'DashboardBundle') }}",
+                            noRecords: "{{ 'ui.table.emptyTable'|trans([], 'DashboardBundle') }}"
+                        },
+                        toolbar: {
+                            pagination: {
+                                items: {
+                                    default: {
+                                        first: "{{ 'ui.table.paginate.first'|trans([], 'DashboardBundle') }}",
+                                        prev: "{{ 'ui.table.paginate.previous'|trans([], 'DashboardBundle') }}",
+                                        next: "{{ 'ui.table.paginate.next'|trans([], 'DashboardBundle') }}",
+                                        last: "{{ 'ui.table.paginate.last'|trans([], 'DashboardBundle') }}",
+                                        more: "{{ 'ui.table.more'|trans([], 'DashboardBundle') }}",
+                                        input: "{{ 'ui.table.input'|trans([], 'DashboardBundle') }}",
+                                        select: "{{ 'ui.table.select'|trans([], 'DashboardBundle') }}"
+                                    },
+                                    info: "{{ 'ui.table.info'|trans([], 'DashboardBundle') }}"
+                                }
+                            }
+                        }
+                    }
+                });
+            };
+
+            return {
+                // public functions
+                init: function() {
+                    demo();
+                },
+            };
+        }();
+
+        jQuery(document).ready(function() {
+            KTDefaultDatatableDemo.init();
+        });
+    </script>
+{% endblock %}

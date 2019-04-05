@@ -11,13 +11,13 @@ use FrontendBundle\Entity\WpPosts;
 use FrontendBundle\Entity\WpTermRelationships;
 use FrontendBundle\Entity\WpTerms;
 use FrontendBundle\Entity\WpTermTaxonomy;
-use IhorDrevetskyi\NewsBundle\Entity\News;
-use IhorDrevetskyi\NewsBundle\Entity\NewsCategory;
-use IhorDrevetskyi\NewsBundle\Entity\NewsCategoryTranslation;
-use IhorDrevetskyi\NewsBundle\Entity\NewsTranslation;
-use IhorDrevetskyi\SeoBundle\Entity\Seo;
-use IhorDrevetskyi\SeoBundle\Utils\SeoManager;
-use IhorDrevetskyi\UploadBundle\Services\FileHandler;
+use NewsBundle\Entity\News;
+use NewsBundle\Entity\NewsCategory;
+use NewsBundle\Entity\NewsCategoryTranslation;
+use NewsBundle\Entity\NewsTranslation;
+use SeoBundle\Entity\Seo;
+use SeoBundle\Utils\SeoManager;
+use UploadBundle\Services\FileHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
@@ -169,6 +169,7 @@ final class HomepageController extends AbstractController
         $video = $em->getRepository(Video::class)->getLimitElements(2);
         $opinion = $em->getRepository(Opinion::class)->getLimitElements(2);
         $info = $em->getRepository(Info::class)->getLimitElements(4);
+        $asideCategories = $em->getRepository(NewsCategory::class)->getAsideElementsOnMain();
 
         return $this->render('homepage/index.html.twig', [
             'seo' => $seoManager->getSeoForHomePage(),
@@ -177,6 +178,7 @@ final class HomepageController extends AbstractController
             'video' => $video,
             'opinion' => $opinion,
             'info' => $info,
+            'asideCategories' => $asideCategories,
         ]);
     }
 }

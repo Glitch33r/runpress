@@ -5,8 +5,8 @@ namespace BackendBundle\Controller\Dashboard;
 use BackendBundle\Entity\Opinion;
 use BackendBundle\Form\Type\Dashboard\OpinionType;
 use Doctrine\ORM\EntityManagerInterface;
-use IhorDrevetskyi\DashboardBundle\Controller\CRUDController;
-use IhorDrevetskyi\SeoBundle\Entity\Seo;
+use DashboardBundle\Controller\CRUDController;
+use SeoBundle\Entity\Seo;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Environment;
 
@@ -19,7 +19,7 @@ final class OpinionController extends CRUDController
      * @param TranslatorInterface $translator
      * @return string
      */
-    public function getHeadTitle(TranslatorInterface $translator): string
+    public function getHeadTitle(): string
     {
         return 'Мнения';
     }

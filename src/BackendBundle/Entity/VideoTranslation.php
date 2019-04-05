@@ -2,11 +2,11 @@
 
 namespace BackendBundle\Entity;
 
-use IhorDrevetskyi\ComponentBundle\Entity\PosterAlt\PosterAltTrait;
-use IhorDrevetskyi\ComponentBundle\Entity\Slug\SlugInterface;
-use IhorDrevetskyi\ComponentBundle\Entity\Slug\SlugUniqueTrueTrait;
-use IhorDrevetskyi\ComponentBundle\Entity\Title\TitleInterface;
-use IhorDrevetskyi\ComponentBundle\Entity\Title\TitleTrait;
+use ComponentBundle\Entity\PosterAlt\PosterAltTrait;
+use ComponentBundle\Entity\Slug\SlugInterface;
+use ComponentBundle\Entity\Slug\SlugUniqueTrueTrait;
+use ComponentBundle\Entity\Title\TitleInterface;
+use ComponentBundle\Entity\Title\TitleTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;

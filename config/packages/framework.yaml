@@ -1,0 +1,343 @@
+fos_ck_editor:
+  default_config: my_config
+  configs:
+    my_config:
+      filebrowserBrowseRoute: elfinder
+      filebrowserBrowseRouteParameters: []
+      toolbar: full
+
+framework:
+  secret: '%env(APP_SECRET)%'
+  default_locale: '%locale%'
+  translator:
+    fallbacks: ['%locale%']
+  csrf_protection: true
+  http_method_override: true
+
+  # Enables session support. Note that the session will ONLY be started if you read or write from it.
+  # Remove or comment this section to explicitly disable session support.
+  session:
+    handler_id: ~
+    cookie_secure: auto
+    cookie_samesite: lax
+
+  esi: true
+  fragments: true
+  php_errors:
+    log: true
+
+  cache:
+  # Put the unique name of your app here: the prefix seed
+  # is used to compute stable namespaces for cache keys.
+  #prefix_seed: your_vendor_name/app_name
+
+  # The app cache caches to the filesystem by default.
+  # Other options include:
+
+  # Redis
+  #app: cache.adapter.redis
+  #default_redis_provider: redis://localhost
+
+  # APCu (not recommended with heavy random-write workloads as memory fragmentation can cause perf issues)
+  #app: cache.adapter.apcu
+
+knp_doctrine_behaviors:
+  blameable:  true
+  sluggable:  true
+  soft_deletable:  true
+  sortable:  true
+  timestampable:  true
+  translatable:  true
+  tree:  true
+
+knp_paginator:
+  page_range: 5                       # number of links showed in the pagination menu (e.g: you have 10 pages, a page_range of 3, on the 5th page you'll see links to page 4, 5, 6)
+  default_options:
+    page_name: page                 # page query parameter name
+    sort_field_name: sort           # sort field query parameter name
+    sort_direction_name: direction  # sort direction query parameter name
+    distinct: true                  # ensure distinct results, useful when ORM queries are using GROUP BY statements
+    filter_field_name: filterField  # filter field query parameter name
+    filter_value_name: filterValue  # filter value query paameter name
+  template:
+    pagination: KnpPaginatorBundle:Pagination:sliding.html.twig     # sliding pagination controls template
+    sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
+    filtration: KnpPaginatorBundle:Pagination:filtration.html.twig  # filters template
+
+jms_i18n_routing:
+  default_locale: "%locale%"
+  locales: "%locale_supported%"
+  strategy: prefix_except_default
+
+
+a2lix_translation_form:
+  locale_provider: default
+  locales: "%locale_supported%"
+  default_locale: "%locale%"
+  required_locales: ["%locale%"]
+
+#Upload bundle
+upload:
+    web_dir: 'public'
+    temp_upload_dir: "uploads/temp"
+    types:
+        static_content_img:
+            type: image
+            mime_type: []  # default
+            format: 'jpg, gif, png, svg'
+            upload_dir: '/uploads/static_content/img'
+            main_action: 'resize_and_crop'
+            thumbnails:
+                admin:
+                    width: 120
+                    height: 120
+                    action: exact_resize
+        news_poster:
+            type: image
+            mime_type: []  # default
+            format: 'jpg, gif, png, svg'
+            upload_dir: '/uploads/news/poster'
+            main_action: 'resize_and_crop'
+            thumbnails:
+                admin:
+                    width: 120
+                    height: 120
+                    action: exact_resize
+                218x150:
+                    width: 218
+                    height: 150
+                    action: exact_resize
+                265x198:
+                    width: 265
+                    height: 198
+                    action: exact_resize
+                300x183:
+                    width: 300
+                    height: 183
+                    action: exact_resize
+                324x160:
+                    width: 324
+                    height: 160
+                    action: exact_resize
+                324x235:
+                    width: 324
+                    height: 235
+                    action: exact_resize
+                324x391:
+                    width: 324
+                    height: 391
+                    action: exact_resize
+                356x364:
+                    width: 356
+                    height: 364
+                    action: exact_resize
+                533x261:
+                    width: 533
+                    height: 261
+                    action: exact_resize
+                534x391:
+                    width: 534
+                    height: 391
+                    action: exact_resize
+                640x385:
+                    width: 640
+                    height: 385
+                    action: exact_resize
+        news_gallery_image:
+            type: image
+            mime_type: []  # default
+            format: 'jpg, gif, png, svg'
+            upload_dir: '/uploads/news/gallery_image'
+            main_action: 'resize_and_crop'
+            thumbnails:
+                admin:
+                    width: 120
+                    height: 120
+                    action: exact_resize
+                show:
+                    width: 873
+                    height: 512
+                    action: exact_resize
+        partner_banner:
+            type: image
+            mime_type: []  # default
+            format: 'jpg, gif, png, svg'
+            upload_dir: '/uploads/partner'
+            main_action: 'resize_and_crop'
+            thumbnails:
+                admin:
+                    width: 120
+                    height: 120
+                    action: exact_resize
+        info_poster:
+            type: image
+            mime_type: []  # default
+            format: 'jpg, gif, png, svg'
+            upload_dir: '/uploads/news/poster'
+            main_action: 'resize_and_crop'
+            thumbnails:
+                admin:
+                    width: 120
+                    height: 120
+                    action: exact_resize
+                218x150:
+                    width: 218
+                    height: 150
+                    action: exact_resize
+                265x198:
+                    width: 265
+                    height: 198
+                    action: exact_resize
+                300x183:
+                    width: 300
+                    height: 183
+                    action: exact_resize
+                324x160:
+                    width: 324
+                    height: 160
+                    action: exact_resize
+                324x235:
+                    width: 324
+                    height: 235
+                    action: exact_resize
+                324x391:
+                    width: 324
+                    height: 391
+                    action: exact_resize
+                356x364:
+                    width: 356
+                    height: 364
+                    action: exact_resize
+                533x261:
+                    width: 533
+                    height: 261
+                    action: exact_resize
+                534x391:
+                    width: 534
+                    height: 391
+                    action: exact_resize
+                640x385:
+                    width: 640
+                    height: 385
+                    action: exact_resize
+        video_poster:
+            type: image
+            mime_type: []  # default
+            format: 'jpg, gif, png, svg'
+            upload_dir: '/uploads/video/poster'
+            main_action: 'resize_and_crop'
+            thumbnails:
+                admin:
+                    width: 120
+                    height: 120
+                    action: exact_resize
+                218x150:
+                    width: 218
+                    height: 150
+                    action: exact_resize
+                265x198:
+                    width: 265
+                    height: 198
+                    action: exact_resize
+                300x183:
+                    width: 300
+                    height: 183
+                    action: exact_resize
+                324x160:
+                    width: 324
+                    height: 160
+                    action: exact_resize
+                324x235:
+                    width: 324
+                    height: 235
+                    action: exact_resize
+                324x391:
+                    width: 324
+                    height: 391
+                    action: exact_resize
+                356x364:
+                    width: 356
+                    height: 364
+                    action: exact_resize
+                533x261:
+                    width: 533
+                    height: 261
+                    action: exact_resize
+                534x391:
+                    width: 534
+                    height: 391
+                    action: exact_resize
+                640x385:
+                    width: 640
+                    height: 385
+                    action: exact_resize
+        news_author_poster:
+            type: image
+            mime_type: []  # default
+            format: 'jpg, gif, png, svg'
+            upload_dir: '/uploads/news_author'
+            main_action: 'resize_and_crop'
+            thumbnails:
+                admin:
+                    width: 120
+                    height: 120
+                    action: exact_resize
+                48x48:
+                    width: 48
+                    height: 48
+                    action: exact_resize
+                96x96:
+                    width: 96
+                    height: 96
+                    action: exact_resize
+        opinion_poster:
+            type: image
+            mime_type: []  # default
+            format: 'jpg, gif, png, svg'
+            upload_dir: '/uploads/opinion/poster'
+            main_action: 'resize_and_crop'
+            thumbnails:
+                admin:
+                    width: 120
+                    height: 120
+                    action: exact_resize
+                218x150:
+                    width: 218
+                    height: 150
+                    action: exact_resize
+                265x198:
+                    width: 265
+                    height: 198
+                    action: exact_resize
+                300x183:
+                    width: 300
+                    height: 183
+                    action: exact_resize
+                324x160:
+                    width: 324
+                    height: 160
+                    action: exact_resize
+                324x235:
+                    width: 324
+                    height: 235
+                    action: exact_resize
+                324x391:
+                    width: 324
+                    height: 391
+                    action: exact_resize
+                356x364:
+                    width: 356
+                    height: 364
+                    action: exact_resize
+                533x261:
+                    width: 533
+                    height: 261
+                    action: exact_resize
+                534x391:
+                    width: 534
+                    height: 391
+                    action: exact_resize
+                640x385:
+                    width: 640
+                    height: 385
+                    action: exact_resize

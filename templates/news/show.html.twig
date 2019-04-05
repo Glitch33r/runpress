@@ -29,7 +29,7 @@
                     {% endif %}
                 </blockquote>
 
-                {{ render(controller('IhorDrevetskyi\\NewsBundle\\Controller\\Frontend\\NewsController::getNewsGalleryImagesAction', {
+                {{ render(controller('NewsBundle\\Controller\\Frontend\\NewsController::getNewsGalleryImagesAction', {
                     'news': element.id
                 })) }}
 

@@ -1,0 +1,23 @@
+dashboard_contact_manager_index:
+    path:     /
+    controller: IhorDrevetskyi\SupportCenter\ContactBundle\Controller\Dashboard\ContactManagerController::listAction
+    methods:  [GET, POST]
+
+dashboard_contact_manager_new:
+    path:     /new/
+    controller: IhorDrevetskyi\SupportCenter\ContactBundle\Controller\Dashboard\ContactManagerController::newAction
+    methods:  [GET, POST]
+
+dashboard_contact_manager_edit:
+    path:     /edit/{id}
+    controller: IhorDrevetskyi\SupportCenter\ContactBundle\Controller\Dashboard\ContactManagerController::editAction
+    methods:  [GET, POST]
+    requirements:
+        id:  \d+
+
+dashboard_contact_manager_delete:
+    path:     /delete/{id}
+    controller: IhorDrevetskyi\SupportCenter\ContactBundle\Controller\Dashboard\ContactManagerController::deleteAction
+    methods:  GET
+    requirements:
+        id:  \d+

@@ -2,16 +2,16 @@
 
 namespace BackendBundle\Entity;
 
-use IhorDrevetskyi\ComponentBundle\Entity\Description\DescriptionInterface;
-use IhorDrevetskyi\ComponentBundle\Entity\Description\DescriptionTrait;
-use IhorDrevetskyi\ComponentBundle\Entity\ShortDescription\ShortDescriptionTrait;
-use IhorDrevetskyi\ComponentBundle\Entity\Slug\SlugInterface;
-use IhorDrevetskyi\ComponentBundle\Entity\Slug\SlugUniqueTrueTrait;
-use IhorDrevetskyi\ComponentBundle\Entity\Title\TitleInterface;
-use IhorDrevetskyi\ComponentBundle\Entity\Title\TitleTrait;
+use \ComponentBundle\Entity\Description\DescriptionInterface;
+use \ComponentBundle\Entity\Description\DescriptionTrait;
+use \ComponentBundle\Entity\ShortDescription\ShortDescriptionTrait;
+use \ComponentBundle\Entity\Slug\SlugInterface;
+use \ComponentBundle\Entity\Slug\SlugUniqueTrueTrait;
+use \ComponentBundle\Entity\Title\TitleInterface;
+use \ComponentBundle\Entity\Title\TitleTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use IhorDrevetskyi\ComponentBundle\Entity\PosterAlt\PosterAltTrait;
+use \ComponentBundle\Entity\PosterAlt\PosterAltTrait;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 use Symfony\Bridge\Doctrine\Validator\Constraints as UniqueEntity;
 

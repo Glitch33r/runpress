@@ -1,0 +1,19 @@
+dashboard_contact:
+    resource: "@SupportCenterContactBundle/Resources/config/routes/dashboard/contact.yaml"
+    prefix:   /contact
+
+dashboard_contact_manager:
+    resource: "@SupportCenterContactBundle/Resources/config/routes/dashboard/contact_manager.yaml"
+    prefix:   /contact/manager
+
+dashboard_contact_status:
+    resource: "@SupportCenterContactBundle/Resources/config/routes/dashboard/contact_status.yaml"
+    prefix:   /contact/status
+
+dashboard_contact_mail_setting:
+    resource: "@SupportCenterContactBundle/Resources/config/routes/dashboard/contact_mail_setting.yaml"
+    prefix:   /contact/setting/mail
+
+dashboard_contact_phone_type:
+    resource: "@SupportCenterContactBundle/Resources/config/routes/dashboard/contact_phone_type.yaml"
+    prefix:   /contact/phone-type

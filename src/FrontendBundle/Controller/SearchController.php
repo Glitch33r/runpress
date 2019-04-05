@@ -2,12 +2,12 @@
 
 namespace FrontendBundle\Controller;
 
-use IhorDrevetskyi\NewsBundle\Entity\News;
+use NewsBundle\Entity\News;
 
 /**
  * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
  */
-final class SearchController extends \IhorDrevetskyi\ComponentBundle\Controller\Frontend\SearchController
+final class SearchController extends \ComponentBundle\Controller\Frontend\SearchController
 {
     /**
      * @return array

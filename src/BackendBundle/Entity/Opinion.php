@@ -2,18 +2,18 @@
 
 namespace BackendBundle\Entity;
 
-use IhorDrevetskyi\ComponentBundle\Entity\__Call\__CallInterface;
-use IhorDrevetskyi\ComponentBundle\Entity\__Call\__CallTrait;
-use IhorDrevetskyi\ComponentBundle\Entity\Id\IdInterface;
-use IhorDrevetskyi\ComponentBundle\Entity\Id\IdTrait;
-use IhorDrevetskyi\ComponentBundle\Entity\Position\PositionInterface;
-use IhorDrevetskyi\ComponentBundle\Entity\Position\PositionTrait;
-use IhorDrevetskyi\ComponentBundle\Entity\ShowOnWebsite\ShowOnWebsiteInterface;
-use IhorDrevetskyi\ComponentBundle\Entity\ShowOnWebsite\ShowOnWebsiteTrait;
-use IhorDrevetskyi\ComponentBundle\Entity\YesOrNo\YesOrNoInterface;
-use IhorDrevetskyi\ComponentBundle\Entity\YesOrNo\YesOrNoTrait;
-use IhorDrevetskyi\ComponentBundle\Entity\Poster\PosterTrait;
-use IhorDrevetskyi\SeoBundle\Entity\SeoTrait;
+use ComponentBundle\Entity\__Call\__CallInterface;
+use ComponentBundle\Entity\__Call\__CallTrait;
+use ComponentBundle\Entity\Id\IdInterface;
+use ComponentBundle\Entity\Id\IdTrait;
+use ComponentBundle\Entity\Position\PositionInterface;
+use ComponentBundle\Entity\Position\PositionTrait;
+use ComponentBundle\Entity\ShowOnWebsite\ShowOnWebsiteInterface;
+use ComponentBundle\Entity\ShowOnWebsite\ShowOnWebsiteTrait;
+use ComponentBundle\Entity\YesOrNo\YesOrNoInterface;
+use ComponentBundle\Entity\YesOrNo\YesOrNoTrait;
+use ComponentBundle\Entity\Poster\PosterTrait;
+use SeoBundle\Entity\SeoTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;

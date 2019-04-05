@@ -29,7 +29,7 @@
                                      alt="{{ item.translate.posterAlt }}">
                             </a>
                             <a class="label news-item__label" href="{{ path('frontend_news_category_show', {
-                                'slug': newsCategory.translations[newsCategory.defaultLocale].slug
+                                'category': newsCategory.translations[newsCategory.defaultLocale].slug
                             }) }}">
                                 {{ newsCategory.translate.title }}
                             </a>

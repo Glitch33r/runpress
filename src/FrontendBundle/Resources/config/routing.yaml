@@ -1,0 +1,73 @@
+frontend_news_from_vendor:
+  resource: "@NewsBundle/Resources/config/routes/frontend/news.yaml"
+  prefix:   /news
+
+frontend_news_category_from_vendor:
+  resource: "@NewsBundle/Resources/config/routes/frontend/news_category.yaml"
+  prefix:   /category
+
+frontend_search_from_vendor:
+  resource: "@ComponentBundle/Resources/config/routes/frontend/search_routing.yaml"
+  prefix:   /search
+
+frontend_info_index:
+  path:     /info/
+  methods: [GET]
+  controller: FrontendBundle\Controller\InfoController::indexAction
+
+frontend_info_show:
+  path:     /info/{slug}
+  methods: [GET]
+  controller: FrontendBundle\Controller\InfoController::showAction
+
+frontend_partial_get_info_elements:
+  path:     /get-info-elements/{page}/{countInPage}
+  controller: FrontendBundle\Controller\InfoController::getInfoElementsAction
+  requirements:
+    page:  \d+
+    countInPage:  \d+
+  defaults:
+    page: 1
+    countInPage: 10
+
+frontend_opinion_index:
+  path:     /opinion/
+  methods: [GET]
+  controller: FrontendBundle\Controller\OpinionController::indexAction
+
+frontend_opinion_show:
+  path:     /opinion/{slug}
+  methods: [GET]
+  controller: FrontendBundle\Controller\OpinionController::showAction
+
+frontend_partial_get_opinion_elements:
+  path:     /get-opinion-elements/{page}/{countInPage}
+  controller: FrontendBundle\Controller\OpinionController::getOpinionElementsAction
+  requirements:
+    page:  \d+
+    countInPage:  \d+
+  defaults:
+    page: 1
+    countInPage: 10
+
+frontend_video_list:
+  path:     /video/
+  methods: [GET]
+  controller: FrontendBundle\Controller\VideoController::indexAction
+
+frontend_partial_get_video_elements:
+  path:     /get-video-elements/{page}/{countInPage}
+  controller: FrontendBundle\Controller\VideoController::getVideoElementsAction
+  requirements:
+    page:  \d+
+    countInPage:  \d+
+  defaults:
+    page: 1
+    countInPage: 10
+
+frontend_homepage:
+  path:     /{news}
+  methods: [GET]
+  controller: FrontendBundle\Controller\HomepageController::indexAction
+  defaults:
+    news: null

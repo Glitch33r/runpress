@@ -5,7 +5,7 @@ namespace BackendBundle\Entity\Repository;
 use BackendBundle\Entity\Opinion;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
-use IhorDrevetskyi\DashboardBundle\Entity\Repository\DashboardRepository;
+use DashboardBundle\Entity\Repository\DashboardRepository;
 
 /**
  * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>

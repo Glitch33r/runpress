@@ -2,12 +2,12 @@
 
 namespace BackendBundle\EventListener;
 
-use IhorDrevetskyi\UploadBundle\Services\FileHandler;
+use UploadBundle\Services\FileHandler;
 
 /**
  * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
  */
-final class FileDeleteListener extends \IhorDrevetskyi\UploadBundle\EventListener\FileDeleteListener
+final class FileDeleteListener extends \UploadBundle\EventListener\FileDeleteListener
 {
     public function __construct(FileHandler $fileHandler)
     {

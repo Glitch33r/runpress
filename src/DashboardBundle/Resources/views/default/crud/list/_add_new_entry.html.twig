@@ -1,0 +1,8 @@
+{% if is_granted(role) %}
+    <a href="{{ path }}" class="btn btn-outline-brand kt-margin-r-10">
+        <i class="flaticon-add"></i>
+        <span class="kt-hidden-mobile">
+            {{ 'ui.add.add_new_entry'|trans([], 'DashboardBundle') }}
+        </span>
+    </a>
+{% endif %}

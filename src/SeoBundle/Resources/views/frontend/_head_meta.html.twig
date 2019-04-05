@@ -1,0 +1,12 @@
+<title>{% block title %}{% if seo is defined and seo is not empty and seo.title is defined and seo.title is not empty %}{{ seo.title }}{% endif %}{% endblock %}</title>
+
+{% block keywords %}
+    {% if seo is defined and seo is not empty and seo.seoKeyword is defined and seo.seoKeyword is not empty %}
+        <meta name="keywords" content="{{ seo.seoKeyword }}"/>
+    {% endif %}
+{% endblock %}
+
+<meta name="description"
+      content="{% block description %}{% if seo is defined and seo is not empty and seo.description is defined and seo.description is not empty %}{{ seo.description }}{% endif %}{% endblock %}"/>
+
+<meta name="Author" content="Backend developer (Ihor Drevetskyi [ihor.drevetskyi@gmail.com])"/>

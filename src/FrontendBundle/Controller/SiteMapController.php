@@ -2,7 +2,7 @@
 
 namespace FrontendBundle\Controller;
 
-use IhorDrevetskyi\NewsBundle\Controller\Frontend\newsSiteMap;
+use NewsBundle\Controller\Frontend\newsSiteMap;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\RouterInterface;
@@ -10,7 +10,7 @@ use Symfony\Component\Routing\RouterInterface;
 /**
  * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
  */
-final class SiteMapController extends \IhorDrevetskyi\ComponentBundle\Controller\Frontend\SiteMapController
+final class SiteMapController extends \ComponentBundle\Controller\Frontend\SiteMapController
 {
     use newsSiteMap;
 

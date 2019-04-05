@@ -1,0 +1,26 @@
+frontend_search_from_header_save:
+  path:     /from-header/save/
+  controller: ComponentBundle\Controller\Frontend\SearchController::searchShopSaveAction
+  methods:  POST
+
+frontend_search_from_header_with_search_str:
+  path:     /{type}/{searchStr}
+  controller: ComponentBundle\Controller\Frontend\SearchController::getSearchShopResultsAction
+  defaults:
+    type: '%search_default_type%'
+    searchStr: null
+  requirements:
+    type: '%search_shop_choices%'
+
+frontend_search_get_results_by_page:
+  path:     /results/{page}/{countInPage}/{type}/{searchStr}
+  controller: FrontendBundle\Controller\SearchController::getResultsForSearchPageAction
+  defaults:
+    type: '%search_default_type%'
+    searchStr: null
+    page: 1
+    countInPage: 10
+  requirements:
+    page:  \d+
+    countInPage:  \d+
+    type: '%search_shop_choices%'

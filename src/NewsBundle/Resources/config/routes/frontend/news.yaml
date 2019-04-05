@@ -1,0 +1,24 @@
+frontend_news_list:
+  path:     /
+  methods: [GET]
+  controller: NewsBundle\Controller\Frontend\NewsController::indexWithAjaxPaginationAction
+
+frontend_partial_get_news_elements:
+  path:     /{page}/{countInPage}
+  controller: NewsBundle\Controller\Frontend\NewsController::getNewsElementsAction
+  requirements:
+    page:  \d+
+    countInPage:  \d+
+  defaults:
+    page: 1
+    countInPage: 10
+
+frontend_news_show:
+  path:     /{slug}
+  methods: [GET]
+  controller: NewsBundle\Controller\Frontend\NewsController::showAction
+
+frontend_news_show_with_category:
+  path:     /{category}/{slug}
+  methods: [GET]
+  controller: NewsBundle\Controller\Frontend\NewsController::showAction

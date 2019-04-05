@@ -2,13 +2,14 @@
 
 namespace FrontendBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
-use IhorDrevetskyi\NewsBundle\Entity\News;
+use NewsBundle\Entity\News;
 
 /**
  * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
  */
-final class DefaultController extends \IhorDrevetskyi\ComponentBundle\Controller\Frontend\DefaultController
+final class DefaultController extends \ComponentBundle\Controller\Frontend\DefaultController
 {
     public function initNewsCategorySliderAction(EntityManagerInterface $em, string $slug, int $countInPage)
     {
@@ -54,6 +55,20 @@ final class DefaultController extends \IhorDrevetskyi\ComponentBundle\Controller
 
         return $this->render('default/_sidebar_banner.html.twig', [
 //            'banners' => $banners,
+        ]);
+    }
+
+    public function initHeaderAction(EntityManagerInterface $em, Request $request)
+    {
+        return $this->render('default/_header.html.twig', [
+            'request' => $request
+        ]);
+    }
+
+    public function initFooterAction(EntityManagerInterface $em, Request $request)
+    {
+        return $this->render('default/_footer.html.twig', [
+            'request' => $request,
         ]);
     }
 }

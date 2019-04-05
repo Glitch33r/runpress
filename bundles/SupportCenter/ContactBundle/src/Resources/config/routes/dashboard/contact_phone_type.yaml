@@ -1,0 +1,23 @@
+dashboard_contact_phone_type_index:
+    path:     /
+    controller: IhorDrevetskyi\SupportCenter\ContactBundle\Controller\Dashboard\ContactPhoneTypeController::listAction
+    methods:  [GET, POST]
+
+dashboard_contact_phone_type_new:
+    path:     /new/
+    controller: IhorDrevetskyi\SupportCenter\ContactBundle\Controller\Dashboard\ContactPhoneTypeController::newAction
+    methods:  [GET, POST]
+
+dashboard_contact_phone_type_edit:
+    path:     /edit/{id}
+    controller: IhorDrevetskyi\SupportCenter\ContactBundle\Controller\Dashboard\ContactPhoneTypeController::editAction
+    methods:  [GET, POST]
+    requirements:
+        id:  \d+
+
+dashboard_contact_phone_type_delete:
+    path:     /delete/{id}
+    controller: IhorDrevetskyi\SupportCenter\ContactBundle\Controller\Dashboard\ContactPhoneTypeController::deleteAction
+    methods:  GET
+    requirements:
+        id:  \d+

@@ -20,7 +20,7 @@
 
                 <div class="last-news">
                     <ul class="last-news__list infinite-scroll" data-itemSelector=".infinite-scroll__item">
-                        {{  render(controller('IhorDrevetskyi\\NewsBundle\\Controller\\Frontend\\NewsController::getNewsElementsAction', {
+                        {{  render(controller('NewsBundle\\Controller\\Frontend\\NewsController::getNewsElementsAction', {
                             'page': 1, 'countInPage': 10, 'fromTwig': true
                         })) }}
                     </ul>

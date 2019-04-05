@@ -1,0 +1,46 @@
+########################################################################################################################
+security_login:
+  path:     /login/
+  methods: [GET, POST]
+  controller: UserBundle\Controller\Frontend\SecurityController::loginAction
+
+security_logout:
+  path: /logout/
+  methods: [GET]
+########################################################################################################################
+registration:
+  path: /registration/
+  methods: [GET, POST]
+  controller: UserBundle\Controller\Frontend\RegistrationController::registrationAction
+
+registration_check_email:
+  path:       /registration/check-email/
+  methods:    [GET]
+  controller: UserBundle\Controller\Frontend\RegistrationController::checkEmail
+
+registration_confirmed:
+  path:       /registration/confirm-your-email/
+  methods:    [GET]
+  controller: UserBundle\Controller\Frontend\RegistrationController::confirmedAction
+
+registration_confirm:
+  path:       /registration/confirm/{token}
+  methods:    [GET]
+  controller: UserBundle\Controller\Frontend\RegistrationController::confirmAction
+########################################################################################################################
+password_reset:
+  path:       /password-reset/
+  methods:    [GET, POST]
+  controller: UserBundle\Controller\Frontend\PasswordResetController::indexAction
+
+password_reset_token:
+  path:       /password-reset/confirm/{token}
+  methods:    [GET, POST]
+  controller: UserBundle\Controller\Frontend\PasswordResetController::confirmResetAction
+########################################################################################################################
+facebook_login:
+  path: /login/check-facebook
+
+google_login:
+  path: /login/check-google
+########################################################################################################################

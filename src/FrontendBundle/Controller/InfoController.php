@@ -3,8 +3,8 @@
 namespace FrontendBundle\Controller;
 
 use BackendBundle\Entity\Info;
-use IhorDrevetskyi\SeoBundle\Utils\SeoManager;
-use IhorDrevetskyi\ComponentBundle\Utils\BreadcrumbsGenerator;
+use SeoBundle\Utils\SeoManager;
+use ComponentBundle\Utils\BreadcrumbsGenerator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;

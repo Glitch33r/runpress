@@ -1,7 +1,7 @@
 {% for category in elements %}
     <li class="page-header__nav-item">
         <a class="page-header__nav-link" href="{{ path('frontend_news_category_show', {
-            'slug': category.translations[category.defaultLocale].slug
+            'category': category.translations[category.defaultLocale].slug
         }) }}">
             {{ category.translate.title }}
         </a>

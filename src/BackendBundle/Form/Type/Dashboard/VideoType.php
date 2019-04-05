@@ -6,17 +6,17 @@ use BackendBundle\Entity\Video;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Form\FormBuilderInterface;
-use IhorDrevetskyi\UploadBundle\Form\Type\UploadType;
+use UploadBundle\Form\Type\UploadType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use IhorDrevetskyi\SeoBundle\Form\Type\Dashboard\SeoType;
-use IhorDrevetskyi\DashboardBundle\Form\Type\NewEdit\DashboardTextType;
-use IhorDrevetskyi\DashboardBundle\Form\Type\NewEdit\DashboardYesNoType;
-use IhorDrevetskyi\DashboardBundle\Form\Type\NewEdit\AddSaveBtnSubscriber;
-use IhorDrevetskyi\DashboardBundle\Form\Type\NewEdit\DashboardWYSIWYGType;
-use IhorDrevetskyi\DashboardBundle\Form\Type\NewEdit\DashboardPositionType;
-use IhorDrevetskyi\DashboardBundle\Form\Type\NewEdit\DashboardTextareaType;
-use IhorDrevetskyi\DashboardBundle\Form\Type\NewEdit\DashboardDateTimeType;
-use IhorDrevetskyi\DashboardBundle\Form\Type\NewEdit\DashboardTranslationsType;
+use SeoBundle\Form\Type\Dashboard\SeoType;
+use DashboardBundle\Form\Type\DashboardTextType;
+use DashboardBundle\Form\Type\DashboardYesNoType;
+use DashboardBundle\Form\Type\AddSaveBtnSubscriber;
+use DashboardBundle\Form\Type\DashboardWYSIWYGType;
+use DashboardBundle\Form\Type\DashboardPositionType;
+use DashboardBundle\Form\Type\DashboardTextareaType;
+use DashboardBundle\Form\Type\DashboardDateTimeType;
+use DashboardBundle\Form\Type\DashboardTranslationsType;
 
 /**
  * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
@@ -51,8 +51,8 @@ class VideoType extends AbstractType
                         'field_type' => DashboardTextType::class,
                         'label' => 'ui.title',
                         'translation_domain' => 'DashboardBundle',
-                        'help_block' => null,
-                        'max_length' => 255
+                        'helpBlock' => null,
+                        'maxLength' => 255
                     ]
                 ],
                 'excluded_fields' => [
@@ -76,15 +76,15 @@ class VideoType extends AbstractType
                 'label' => 'ui.position',
                 'required' => false,
                 'translation_domain' => 'DashboardBundle',
-                'div_lg' => 'col-lg-8',
-                'label_lg' => 'col-lg-4'
+                'divLg' => 'col-lg-8',
+                'labelLg' => 'col-lg-4'
             ])
             ->add('showOnWebsite', DashboardYesNoType::class, [
                 'label' => 'ui.show_on_website',
                 'required' => false,
                 'translation_domain' => 'DashboardBundle',
-                'div_lg' => 'col-lg-6',
-                'label_lg' => 'col-lg-6'
+                'divLg' => 'col-lg-6',
+                'labelLg' => 'col-lg-6'
             ]);
 
         $builder

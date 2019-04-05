@@ -1,0 +1,100 @@
+dashboard_homepage_index:
+  path:     /
+  methods: [GET]
+  controller: BackendBundle\Controller\Dashboard\DashboardController::indexAction
+
+dashboard_contact_all:
+  resource: "@SupportCenterContactBundle/Resources/config/routes/dashboard/all.yaml"
+  prefix:   /
+
+dashboard_news:
+  resource: "@NewsBundle/Resources/config/routes/dashboard/all.yaml"
+  prefix:   /
+
+dashboard_seo_page:
+  resource: "@SeoBundle/Resources/config/routes/dashboard/seo_page.yaml"
+  prefix:   /
+
+dashboard_static_content:
+  resource: "@StaticBundle/Resources/config/routes/dashboard/static_content.yaml"
+  prefix:   /
+
+dashboard_static_page:
+  resource: "@StaticBundle/Resources/config/routes/dashboard/static_page.yaml"
+  prefix:   /
+
+dashboard_user:
+  resource: "@UserBundle/Resources/config/routes/dashboard/user.yaml"
+  prefix:   /
+
+dashboard_info_index:
+  path:     /info/
+  controller: BackendBundle\Controller\Dashboard\InfoController::listAction
+  methods:  [GET, POST]
+
+dashboard_info_new:
+  path:     /info/new/
+  controller: BackendBundle\Controller\Dashboard\InfoController::newAction
+  methods:  [GET, POST]
+
+dashboard_info_edit:
+  path:     /info/edit/{id}
+  controller: BackendBundle\Controller\Dashboard\InfoController::editAction
+  methods:  [GET, POST]
+  requirements:
+    id:  \d+
+
+dashboard_info_delete:
+  path:     /info/delete/{id}
+  controller: BackendBundle\Controller\Dashboard\InfoController::deleteAction
+  methods:  GET
+  requirements:
+    id:  \d+
+
+dashboard_opinion_index:
+  path:     /opinion/
+  controller: BackendBundle\Controller\Dashboard\OpinionController::listAction
+  methods:  [GET, POST]
+
+dashboard_opinion_new:
+  path:     /opinion/new/
+  controller: BackendBundle\Controller\Dashboard\OpinionController::newAction
+  methods:  [GET, POST]
+
+dashboard_opinion_edit:
+  path:     /opinion/edit/{id}
+  controller: BackendBundle\Controller\Dashboard\OpinionController::editAction
+  methods:  [GET, POST]
+  requirements:
+    id:  \d+
+
+dashboard_opinion_delete:
+  path:     /opinion/delete/{id}
+  controller: BackendBundle\Controller\Dashboard\OpinionController::deleteAction
+  methods:  GET
+  requirements:
+    id:  \d+
+
+dashboard_video_index:
+  path:     /video/
+  controller: BackendBundle\Controller\Dashboard\VideoController::listAction
+  methods:  [GET, POST]
+
+dashboard_video_new:
+  path:     /video/new/
+  controller: BackendBundle\Controller\Dashboard\VideoController::newAction
+  methods:  [GET, POST]
+
+dashboard_video_edit:
+  path:     /video/edit/{id}
+  controller: BackendBundle\Controller\Dashboard\VideoController::editAction
+  methods:  [GET, POST]
+  requirements:
+    id:  \d+
+
+dashboard_video_delete:
+  path:     /video/delete/{id}
+  controller: BackendBundle\Controller\Dashboard\VideoController::deleteAction
+  methods:  GET
+  requirements:
+    id:  \d+

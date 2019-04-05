@@ -17,7 +17,7 @@
                  data-src="{{ asset(item.poster|json_decode['640x385']|default(asset('bundles/upload/images/no-image-400.png'))) }}">
                 {% if newsCategory is not null %}
                     <a class="label" href="{{ path('frontend_news_category_show', {
-                        'slug':  newsCategory.translations[ newsCategory.defaultLocale].slug
+                        'category':  newsCategory.translations[ newsCategory.defaultLocale].slug
                     }) }}">
                         {{ newsCategory.translate.title }}
                     </a>
