@@ -2,12 +2,12 @@
 
 namespace IhorDrevetskyi\SupportCenter\ContactBundle\Entity;
 
-use IhorDrevetskyi\ComponentBundle\Entity\__Call\__CallInterface;
+use ComponentBundle\Entity\__Call\__CallInterface;
 use Doctrine\Common\Collections\Collection;
-use IhorDrevetskyi\ComponentBundle\Entity\Id\IdInterface;
-use IhorDrevetskyi\ComponentBundle\Entity\Position\PositionInterface;
-use IhorDrevetskyi\ComponentBundle\Entity\ShowOnWebsite\ShowOnWebsiteInterface;
-use IhorDrevetskyi\ComponentBundle\Entity\YesOrNo\YesOrNoInterface;
+use ComponentBundle\Entity\Id\IdInterface;
+use ComponentBundle\Entity\Position\PositionInterface;
+use ComponentBundle\Entity\ShowOnWebsite\ShowOnWebsiteInterface;
+use ComponentBundle\Entity\YesOrNo\YesOrNoInterface;
 
 /**
  * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>

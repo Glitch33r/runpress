@@ -2,11 +2,11 @@
 
 namespace IhorDrevetskyi\SupportCenter\ContactBundle\Entity;
 
-use IhorDrevetskyi\ComponentBundle\Entity\Message\MessageInterface;
-use IhorDrevetskyi\ComponentBundle\Entity\Id\IdInterface;
-use IhorDrevetskyi\UserBundle\Entity\CreatedByInterface;
-use IhorDrevetskyi\UserBundle\Entity\UpdatedByInterface;
-use IhorDrevetskyi\UserBundle\Entity\PersonalInformation\PersonalInformationExtendedInterface;
+use ComponentBundle\Entity\Message\MessageInterface;
+use ComponentBundle\Entity\Id\IdInterface;
+use UserBundle\Entity\CreatedBy\CreatedByInterface;
+use UserBundle\Entity\UpdatedBy\UpdatedByInterface;
+use UserBundle\Entity\PersonalInformation\PersonalInformationExtendedInterface;
 
 /**
  * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>

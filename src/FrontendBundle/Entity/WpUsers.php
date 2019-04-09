@@ -59,7 +59,7 @@ class WpUsers
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="user_registered", type="datetime", nullable=false, options={"default"="0000-00-00 00:00:00"})
+     * @ORM\Column(name="user_registered", type="datetime", nullable=false)
      */
     private $userRegistered = '0000-00-00 00:00:00';
 

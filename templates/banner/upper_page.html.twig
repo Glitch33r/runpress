@@ -1,0 +1,9 @@
+{% if banner is not null %}
+	<section class="bnnr-section d-none d-lg-block">
+	    <div class="container">
+	        <a class="bnnr" href="{{ banner.link }}" target="blank">
+	            <img class="bnnr__img" src="{{ banner.img|json_decode.default_file }}" alt="">
+	        </a>
+	    </div>
+	</section>
+{% endif %}

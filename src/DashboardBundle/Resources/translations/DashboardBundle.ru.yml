@@ -69,6 +69,15 @@ ui:
   show_on_website: 'Отображать на сайте?'
   show_on_main_page: 'Отображать на главной?'
   show_in_html_site_map: 'Отображать в HTML карте сайта?'
+  site_pages:
+    main: 'Главная страница'
+    news_feed: 'Страница категории'
+    news_item: 'Страница новости'
+    contacts: 'Страница контактов'
+  banner_positions:
+    upper_page: 'Сверху страницы'
+    aside_page: 'С боку страницы'
+    bottom_page: 'Снизу страницы'
   synchronization:
     synchronization: 'Синхронизация'
     category: 'Синхронизация по категориям'

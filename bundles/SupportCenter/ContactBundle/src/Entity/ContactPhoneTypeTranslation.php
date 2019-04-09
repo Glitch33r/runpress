@@ -2,8 +2,8 @@
 
 namespace IhorDrevetskyi\SupportCenter\ContactBundle\Entity;
 
-use IhorDrevetskyi\ComponentBundle\Entity\Title\TitleInterface;
-use IhorDrevetskyi\ComponentBundle\Entity\Title\TitleTrait;
+use ComponentBundle\Entity\Title\TitleInterface;
+use ComponentBundle\Entity\Title\TitleTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;

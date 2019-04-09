@@ -2,8 +2,8 @@
 
 namespace IhorDrevetskyi\SupportCenter\ContactBundle\Entity;
 
-use IhorDrevetskyi\ComponentBundle\Entity\MailSetting\MailSettingTranslationExtendedInterface;
-use IhorDrevetskyi\ComponentBundle\Entity\MailSetting\MailSettingTranslationExtendedTrait;
+use ComponentBundle\Entity\MailSetting\MailSettingTranslationExtendedInterface;
+use ComponentBundle\Entity\MailSetting\MailSettingTranslationExtendedTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;

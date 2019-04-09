@@ -341,3 +341,22 @@ upload:
                     width: 640
                     height: 385
                     action: exact_resize
+        banner_image:
+            type: image
+            mime_type: []  # default
+            format: 'jpg, gif, png, svg'
+            upload_dir: '/uploads/banner'
+            main_action: 'resize_and_crop'
+            thumbnails:
+                admin:
+                    width: 120
+                    height: 120
+                    action: exact_resize
+                1110x114:
+                    width: 1140
+                    height: 100
+                    action: exact_resize
+                255x510:
+                    width: 510
+                    height: 510
+                    action: exact_resize

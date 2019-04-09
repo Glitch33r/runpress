@@ -15,8 +15,11 @@
                     {% include '@Seo/frontend/_h1.html.twig' %}
                 </h1>
                 <blockquote class="quote">
-                    <cite>Иванов Иван</cite>
-                    <br>
+                    {% set author = element.getNewsAuthor() %}
+                    {% if author is not null %}
+                        <cite>{{ author.translate.title }}</cite>
+                        <br>
+                    {% endif %}
                     <time class="news-date" timestamp="{{ element.publishAt|date('d/m/Y H:i') }}">
                         {#{{ element.publishAt|localizeddate('short', 'none', 'ru') }}#}
                         {{ element.publishAt|date('d/m/Y H:i') }}
@@ -103,6 +106,7 @@
 
             <aside class="col-12 col-lg-4 sidebar sidebar--with-padding">
                 {% include 'default/_sidebar_socials.html.twig' %}
+                {{ render(controller('BannerBundle\\Controller\\Frontend\\BannerController::getBannerAction', {'type': 'aside_page', 'page': 'news_item'})) }}
                 {{ render(controller('FrontendBundle\\Controller\\DefaultController::initSidebarBannerAction')) }}
                 {{ render(controller('FrontendBundle\\Controller\\DefaultController::newsFeedAction', {
                     'countInPage': 3

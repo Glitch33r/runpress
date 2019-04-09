@@ -2,15 +2,15 @@
 
 namespace IhorDrevetskyi\SupportCenter\ContactBundle\Entity;
 
-use IhorDrevetskyi\ComponentBundle\Entity\Message\MessageTrait;
-use IhorDrevetskyi\ComponentBundle\Entity\Id\IdTrait;
+use ComponentBundle\Entity\Message\MessageTrait;
+use ComponentBundle\Entity\Id\IdTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 use Symfony\Component\Validator\Constraints as Assert;
-use IhorDrevetskyi\UserBundle\Entity\CreatedByTrait;
-use IhorDrevetskyi\UserBundle\Entity\UpdatedByTrait;
-use IhorDrevetskyi\UserBundle\Entity\PersonalInformation\PersonalInformationExtendedTrait;
+use UserBundle\Entity\CreatedBy\CreatedByTrait;
+use UserBundle\Entity\UpdatedBy\UpdatedByTrait;
+use UserBundle\Entity\PersonalInformation\PersonalInformationExtendedTrait;
 
 /**
  * Contact

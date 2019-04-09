@@ -6,12 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 use Symfony\Bridge\Doctrine\Validator\Constraints as UniqueEntity;
-use IhorDrevetskyi\ComponentBundle\Entity\Id\IdTrait;
-use IhorDrevetskyi\ComponentBundle\Entity\Id\IdInterface;
-use IhorDrevetskyi\ComponentBundle\Entity\YesOrNo\YesOrNoTrait;
-use IhorDrevetskyi\ComponentBundle\Entity\YesOrNo\YesOrNoInterface;
-use IhorDrevetskyi\ComponentBundle\Entity\Manager\ManagerTrait;
-use IhorDrevetskyi\ComponentBundle\Entity\Manager\ManagerInterface;
+use ComponentBundle\Entity\Id\IdTrait;
+use ComponentBundle\Entity\Id\IdInterface;
+use ComponentBundle\Entity\YesOrNo\YesOrNoTrait;
+use ComponentBundle\Entity\YesOrNo\YesOrNoInterface;
+use ComponentBundle\Entity\Manager\ManagerTrait;
+use ComponentBundle\Entity\Manager\ManagerInterface;
 
 /**
  * ContactManager

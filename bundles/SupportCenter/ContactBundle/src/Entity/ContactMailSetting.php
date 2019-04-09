@@ -2,12 +2,12 @@
 
 namespace IhorDrevetskyi\SupportCenter\ContactBundle\Entity;
 
-use IhorDrevetskyi\ComponentBundle\Entity\__Call\__CallTrait;
-use IhorDrevetskyi\ComponentBundle\Entity\__Call\__CallInterface;;
-use IhorDrevetskyi\ComponentBundle\Entity\Id\IdInterface;
-use IhorDrevetskyi\ComponentBundle\Entity\Id\IdTrait;
-use IhorDrevetskyi\ComponentBundle\Entity\MailSetting\MailSettingInterface;
-use IhorDrevetskyi\ComponentBundle\Entity\MailSetting\MailSettingTrait;
+use ComponentBundle\Entity\__Call\__CallTrait;
+use ComponentBundle\Entity\__Call\__CallInterface;;
+use ComponentBundle\Entity\Id\IdInterface;
+use ComponentBundle\Entity\Id\IdTrait;
+use ComponentBundle\Entity\MailSetting\MailSettingInterface;
+use ComponentBundle\Entity\MailSetting\MailSettingTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;

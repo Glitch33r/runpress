@@ -1,0 +1,5 @@
+{% if banner is not null %}
+	<a class="bnnr sidebar__bnnr" href="{{ banner.link }}" target="blank">
+	    <img src="{{ banner.img|json_decode.default_file }}">
+	</a>
+{% endif %}

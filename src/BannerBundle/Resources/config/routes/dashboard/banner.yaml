@@ -1,0 +1,23 @@
+dashboard_banner_index:
+    path:     /
+    controller: BannerBundle\Controller\Dashboard\BannerController::listAction
+    methods:  [GET, POST]
+
+dashboard_banner_edit:
+    path:    /edit/{id}
+    controller: BannerBundle\Controller\Dashboard\BannerController::editAction
+    methods:  [GET, POST]
+    requirements:
+        id:  \d+
+
+dashboard_banner_delete:
+    path:     /delete/{id}
+    controller: BannerBundle\Controller\Dashboard\BannerController::deleteAction
+    methods:  GET
+    requirements:
+        id:  \d+
+
+dashboard_banner_new:
+    path:     /new/
+    controller: BannerBundle\Controller\Dashboard\BannerController::newAction
+    methods:  [GET, POST]

@@ -34,5 +34,6 @@ return [
     UserBundle\UserBundle::class => ['all' => true],
     UploadBundle\UploadBundle::class => ['all' => true],
     FOS\CKEditorBundle\FOSCKEditorBundle::class => ['all' => true],
-
+    BannerBundle\BannerBundle::class => ['all' => true],
+    Symfony\WebpackEncoreBundle\WebpackEncoreBundle::class => ['all' => true],
 ];

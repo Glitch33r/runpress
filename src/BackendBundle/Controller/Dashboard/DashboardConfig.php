@@ -7,6 +7,7 @@ use SeoBundle\Controller\Dashboard\sidebarSeoBundleTrait;
 use UserBundle\Controller\Dashboard\sidebarUserBundleTrait;
 use NewsBundle\Controller\Dashboard\sidebarNewsBundleTrait;
 use StaticBundle\Controller\Dashboard\sidebarStaticBundleTrait;
+use BannerBundle\Controller\Dashboard\sidebarBannerBundleTrait;
 use IhorDrevetskyi\SupportCenter\ContactBundle\Controller\Dashboard\sidebarContactBundleTrait;
 
 /**
@@ -35,6 +36,7 @@ final class DashboardConfig extends \DashboardBundle\Controller\DashboardConfig
     use sidebarSeoBundleTrait;
     use sidebarStaticBundleTrait;
     use sidebarUserBundleTrait;
+    use sidebarBannerBundleTrait;
 
     /**
      * @return Response
@@ -88,9 +90,12 @@ final class DashboardConfig extends \DashboardBundle\Controller\DashboardConfig
             (!is_null($static)) ? $settings['items'][] = $static : null;
             $user = self::sidebarUserBundle();
             (!is_null($user)) ? $settings['items'][] = $user : null;
+            $banner = self::sidebarBannerBundle();
+            (!is_null($banner)) ? $settings['items'][] = $banner : null;
 ////            self::itemSidebar(['ROLE_LOG'], null, ['dashboard_log'], 'icon-info', false, null, null, 'sidebar.configuration.log', [], 'dashboard_log')
             $sidebar['settings'] = $settings;
         }
+
 
         return $this->render('@Dashboard/templates/' . self::getTemplateNumber() . '/aside/aside_menu/_element.html.twig', [
             'sidebar' => $sidebar,

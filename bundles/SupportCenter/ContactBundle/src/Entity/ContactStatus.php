@@ -2,11 +2,11 @@
 
 namespace IhorDrevetskyi\SupportCenter\ContactBundle\Entity;
 
-use IhorDrevetskyi\ComponentBundle\Entity\__Call\__CallTrait;
-use IhorDrevetskyi\ComponentBundle\Entity\Id\IdTrait;
-use IhorDrevetskyi\ComponentBundle\Entity\Position\PositionTrait;
-use IhorDrevetskyi\ComponentBundle\Entity\SystemName\SystemNameTrait;
-use IhorDrevetskyi\ComponentBundle\Entity\YesOrNo\YesOrNoTrait;
+use ComponentBundle\Entity\__Call\__CallTrait;
+use ComponentBundle\Entity\Id\IdTrait;
+use ComponentBundle\Entity\Position\PositionTrait;
+use ComponentBundle\Entity\SystemName\SystemNameTrait;
+use ComponentBundle\Entity\YesOrNo\YesOrNoTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;

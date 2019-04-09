@@ -30,6 +30,7 @@
 
             <aside class="col-12 col-lg-4 sidebar sidebar--with-padding">
                 {% include 'default/_sidebar_socials.html.twig' %}
+                {{ render(controller('BannerBundle\\Controller\\Frontend\\BannerController::getBannerAction', {'type': 'aside_page', 'page': 'news_feed'})) }}
                 {{ render(controller('FrontendBundle\\Controller\\DefaultController::initSidebarBannerAction')) }}
                 {{ render(controller('FrontendBundle\\Controller\\DefaultController::initSidebarNewsAction')) }}
             </aside>

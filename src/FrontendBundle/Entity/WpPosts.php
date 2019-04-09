@@ -31,14 +31,14 @@ class WpPosts
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="post_date", type="datetime", nullable=false, options={"default"="0000-00-00 00:00:00"})
+     * @ORM\Column(name="post_date", type="datetime", nullable=false)
      */
     private $postDate = '0000-00-00 00:00:00';
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="post_date_gmt", type="datetime", nullable=false, options={"default"="0000-00-00 00:00:00"})
+     * @ORM\Column(name="post_date_gmt", type="datetime", nullable=false)
      */
     private $postDateGmt = '0000-00-00 00:00:00';
 
@@ -115,14 +115,14 @@ class WpPosts
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="post_modified", type="datetime", nullable=false, options={"default"="0000-00-00 00:00:00"})
+     * @ORM\Column(name="post_modified", type="datetime", nullable=false)
      */
     private $postModified = '0000-00-00 00:00:00';
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="post_modified_gmt", type="datetime", nullable=false, options={"default"="0000-00-00 00:00:00"})
+     * @ORM\Column(name="post_modified_gmt", type="datetime", nullable=false)
      */
     private $postModifiedGmt = '0000-00-00 00:00:00';
 

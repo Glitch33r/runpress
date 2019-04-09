@@ -98,3 +98,7 @@ dashboard_video_delete:
   methods:  GET
   requirements:
     id:  \d+
+
+dashboard_banner:
+  resource: "@BannerBundle/Resources/config/routes/dashboard/banner.yaml"
+  prefix:   /banner
