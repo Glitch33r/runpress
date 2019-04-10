@@ -780,7 +780,7 @@
 }
 
 .sitemap {
-  font: 700 cRem(14px)/cRem(20px) "MuseoSans";
+  font: 700 cRem(12px)/cRem(20px) "MuseoSans";
   text-transform: uppercase;
   @include from-xs-to-lg() {
     text-align: center;
@@ -794,7 +794,7 @@
   &__item {
     margin-top: 1rem;
     @include lg() {
-      margin-right: 2rem;
+      margin-right: 1rem;
     }
   }
   &__link {
