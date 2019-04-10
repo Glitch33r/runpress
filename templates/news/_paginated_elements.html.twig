@@ -1,0 +1,9 @@
+{% for item in elements %}
+	{% set with_img = loop.index < 3 %}
+    {% include 'news/_element.html.twig' with {
+        'news': item, 'with_img': true
+    } %}
+{% endfor %}
+{% if isKnpPaginationRender == true %}
+    {{ knp_pagination_render(elements) }}
+{% endif %}

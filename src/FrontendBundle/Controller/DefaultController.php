@@ -3,8 +3,16 @@
 namespace FrontendBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use ComponentBundle\Utils\BreadcrumbsGenerator;
 use Doctrine\ORM\EntityManagerInterface;
 use NewsBundle\Entity\News;
+use FrontendBundle\Entity\Contacts;
+use ComponentBundle\Utils\Mailer;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 /**
  * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
@@ -69,6 +77,47 @@ final class DefaultController extends \ComponentBundle\Controller\Frontend\Defau
     {
         return $this->render('default/_footer.html.twig', [
             'request' => $request,
+        ]);
+    }
+
+    public function contactsAction(
+        Request $request,
+        BreadcrumbsGenerator $breadcrumbsGenerator,
+        Mailer $mailer,
+        ParameterBagInterface $params)
+    {
+        $sent_message = false;
+        $breadcrumbsArr = $breadcrumbsGenerator->getBreadcrumbForHomePage();
+        $breadcrumbsArr['frontend_contacts_page'][] = [
+            'parameters' => [],
+            'title' => 'КОНТАКТЫ'
+        ];
+
+        $form = $this->createFormBuilder(new Contacts(), ['action' => $this->generateUrl('frontend_contacts_page')])
+            ->add('name', TextType::class, ['required' => false])
+            ->add('email', EmailType::class, ['required' => true])
+            ->add('subject', TextType::class, ['required' => false])
+            ->add('text', TextareaType::class, ['required' => true])
+            ->add('save', SubmitType::class, ['label' => 'Отправить сообщение'])
+            ->getForm();
+
+        if ('POST' == $request->getMethod()) {
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $subject = !is_null($form->getData()->subject) ? $form->getData()->subject : 'Форма обратной связи';
+                $renderedTemplate = $this->render('mail/feedback.html.twig', [
+                    'data' => $form->getData(),
+                ]);
+
+                $mailer->sendEmailMessage($subject, $_ENV['FEEDBACK_EMAIL'], $renderedTemplate->getContent());
+                $sent_message = true;
+            }
+        }
+
+        return $this->render('default/contacts.html.twig', [
+            'form' => $form->createView(),
+            'sent_message' => $sent_message,
+            'breadcrumbs' => $breadcrumbsGenerator->generateBreadcrumbs($breadcrumbsArr),
         ]);
     }
 }

@@ -44,7 +44,7 @@
                         <div class="d-flex">
                             <time class="news-item__date news-date" timestamp="">
                                 {#{{ item.publishAt|localizeddate('short', 'none', 'ru') }}#}
-                                {{ item.publishAt|date('Y.m.d H:i') }}
+                                {{ item.publishAt|date('Y.m.d') }}<span>{{ item.publishAt|date('H:i') }}</span>
                             </time>
                             <a class="news-item__title" href="{{ url }}">
                                 {{ item.translate.title }}
@@ -62,7 +62,7 @@
                         <div class="d-flex">
                             <time class="news-item__date news-date" timestamp="">
                                 {#{{ item.publishAt|localizeddate('short', 'none', 'ru') }}#}
-                                {{ item.publishAt|date('Y.m.d H:i') }}
+                                {{ item.publishAt|date('Y.m.d') }}<span>{{ item.publishAt|date('H:i') }}</span>
                             </time>
                             <a class="news-item__title" href="{{ url }}">
                                 {{ item.translate.title }}

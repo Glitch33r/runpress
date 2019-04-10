@@ -10,17 +10,32 @@
     }) %}
 {% endif %}
 
-<li class="last-news__item news-item infinite-scroll__item">
-    <div class="d-flex">
-        <time class="news-item__date news-date" timestamp="">
-            {#{{ item.publishAt|localizeddate('short', 'none', 'ru') }}#}
-            {{ item.publishAt|date('Y.m.d H:i') }}
-        </time>
-        <a class="news-item__title" href="{{ href }}">
-            {{ item.translate.title }}
+{% if with_img %}
+    <li class="last-news__item news-item news-category__item" style="border-top: none;">
+        <a class="news-item__img-wrap news-category__img-wrap lazy-container" href="{{ href }}">
+            <img class="b-lazy news-item__img" data-src="{{ asset(item.poster|json_decode['324x235']|default(asset('bundles/upload/images/no-image-400.png'))) }}" alt="">
         </a>
-    </div>
-    <p class="news-item__text">
-        {{ item.translate.shortDescription }}
-    </p>
-</li>
+        <div class="news-category__text">
+            <div class="">
+                <div><time class="news-item__date news-date" timestamp="">{{ item.publishAt|date('Y.m.d H:i')}}</div>
+                </time><a class="news-item__title" href="{{ href }}">{{ item.translate.title }}</a>
+            </div>
+            <p class="news-item__text">{{ item.translate.shortDescription }}</p>
+        </div>
+    </li>
+{% else %}
+    <li class="last-news__item news-item infinite-scroll__item">
+        <div class="d-flex">
+            <time class="news-item__date news-date" timestamp="">
+                {#{{ item.publishAt|localizeddate('short', 'none', 'ru') }}#}
+                {{ item.publishAt|date('Y.m.d H:i') }}
+            </time>
+            <a class="news-item__title" href="{{ href }}">
+                {{ item.translate.title }}
+            </a>
+        </div>
+        <p class="news-item__text">
+            {{ item.translate.shortDescription }}
+        </p>
+    </li>
+{% endif %}

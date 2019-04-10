@@ -71,3 +71,13 @@ frontend_homepage:
   controller: FrontendBundle\Controller\HomepageController::indexAction
   defaults:
     news: null
+
+frontend_contacts_page:
+  path:     /page/contacts
+  methods: [GET, POST]
+  controller: FrontendBundle\Controller\DefaultController::contactsAction
+
+frontend_static_page_show:
+  path:     /page/{slug}
+  methods: [GET]
+  controller: StaticBundle\Controller\Frontend\StaticPageController::showAction

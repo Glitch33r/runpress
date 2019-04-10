@@ -351,6 +351,31 @@
   }
 }
 
+.news-category {
+  &__item {
+    @include lg(){
+      display: flex;
+    }
+  }
+
+  &__img-wrap {
+    @include lg(){
+      width: 40%;
+      height: 190px;
+      padding: 0;
+      flex-shrink: 0;
+    }
+  }
+
+  &__text {
+    margin: 0 1rem;
+    width: 100%;
+    @include lg() {
+      flex-direction: column;
+    }  
+  }
+}
+
 .news-date {
   font: 500 cRem(12px) "MuseoSans";
 

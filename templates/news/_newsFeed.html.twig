@@ -20,7 +20,7 @@
                     }) %}
                 {% endif %}
 
-                {% if loop.first %}
+                {% if loop.index < 3 %}
                     <li class="last-news__item news-item">
                         <a rel="nofollow" class="news-item__img-wrap lazy-container {% if item.poster is null %}news-item__img-wrap--empty{% endif %}"
                            href="{{ url }}">
