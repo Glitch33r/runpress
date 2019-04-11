@@ -47,6 +47,16 @@
 					    {{ form_widget(form.save, {'attr': {'class': 'btn'}}) }}
 					</div>
 				{{ form_end(form) }}
+
+				{% set static = render(controller('FrontendBundle:Default:getStaticContent', {'page': 'contacts_block'}))|json_decode %}
+
+				{% if static['contacts_block'] is defined and static['contacts_block'].description is not empty %}
+				    <section>
+			            <div class="static-content">
+			                {{ static['contacts_block'].description|raw }}
+			            </div>
+				{% endif %}
+			
             </div>
 
             <aside class="col-12 col-lg-4 sidebar sidebar--with-padding">
