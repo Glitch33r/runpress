@@ -2,11 +2,20 @@
 
 namespace NewsBundle\Controller\Dashboard;
 
+use Doctrine\ORM\EntityManagerInterface;
+use NewsBundle\Entity\NewsComment;
+
 /**
  * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
  */
 trait sidebarNewsBundleTrait
 {
+
+    function __constuct(EntityManagerInterface $em)
+    {
+        $this->em = $em;
+    }
+
     /**
      * @return array
      */
@@ -148,11 +157,14 @@ trait sidebarNewsBundleTrait
                 'dashboard_video_index');
             (!is_null($video)) ? $blog['items'][] = $video : null;
 
+            $NewsCommentRepository = $this->em->getRepository(NewsComment::class);
+            $new_news_cnt = $NewsCommentRepository->getHiddenElementsCnt();
+
             $comments = self::itemSidebar(
                 [ self::newsBundleRoles()['news_comments'] ],
                 [ self::newsBundlePathForEdit()['news_comments'] ],
                 [ self::newsBundleRouteName()['news_comments']['index'], self::newsBundleRouteName()['news_comments']['new'] ],
-                'flaticon-notes', false, null, null, 'Комментарии', [],
+                'flaticon-notes', true, $new_news_cnt, null, 'Комментарии', [],
                 'dashboard_news_comments_index'
             );
             (!is_null($comments)) ? $blog['items'][] = $comments : null;

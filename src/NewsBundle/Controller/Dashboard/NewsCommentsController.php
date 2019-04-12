@@ -108,8 +108,8 @@ class NewsCommentsController extends CRUDController
         return [
             'pageLength' => 25,
             'lengthMenu' => '10, 20, 25, 50, 100, 150',
-            'order_column' => 'id',
-            'order_by' => "desc"
+            'order_column' => 'showOnWebsite',
+            'order_by' => "asc"
         ];
     }
 

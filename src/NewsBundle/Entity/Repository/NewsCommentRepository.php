@@ -43,13 +43,16 @@ class NewsCommentRepository extends DashboardRepository
     /**
      * @return array
      */
-    public function getElements(): array
+    public function getHiddenElementsCnt(): int
     {
         $query = self::createQuery();
 
         $query
-            ->addOrderBy('q.createdAt', 'DESC');
+            ->select('count(q.id)')
+            ->Where('q.showOnWebsite =:showOnWebsite')
+            ->setParameter('showOnWebsite', YesOrNoInterface::NO)
+            ->setMaxResults(1);
 
-        return $query->getQuery()->getResult();
+        return $query->getQuery()->getSingleScalarResult();
     }
 }
