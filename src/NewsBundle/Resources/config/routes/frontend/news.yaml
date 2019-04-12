@@ -30,3 +30,8 @@ frontend_news_quiz_result:
   requirements:
     id:  \d+
     news:  \d+
+
+frontend_news_comment_save:
+  path:     /comment/save
+  methods: [POST]
+  controller: NewsBundle\Controller\Frontend\NewsController::NewsCommentFormAction

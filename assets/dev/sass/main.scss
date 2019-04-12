@@ -810,6 +810,7 @@
   background-color: #ffffff;
   box-shadow: 3px 3px 7px 0px rgba(85, 85, 85, 0.55);
   font-family: "MuseoSans";
+  margin-bottom: 40px;
 
   &__content {
     padding: 0 20px;
@@ -918,6 +919,7 @@
   &__text {
     display: inline-flex;
     align-items: center;
+    min-width: 2rem;
   }
   &__result-text {
     height: 100%;

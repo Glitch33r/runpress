@@ -79,6 +79,12 @@ class News implements NewsInterface
     private $newsQuizzes;
 
     /**
+     * @ORM\OneToMany(targetEntity="NewsBundle\Entity\NewsComment", mappedBy="news", cascade={"persist","remove"}, orphanRemoval=true)
+     * @ORM\OrderBy({"position" = "ASC"})
+     */
+    private $comments;
+
+    /**
      * @ORM\OneToMany(targetEntity="NewsBundle\Entity\NewsGalleryImage", mappedBy="news", cascade={"persist","remove"}, orphanRemoval=true)
      * @ORM\OrderBy({"position" = "DESC"})
      */
@@ -147,6 +153,7 @@ class News implements NewsInterface
         $this->elements = new ArrayCollection();
         $this->tags = new ArrayCollection();
         $this->newsQuizzes = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     /**

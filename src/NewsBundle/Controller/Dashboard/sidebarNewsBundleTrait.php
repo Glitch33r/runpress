@@ -18,6 +18,7 @@ trait sidebarNewsBundleTrait
             'news_category' => 'news-category/edit',
             'news_author' => 'news-author/edit',
             'news_tags' => 'news-tag/edit',
+            'news_comments' => 'news-comments/edit',
         ];
     }
 
@@ -38,6 +39,9 @@ trait sidebarNewsBundleTrait
             ],
             'news_tags' => [
                 'index' => 'dashboard_news_tag_index', 'new' => 'dashboard_news_tag_new'
+            ],
+            'news_comments' => [
+                'index' => 'dashboard_news_comments_index', 'new' => 'dashboard_news_comments_new'
             ]
         ];
     }
@@ -52,6 +56,7 @@ trait sidebarNewsBundleTrait
             'news_tags' => 'ROLE_NEWS_CREATE_EDIT',
             'news_author' => 'ROLE_NEWS_AUTHOR_CREATE_EDIT',
             'news_category' => 'ROLE_NEWS_CATEGORY_CREATE_EDIT',
+            'news_comments' => 'ROLE_NEWS_COMMENTS_EDIT',
         ];
     }
 
@@ -142,6 +147,15 @@ trait sidebarNewsBundleTrait
             ], 'flaticon-notes', false, null, null, 'Видео', [],
                 'dashboard_video_index');
             (!is_null($video)) ? $blog['items'][] = $video : null;
+
+            $comments = self::itemSidebar(
+                [ self::newsBundleRoles()['news_comments'] ],
+                [ self::newsBundlePathForEdit()['news_comments'] ],
+                [ self::newsBundleRouteName()['news_comments']['index'], self::newsBundleRouteName()['news_comments']['new'] ],
+                'flaticon-notes', false, null, null, 'Комментарии', [],
+                'dashboard_news_comments_index'
+            );
+            (!is_null($comments)) ? $blog['items'][] = $comments : null;
 
             return $blog;
         }

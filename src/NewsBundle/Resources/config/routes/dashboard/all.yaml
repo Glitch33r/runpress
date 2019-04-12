@@ -17,3 +17,7 @@ dashboard_news_quiz:
 dashboard_news_tag:
     resource: "@NewsBundle/Resources/config/routes/dashboard/news_tag.yaml"
     prefix:   /news-tag
+
+dashboard_news_comments:
+    resource: "@NewsBundle/Resources/config/routes/dashboard/news_comments.yaml"
+    prefix:   /news-comments

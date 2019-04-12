@@ -63,46 +63,8 @@
                            value="{{ app.request.getSchemeAndHttpHost() ~ asset(element.poster|json_decode.default_file|default(asset('bundles/upload/images/no-image-400.png'))) }}">
                 </div>
 
-                <h2 class="page__subtitle">
-                    Коментарии
-                </h2>
-                {#
-                {{ form_start(commentForm) }}
+                {% include 'news_comment/_list.html.twig' with {'element': element} %}
 
-                <div class="form__group">
-                    {{ form_label(commentForm.name, null, {'label_attr': {'class': 'form__label'}}) }}
-                    {{ form_widget(commentForm.name, {'attr': {'class': 'form__input form__input--line--single'}}) }}
-                </div>
-
-                <div class="form__group">
-                    {{ form_label(commentForm.content, null, {'label_attr': {'class': 'form__label'}}) }}
-                    {{ form_widget(commentForm.content, {'attr': {'class': 'form__input form__input--line--multi'}}) }}
-                </div>
-
-                <div class="form__group text-right">
-                    <button class="btn">
-                        Отправить сообщение
-                    </button>
-                </div>
-                
-                {{ form_end(commentForm) }}
-                
-                <div class="comments single-news__comments">
-                    {% for comment in element.comments %}
-                        <div class="comments__item comment">
-                            <div class="comment__img-wrap comment__img-wrap--with-img">
-                                <img class="comment__img" src="{{ asset('bundles/frontend/img/temp/comments-1.png') }}"
-                                     alt="">
-                            </div>
-                            <blockqoute class="comment__text"><cite class="comment__author">{{ comment.name }}</cite>
-                                <br>
-                                <time class="comment__date">{{ comment.publishAtWithTime }}</time>
-                                <p>{{ comment.content }}</p>
-                            </blockqoute>
-                        </div>
-                    {% endfor %}
-                </div>
-                #}
             </div>
 
             <aside class="col-12 col-lg-4 sidebar sidebar--with-padding">

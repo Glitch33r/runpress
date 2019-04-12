@@ -1,0 +1,19 @@
+{{ form_start(form) }}
+
+{{ form_widget(form.news) }}
+
+<div class="form__group">
+    {{ form_label(form.name, 'Мое имя и фамилия*', {'label_attr': {'class': 'form__label'}}) }}
+    {{ form_widget(form.name, {'attr': {'class': 'form__input form__input--line--single'}}) }}
+</div>
+
+<div class="form__group">
+    {{ form_label(form.content, 'Я пишу*', {'label_attr': {'class': 'form__label'}}) }}
+    {{ form_widget(form.content, {'attr': {'class': 'form__input form__input--line--multi'}}) }}
+</div>
+
+<div class="form__group text-right">
+    {{ form_widget(form.save, {'attr': {'class': 'btn'}}) }}
+</div>
+
+{{ form_end(form) }}

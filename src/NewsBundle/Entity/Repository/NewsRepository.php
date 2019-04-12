@@ -784,4 +784,15 @@ final class NewsRepository extends DashboardRepository implements NewsRepository
 
         return $query->getQuery()->getResult();
     }
+
+    public function getElementById(int $id)
+    {
+        $query = self::createQuery();
+        $query
+            ->andWhere('q.id =:id')
+            ->setMaxResults(1)
+            ->setParameter('id', $id);
+
+        return $query->getQuery()->getOneOrNullResult();
+    }
 }

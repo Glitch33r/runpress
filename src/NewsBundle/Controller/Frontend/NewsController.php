@@ -4,6 +4,9 @@ namespace NewsBundle\Controller\Frontend;
 
 use NewsBundle\Entity\News;
 use SeoBundle\Utils\SeoManager;
+use NewsBundle\Entity\NewsComment;
+use NewsBundle\Form\Type\Dashboard\NewsCommentType;
+use NewsBundle\Form\Type\Dashboard\NewsType;
 use NewsBundle\Entity\NewsCategory;
 use NewsBundle\Entity\NewsQuiz;
 use NewsBundle\Entity\NewsQuizOption;
@@ -23,6 +26,8 @@ use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use NewsBundle\Entity\Repository\NewsQuizRepository;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 /**
  * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
@@ -490,15 +495,58 @@ final class NewsController extends AbstractController
         }
 
         $quizzes = $this->em->getRepository(NewsQuiz::class)->getElementsByNewsId($element->getId());
+        $comments = $this->em->getRepository(NewsComment::class)->getElementsByNewsIdForFrontend($element->getId());
 
         $parameters = [
             'seo' => $seo,
             'quizzes' => $quizzes,
+            'comments' => $comments,
             'element' => $element,
             'breadcrumbs' => $breadcrumbsGenerator->generateBreadcrumbs($breadcrumbsArr)
         ];
 
         return $this->render('news/show.html.twig', $parameters);
+    }
+
+    public function NewsCommentFormAction(Request $request, News $newsEntity = null)
+    {
+        if(!$newsEntity)
+        {
+            $newsEntity = $this->em->getRepository(News::class)->getElementById($request->request->get('form')['news']);
+            if (!$newsEntity) {
+                throw $this
+                    ->createNotFoundException(
+                        $translator->trans('ui.notFound', [], 'DashboardBundle')
+                    );
+            }
+        }
+
+        $form = $this->createFormBuilder(new NewsComment(), ['action' => $this->generateUrl('frontend_news_comment_save')])
+            ->add('name', TextType::class)
+            ->add('content', TextareaType::class)
+            ->add('news', HiddenType::class, ['attr' => ['value' => $newsEntity->getId()], 'mapped' => false])
+            ->add('save', SubmitType::class, ['label' => 'Отправить сообщение'])
+            ->getForm();
+
+        if ('POST' == $request->getMethod()) {
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $object = $form->getData();
+                $object->setNews($newsEntity);
+                $object->setShowOnWebsite(0);
+                $this->em->persist($object);
+                $this->em->flush();
+            }
+
+            $referer = $request->headers->get('referer');
+            return new RedirectResponse($referer);
+        }
+        else
+        {
+            return $this->render('news_comment/_form.html.twig', [
+                'form' => $form->createView(),
+            ]);
+        }
     }
 
     /**

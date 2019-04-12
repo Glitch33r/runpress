@@ -4,6 +4,7 @@ sidebar:
     news: 'Новости'
     articles: 'Статьи'
     author: 'Авторы'
+    comments: 'Коментарии'
 
 select_author: 'Выбрать автора'
 signature: 'Подпись к фотографии'

@@ -452,7 +452,7 @@ class NewsQuizController extends CRUDController
                 ->createNotFoundException($translator->trans('ui.notFound', [], 'DashboardBundle'));
         }
 
-        $object = $this->customActionInDeleteAction($em, $object);
+        $object = $this->customActionInDeleteAction($object);
 
         try {
             $em->remove($object);
