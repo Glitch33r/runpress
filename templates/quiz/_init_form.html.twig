@@ -1,0 +1,13 @@
+<div class="quiz">
+    <h4 class="quiz__title">{{ quiz.translate.title }}</h4>
+    {% if form is defined %}
+        {{ form_start(form, {'attr': {'class': 'quiz__content', 'id': 'quiz__form'}}) }}
+            {% for item in form.variant %}
+                <label class="quiz__container">{{ item.vars.label }}
+                    {{ form_widget(item, {'attr': {'class': 'quiz__input', 'checked': loop.first}}) }}<span class="quiz__checkmark"></span>
+                </label>
+            {% endfor %}
+            {{ form_widget(form.save, {'attr': {'class': 'quiz__submit', 'tupe': 'submit'}}) }}
+        {{ form_end(form) }}
+    {% endif %}
+</div>

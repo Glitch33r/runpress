@@ -51,14 +51,14 @@ class OpinionType extends AbstractType
                         'field_type' => DashboardTextType::class,
                         'label' => 'ui.title',
                         'translation_domain' => 'DashboardBundle',
-                        'help_block' => null,
+                        'helpBlock' => null,
                         'max_length' => 255
                     ],
                     'posterAlt' => [
                         'field_type' => DashboardTextType::class,
                         'label' => 'ui.poster_alt',
                         'translation_domain' => 'DashboardBundle',
-                        'help_block' => null,
+                        'helpBlock' => null,
                         'max_length' => 255,
                         'required' => false,
                     ],

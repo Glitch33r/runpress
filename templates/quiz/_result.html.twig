@@ -1,0 +1,17 @@
+<div class="quiz">
+	<div class="quiz__content" id="quiz__result">
+		<h4 class="quiz__title">{{ quiz.translate.title }}</h4>
+	    <ul class="quiz__result-list Pt(1rem)">
+	    	{% for item in quiz.getQuizOptions() %}
+	    		<li class="quiz__result"><span>{{ (votes_cnt[item.getId()] * 100 / votes_cnt.total)|number_format }}%</span>
+		            <div class="quiz__progress-holder W(100%) Ml(1rem)">
+		            	<span class="quiz__progress-back">{{ item.translate.title }}</span>
+		            	<span class="quiz__progress" data-prc="{{ votes_cnt[item.getId()] * 100 / votes_cnt.total }}%">
+		            		{{ item.translate.title }}
+		            	</span>
+		            </div>
+		        </li>
+	    	{% endfor %}
+	    </ul>
+	</div>
+</div>

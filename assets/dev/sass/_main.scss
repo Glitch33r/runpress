@@ -780,7 +780,7 @@
 }
 
 .sitemap {
-  font: 700 cRem(14px)/cRem(20px) "MuseoSans";
+  font: 700 cRem(12px)/cRem(20px) "MuseoSans";
   text-transform: uppercase;
   @include from-xs-to-lg() {
     text-align: center;
@@ -794,7 +794,7 @@
   &__item {
     margin-top: 1rem;
     @include lg() {
-      margin-right: 2rem;
+      margin-right: 1rem;
     }
   }
   &__link {
@@ -810,14 +810,9 @@
   background-color: #ffffff;
   box-shadow: 3px 3px 7px 0px rgba(85, 85, 85, 0.55);
   font-family: "MuseoSans";
-  margin-bottom: 40px;
 
   &__content {
     padding: 0 20px;
-
-    &--disabled {
-      display: none;
-    }
   }
 
   &__title {
@@ -897,45 +892,7 @@
     border-radius: 50%;
     background: white;
   }
-  
-  &__result {
-    display: flex;
-    margin: 1rem 0;
-    height: 1.5rem;
-  }
 
-  &__result > span {
-    line-height: 24px;
-  }
-
-  &__progress-holder {
-    position: relative;
-    border-radius: 0.2rem;
-    width: 100%;
-    margin-left: 5px;
-  }
-
-  &__progress-back {
-    display: block;
-    height: 100%;
-    width: 100%;
-    opacity: 0.5;
-    background: #cfcfcf;
-    line-height: 24px;
-    padding-left: 5px;
-  }
-
-  &__progress {
-    top: 0;
-    display: block;
-    position: absolute;
-    width: 0;
-    height: 100%;
-    background: $secondary-color;
-    line-height: 24px;
-    padding-left: 5px;
-  }
-  
   &__submit {
     display: block;
     margin: 30px auto 0;

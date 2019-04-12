@@ -1,0 +1,7 @@
+{% if quizzes|length %}
+	{% for item in quizzes %}
+		{% if loop.first %}
+			{{ render(controller('NewsBundle\\Controller\\Frontend\\NewsController::GetQuizViewAction', {'quiz': item})) }}
+		{% endif %}
+	{% endfor %}
+{% endif %}

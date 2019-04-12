@@ -1,6 +1,6 @@
 {% for item in elements %}
     {% include 'news/_element.html.twig' with {
-        'news': item,
+        'news': item, 'with_img': true
     } %}
 {% endfor %}
 {% if isKnpPaginationRender == true %}

@@ -22,3 +22,11 @@ frontend_news_show_with_category:
   path:     /{category}/{slug}
   methods: [GET]
   controller: NewsBundle\Controller\Frontend\NewsController::showAction
+
+frontend_news_quiz_result:
+  path:     /quiz/
+  controller: NewsBundle\Controller\Frontend\NewsController::NewsQuizResultAction
+  methods:  [POST]
+  requirements:
+    id:  \d+
+    news:  \d+

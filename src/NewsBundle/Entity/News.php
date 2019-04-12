@@ -73,8 +73,14 @@ class News implements NewsInterface
     private $publishAt;
 
     /**
-     * @ORM\OneToMany(targetEntity="NewsBundle\Entity\NewsGalleryImage", mappedBy="news", cascade={"persist","remove"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="NewsBundle\Entity\NewsQuiz", mappedBy="news", cascade={"persist","remove"}, orphanRemoval=true)
      * @ORM\OrderBy({"position" = "ASC"})
+     */
+    private $newsQuizzes;
+
+    /**
+     * @ORM\OneToMany(targetEntity="NewsBundle\Entity\NewsGalleryImage", mappedBy="news", cascade={"persist","remove"}, orphanRemoval=true)
+     * @ORM\OrderBy({"position" = "DESC"})
      */
     private $galleryImages;
 
@@ -140,6 +146,7 @@ class News implements NewsInterface
         $this->galleryImages = new ArrayCollection();
         $this->elements = new ArrayCollection();
         $this->tags = new ArrayCollection();
+        $this->newsQuizzes = new ArrayCollection();
     }
 
     /**
@@ -148,6 +155,14 @@ class News implements NewsInterface
     public function getNewsAuthor(): ?NewsAuthor
     {
         return $this->newsAuthor;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNewsQuizzes(): Collection
+    {
+        return $this->newsQuizzes;
     }
 
     /**

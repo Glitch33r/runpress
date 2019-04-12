@@ -5,14 +5,24 @@ namespace NewsBundle\Controller\Frontend;
 use NewsBundle\Entity\News;
 use SeoBundle\Utils\SeoManager;
 use NewsBundle\Entity\NewsCategory;
+use NewsBundle\Entity\NewsQuiz;
+use NewsBundle\Entity\NewsQuizOption;
+use NewsBundle\Entity\NewsQuizResult;
 use Doctrine\ORM\EntityManagerInterface;
 use NewsBundle\Entity\NewsAuthorInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use ComponentBundle\Utils\BreadcrumbsGenerator;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\RadioType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use NewsBundle\Entity\Repository\NewsQuizRepository;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
  * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
@@ -479,8 +489,11 @@ final class NewsController extends AbstractController
             ];
         }
 
+        $quizzes = $this->em->getRepository(NewsQuiz::class)->getElementsByNewsId($element->getId());
+
         $parameters = [
             'seo' => $seo,
+            'quizzes' => $quizzes,
             'element' => $element,
             'breadcrumbs' => $breadcrumbsGenerator->generateBreadcrumbs($breadcrumbsArr)
         ];
@@ -600,5 +613,98 @@ final class NewsController extends AbstractController
        ];
 
        return $this->render('news/_galleryImages.html.twig', $parameters);
+   }
+
+   public function NewsQuizResultAction(Request $request)
+   {
+        $response = [];
+
+        if ('POST' == $request->getMethod()) {
+            $quizOption = $this->em->getRepository(NewsQuizOption::class)->getElementById($request->request->get('quiz_option_id'));
+
+            if (!$quizOption) {
+               throw $this->createNotFoundException(
+                   $this->translator->trans('ui.notFound', [], 'DashboardBundle')
+               );
+            }
+
+            $vote_exist = $this->em->getRepository(NewsQuizResult::class)->getElementByQuizIdAndIp($quizOption->getQuiz()->getId(), $request->getClientIp());
+
+            if(!$vote_exist)
+            {
+                $result = new NewsQuizResult();
+                $result->setIp($request->getClientIp());
+                $result->setQuizOption($quizOption);
+                $result->setQuiz($quizOption->getQuiz());
+                $this->em->persist($result);
+                $this->em->flush();
+
+                $referer = $request->headers->get('referer');
+                $response['status'] = 'OK';
+            }
+            
+            $response['results'] = $this->getQuizResultAction($quizOption->getQuiz(), $as_string = true);
+        }
+        
+        return new JsonResponse($response);
+   }
+
+   public function GetQuizViewAction(NewsQuiz $quiz, Request $request)
+   {
+        $vote_exist = $this->em->getRepository(NewsQuizResult::class)->getElementByQuizIdAndIp($quiz->getId(), $request->getClientIp());
+
+        if(!$vote_exist)
+        {
+            $form = $this->createFormBuilder(new \stdClass(), ['action' => $this->generateUrl('frontend_news_quiz_result')]);
+            $form_data = [];
+
+            foreach($quiz->getQuizOptions() as $k => $item)
+            {
+                $option = $item->getTranslations()->getValues();
+                $option = reset($option);
+
+                $form_data[] = [$option->getTitle() => $option->getId()];
+            }
+
+            $form->add('variant', ChoiceType::class, [
+                'choices' => $form_data,
+                'mapped' => false,
+                'label' => false,
+                'expanded' => true
+            ]);
+
+            $form = $form->add('save', SubmitType::class, ['label' => 'Отправить'])->getForm();
+
+            return $this->render('quiz/_init_form.html.twig', [
+                'quiz' => $quiz,
+                'form' => $form->createView()
+            ]);
+        }
+        else
+        {
+            return $this->getQuizResultAction($quiz);
+        }
+   }
+
+   function getQuizResultAction(NewsQuiz $quiz, $as_string = false)
+   {
+        if($quiz)
+        {
+            $parameters['quiz'] = $quiz;
+
+            foreach($quiz->getQuizOptions() as $item)
+            {
+                $parameters['votes_cnt'][$item->getId()] = $this->em->getRepository(NewsQuizResult::class)->getVotesCntByQuizOptionId($item->getId());
+            }
+
+            $parameters['votes_cnt']['total'] = array_sum($parameters['votes_cnt']);
+
+            $tpl = $this->render('quiz/_result.html.twig', $parameters);
+
+            if($as_string)
+                return $tpl->getContent();
+
+            return $tpl;
+        }
    }
 }

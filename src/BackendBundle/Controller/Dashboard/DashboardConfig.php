@@ -92,7 +92,13 @@ final class DashboardConfig extends \DashboardBundle\Controller\DashboardConfig
             (!is_null($user)) ? $settings['items'][] = $user : null;
             $banner = self::sidebarBannerBundle();
             (!is_null($banner)) ? $settings['items'][] = $banner : null;
-////            self::itemSidebar(['ROLE_LOG'], null, ['dashboard_log'], 'icon-info', false, null, null, 'sidebar.configuration.log', [], 'dashboard_log')
+
+            $info = self::itemSidebar(['ROLE_DIRECTOR'], ['info/edit'], [
+                'dashboard_info_index', 'dashboard_info_new'
+            ], 'flaticon-notes', false, null, null, 'Инфографика', [],
+                'dashboard_info_index');
+            (!is_null($info)) ? $general['items'][] = $info : null;
+                
             $sidebar['settings'] = $settings;
         }
 

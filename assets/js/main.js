@@ -253,19 +253,22 @@ $(document).ready(function () {
         });
     });
 
-    $('.quiz__submit').on('click', function() {
+    $('#quiz__form').on('submit', function(e) {
         if ($(this).attr('disabled'))
             return;
+        e.preventDefault();
+        var $form = $(this);
 
         quizInAjax = true;
         $('.quiz__submit').attr('disabled', 'disabled');
         $.ajax({
-            url: $('#quiz-url').val(),
+            url: $form.attr('action'),
             data: {
-                increment: $('label.quiz__container input:checked').attr('id'),
-                decrement: localStorage.getItem('shipped-quiz')
+                // increment: $('label.quiz__container input:checked').attr('id'),
+                // decrement: localStorage.getItem('shipped-quiz')
+                quiz_option_id: $('label.quiz__container input:checked').val()
             },
-            method: 'GET',
+            method: 'POST',
             error: function (err, e, i) {
                 alert('Не удалось отправить ваш голос, попробуйте позже');
             },
@@ -275,26 +278,9 @@ $(document).ready(function () {
                 validateQuizSubmit();
             },
             success: function (res) {
-                if (typeof res === "string")
-                    res = JSON.parse(res);
-                if (res.status === "OK") {
-                    localStorage.setItem('shipped-quiz', res.incremented);
-                    let stats = "";
-
-                    $.each(res.votes, function (key, el) {
-                        stats += "<h6 class=\"quiz__stat-title\">" + key + " <span class=\"quiz__stat-percent\">" + el + "%</span></h6>\n" +
-                            "         <div class=\"quiz__stat-line\">\n" +
-                            "         <div class=\"quiz__stat-progress\"\n" +
-                            "              style=\"width: " + el + "%\"></div>\n" +
-                            "     </div>";
-                    });
-
-                    let statsEl = $('.quiz__stats');
-                    statsEl.empty();
-                    statsEl.append(stats);
-                    statsEl.removeClass('quiz__stats--disabled');
-                    $('.quiz__form').addClass('quiz__form--disabled');
-                }
+                if (typeof res === "string") res = JSON.parse(res);
+                $('.quiz').html($(res.results).html());
+                $.each($('.quiz__progress'), function() { $(this).css('width', $(this).attr('data-prc')) });
             }
         });
     });
@@ -308,6 +294,7 @@ $(document).ready(function () {
         }
     }
 
+    $.each($('.quiz__progress'), function() { $(this).css('width', $(this).attr('data-prc')) });
 
     // var element = document.getElementById("calendar");
     // jsCalendar.new(element, "30/01/2017", {
