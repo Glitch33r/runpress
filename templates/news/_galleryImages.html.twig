@@ -1,5 +1,5 @@
 {% if element is not null or element.poster is not empty %}
-    <div class="slider hero-slider hero-slider--fluid--left owl-carousel single-news__slider">
+    <div class="slider hero-slider hero-slider--fluid--left owl-carousel single-news__slider no-slide-bg">
         {% if element.poster is not empty %}
             <div class="hero owl-lazy"
                  data-src="{{ asset(element.poster|json_decode.default_file|default(asset('bundles/upload/images/no-image-400.png'))) }}">
