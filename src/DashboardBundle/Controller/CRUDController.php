@@ -9,6 +9,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use DashboardBundle\Utils\DashboardManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
@@ -426,6 +427,10 @@ abstract class CRUDController extends AbstractController implements CRUDControll
                             );
                         }
                     }
+
+                    $referer = $request->headers->get('referer');
+                    return new RedirectResponse($referer);
+
                 } catch (\Exception $exception) {
                     $this->addFlash('flash_edit_error', $exception->getMessage());
                     $this->addFlash('js_flash_edit_error', $exception->getMessage());
