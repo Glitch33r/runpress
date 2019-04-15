@@ -37,6 +37,9 @@
                 })) }}
 
                 <div class="static-content">
+                    {% if element.translate.signature %}
+                        <p id="slider-signature">{{ element.translate.signature }}</p>
+                    {% endif %}
                     {{ element.translate.description|raw }}
                 </div>
 

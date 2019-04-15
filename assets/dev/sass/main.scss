@@ -132,6 +132,10 @@
   }
 }
 
+.hero[data-href] {
+  cursor: pointer;
+}
+
 .hero {
   background-size: cover;
   background-repeat: no-repeat;
@@ -360,8 +364,8 @@
 
   &__img-wrap {
     @include lg(){
-      width: 40%;
-      height: 190px;
+      width: 25%;
+      height: 130px;
       padding: 0;
       flex-shrink: 0;
     }
@@ -984,5 +988,19 @@
       width: 100%;
       transition: 0.4s all;
     }
+  }
+}
+
+#slider-signature {
+    font-style: italic;
+    color: #969191;
+    position: relative;
+    top: -15px;
+    border-bottom: 1px dashed;
+}
+
+@include xl() {
+  #slider-signature {
+    margin-right: 22px;
   }
 }

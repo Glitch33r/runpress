@@ -13,7 +13,7 @@
                 }) %}
             {% endif %}
 
-            <div class="hero owl-lazy"
+            <div class="hero owl-lazy" data-href="{{ url }}"
                  data-src="{{ asset(item.poster|json_decode['640x385']|default(asset('bundles/upload/images/no-image-400.png'))) }}">
                 {% if newsCategory is not null %}
                     <a class="label" href="{{ path('frontend_news_category_show', {

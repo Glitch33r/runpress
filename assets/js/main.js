@@ -190,6 +190,8 @@ $(document).ready(function () {
     });
     heroSlider.trigger('refresh.owl.carousel');
 
+    $('body').on('click', '.hero-slider .hero', function() { $(this).attr('data-href') && (location = $(this).attr('data-href')) });
+
     $('.js-nav-open').click(() => {
         $('.page-header__nav').addClass('page-header__nav--visible');
         $('#mnu-overlay').addClass('mnu-overlay--show');
