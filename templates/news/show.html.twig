@@ -43,6 +43,19 @@
                     {{ element.translate.description|raw }}
                 </div>
 
+                {% if element.video is not null %}
+                    <h3>
+                        <span style="font-size:1.5rem;display:inline-block;vertical-align:middle;">
+                        📽️
+                        </span>
+                        Видео
+                    </h3>
+                    <div class="video-wrap">
+                        <iframe class="video-wrap__video" src="{{ element.video }}"></iframe>
+                    </div>
+                    <br>
+                {% endif %}
+
                 <div class="single-news__share" id="single-news__share"></div>
 
                 <div id="single-news__share-data">
