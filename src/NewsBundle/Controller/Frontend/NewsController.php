@@ -30,7 +30,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 /**
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 final class NewsController extends AbstractController
 {

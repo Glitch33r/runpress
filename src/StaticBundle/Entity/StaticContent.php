@@ -21,7 +21,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints as UniqueEntity;
  *     })
  * @UniqueEntity\UniqueEntity(fields={"linkName", "page"})
  * @ORM\Entity(repositoryClass="StaticBundle\Entity\Repository\StaticContentRepository")
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 class StaticContent implements StaticContentInterface
 {

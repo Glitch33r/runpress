@@ -13,7 +13,7 @@ use ComponentBundle\Form\Type\Frontend\SearchShopFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 abstract class SearchController extends AbstractController
 {

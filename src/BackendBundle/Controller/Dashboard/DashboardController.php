@@ -3,7 +3,7 @@
 namespace BackendBundle\Controller\Dashboard;
 
 /**
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 final class DashboardController extends \DashboardBundle\Controller\DashboardController
 {

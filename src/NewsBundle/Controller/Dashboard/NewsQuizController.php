@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use UploadBundle\Services\FileHandler;
 
 /**
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 class NewsQuizController extends CRUDController
 {

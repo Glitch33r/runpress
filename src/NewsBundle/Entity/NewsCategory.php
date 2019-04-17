@@ -22,7 +22,7 @@ use ComponentBundle\Entity\ShowOnWebsite\ShowOnWebsiteTrait;
  *     @ORM\Index(name="show_on_website_idx", columns={"show_on_website"})
  * })
  * @ORM\Entity(repositoryClass="NewsBundle\Entity\Repository\NewsCategoryRepository")
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 class NewsCategory implements NewsCategoryInterface
 {

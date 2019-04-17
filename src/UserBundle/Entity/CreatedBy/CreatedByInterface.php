@@ -5,7 +5,7 @@ namespace UserBundle\Entity\CreatedBy;
 use UserBundle\Entity\UserInterface;
 
 /**
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 interface CreatedByInterface
 {

@@ -26,7 +26,7 @@ use IhorDrevetskyi\ComponentBundle\Entity\PosterAlt\PosterAltTrait;
  *     })
  * @UniqueEntity\UniqueEntity(fields="slug")
  * @ORM\Entity
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 class NewsTranslation implements TitleInterface, SlugInterface,
     DescriptionInterface, ShortDescriptionInterface

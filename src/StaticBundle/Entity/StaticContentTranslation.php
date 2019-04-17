@@ -18,7 +18,7 @@ use ComponentBundle\Entity\ShortDescription\ShortDescriptionInterface;
  * @Gedmo\Loggable
  * @ORM\Table(name="static_content_translation_table")
  * @ORM\Entity
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 class StaticContentTranslation implements TitleInterface, ShortDescriptionInterface, DescriptionInterface
 {

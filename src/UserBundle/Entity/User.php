@@ -28,7 +28,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints as UniqueEntity;
  * })
  * @UniqueEntity\UniqueEntity(fields="email")
  * @ORM\Entity(repositoryClass="UserBundle\Entity\Repository\UserRepository")
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 class User implements UserInterface
 {

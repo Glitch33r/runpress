@@ -6,7 +6,7 @@ use UserBundle\Entity\UserInterface;
 
 /**
  * Class updating the canonical fields of the user.
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 final class CanonicalFieldsUpdater
 {

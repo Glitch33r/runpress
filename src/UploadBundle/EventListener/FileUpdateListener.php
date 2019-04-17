@@ -6,7 +6,7 @@ use UploadBundle\Services\FileHandler;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 
 /**
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 class FileUpdateListener
 {

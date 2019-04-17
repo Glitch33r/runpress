@@ -17,7 +17,7 @@ use UploadBundle\Form\Type\UploadType;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 class BannerType extends AbstractType
 {

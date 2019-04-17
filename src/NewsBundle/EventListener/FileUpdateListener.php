@@ -5,7 +5,7 @@ namespace NewsBundle\EventListener;
 use UploadBundle\Services\FileHandler;
 
 /**
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 final class FileUpdateListener extends \UploadBundle\EventListener\FileUpdateListener
 {

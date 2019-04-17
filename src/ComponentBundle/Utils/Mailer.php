@@ -5,7 +5,7 @@ namespace ComponentBundle\Utils;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 /**
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 class Mailer implements MailerInterface
 {

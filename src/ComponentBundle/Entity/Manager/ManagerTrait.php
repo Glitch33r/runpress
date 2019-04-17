@@ -8,7 +8,7 @@ use ComponentBundle\Entity\YesOrNo\YesOrNoInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 trait ManagerTrait
 {

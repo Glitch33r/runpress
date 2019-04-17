@@ -11,7 +11,7 @@ use ComponentBundle\Entity\ShowOnWebsite\ShowOnWebsiteInterface;
 /**
  * Interface NewsAuthorInterface
  * @package NewsBundle\Entity
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 interface NewsAuthorInterface extends NewsCollectionAwareInterface, IdInterface,
     PositionInterface, ShowOnWebsiteInterface, SeoTraitInterface, PosterInterface

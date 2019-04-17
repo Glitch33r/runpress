@@ -6,7 +6,7 @@ use UserBundle\Entity\UserInterface;
 use Doctrine\Common\Collections\Collection;
 
 /**
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 trait UpdatedByTrait
 {

@@ -5,7 +5,7 @@ namespace ComponentBundle\Storage;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 final class SessionStorage implements StorageInterface
 {

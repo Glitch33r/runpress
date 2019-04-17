@@ -14,7 +14,7 @@ use ComponentBundle\Entity\MailSetting\MailSettingTranslationExtendedInterface;
  * @Gedmo\Loggable
  * @ORM\Table(name="user_mail_setting_translation_table")
  * @ORM\Entity
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 class UserMailSettingTranslation implements MailSettingTranslationExtendedInterface
 {

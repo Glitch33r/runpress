@@ -15,7 +15,7 @@ use ComponentBundle\Utils\Mailer;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 /**
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 final class DefaultController extends \ComponentBundle\Controller\Frontend\DefaultController
 {

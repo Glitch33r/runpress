@@ -5,7 +5,7 @@ namespace DashboardBundle;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 final class DashboardBundle extends Bundle
 {

@@ -9,7 +9,7 @@ use ComponentBundle\Entity\YesOrNo\YesOrNoInterface;
 use DashboardBundle\Entity\Repository\DashboardRepository;
 
 /**
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 class NewsAuthorRepository extends DashboardRepository implements NewsAuthorRepositoryInterface
 {

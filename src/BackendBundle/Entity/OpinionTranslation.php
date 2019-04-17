@@ -24,7 +24,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints as UniqueEntity;
  *     })
  * @UniqueEntity\UniqueEntity(fields="slug")
  * @ORM\Entity
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 class OpinionTranslation implements TitleInterface, SlugInterface, DescriptionInterface
 {

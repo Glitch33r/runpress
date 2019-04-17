@@ -7,7 +7,7 @@ use ComponentBundle\Entity\Id\IdInterface;
 /**
  * Interface SeoInterface
  * @package SeoBundle\Entity
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 interface SeoInterface extends IdInterface
 {

@@ -11,7 +11,7 @@ use BannerBundle\Controller\Dashboard\sidebarBannerBundleTrait;
 use IhorDrevetskyi\SupportCenter\ContactBundle\Controller\Dashboard\sidebarContactBundleTrait;
 
 /**
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 final class DashboardConfig extends \DashboardBundle\Controller\DashboardConfig
 {

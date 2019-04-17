@@ -9,7 +9,7 @@ use Symfony\Component\Form\SubmitButtonTypeInterface;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 
 /**
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 class DashboardSubmitAndDropDownType extends AbstractType implements SubmitButtonTypeInterface
 {

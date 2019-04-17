@@ -10,7 +10,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 use UserBundle\Form\Type\Dashboard\UserMailSettingType;
 
 /**
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 final class UserMailSettingController extends CRUDController
 {

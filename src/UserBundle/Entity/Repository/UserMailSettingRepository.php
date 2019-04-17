@@ -7,7 +7,7 @@ use UserBundle\Entity\UserMailSetting;
 use DashboardBundle\Entity\Repository\DashboardRepository;
 
 /**
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 final class UserMailSettingRepository extends DashboardRepository
 {

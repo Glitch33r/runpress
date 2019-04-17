@@ -22,7 +22,7 @@ use ComponentBundle\Entity\ShowOnWebsite\ShowOnWebsiteInterface;
  *     @ORM\Index(name="show_on_website_idx", columns={"show_on_website"})
  * })
  * @ORM\Entity(repositoryClass="NewsBundle\Entity\Repository\NewsTagRepository")
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 class NewsTag implements IdInterface, PositionInterface,
     ShowOnWebsiteInterface, NewsCollectionAwareInterface

@@ -16,7 +16,7 @@ use ComponentBundle\Entity\Description\DescriptionInterface;
  * @Gedmo\Loggable
  * @ORM\Table(name="static_page_translation_table")
  * @ORM\Entity
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 class StaticPageTranslation implements TitleInterface, DescriptionInterface
 {

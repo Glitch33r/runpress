@@ -24,7 +24,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints as UniqueEntity;
  *     })
  * @UniqueEntity\UniqueEntity(fields="systemName")
  * @ORM\Entity(repositoryClass="StaticBundle\Entity\Repository\StaticPageRepository")
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 class StaticPage implements StaticPageInterface, SeoTraitInterface
 {

@@ -5,7 +5,7 @@ namespace UserBundle\Entity;
 use ComponentBundle\Entity\Id\IdInterface;
 
 /**
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 interface UserOAuthInterface extends IdInterface, UserAwareInterface
 {

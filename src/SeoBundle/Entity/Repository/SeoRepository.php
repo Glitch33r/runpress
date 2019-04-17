@@ -5,7 +5,7 @@ namespace SeoBundle\Entity\Repository;
 use Doctrine\ORM\QueryBuilder;
 
 /**
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 abstract class SeoRepository
 {

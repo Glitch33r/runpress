@@ -6,7 +6,7 @@ use Doctrine\ORM\QueryBuilder;
 use NewsBundle\Entity\NewsCategory;
 
 /**
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 interface NewsCategoryRepositoryInterface
 {

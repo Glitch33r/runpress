@@ -20,7 +20,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints as UniqueEntity;
  * })
  * @UniqueEntity\UniqueEntity(fields="systemName")
  * @ORM\Entity(repositoryClass="SeoBundle\Entity\Repository\SeoPageRepository")
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 class SeoPage implements SeoPageInterface, SeoTraitInterface
 {

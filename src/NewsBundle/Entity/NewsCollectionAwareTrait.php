@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\Collection;
 /**
  * Trait NewsAwareTrait
  * @package NewsBundle\Entity
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 trait NewsCollectionAwareTrait
 {

@@ -8,7 +8,7 @@ use ComponentBundle\Entity\Img\ImgInterface;
 use UserBundle\Entity\PersonalInformation\PersonalInformationInterface;
 
 /**
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 interface UserInterface extends IdInterface, ImgInterface,
     CredentialsHolderInterface, \Symfony\Component\Security\Core\User\UserInterface,

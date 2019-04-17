@@ -10,7 +10,7 @@ use ComponentBundle\Entity\Position\PositionInterface;
 use ComponentBundle\Entity\ShowOnWebsite\ShowOnWebsiteInterface;
 
 /**
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 interface NewsQuizInterface extends IdInterface, ShowOnWebsiteInterface, YesOrNoInterface, __CallInterface,
     PositionInterface

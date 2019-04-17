@@ -3,7 +3,7 @@
 namespace ComponentBundle\Entity\ShortDescription;
 
 /**
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 interface ShortDescriptionInterface
 {

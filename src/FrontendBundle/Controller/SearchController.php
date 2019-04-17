@@ -5,7 +5,7 @@ namespace FrontendBundle\Controller;
 use NewsBundle\Entity\News;
 
 /**
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 final class SearchController extends \ComponentBundle\Controller\Frontend\SearchController
 {

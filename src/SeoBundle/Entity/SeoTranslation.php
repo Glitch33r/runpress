@@ -11,7 +11,7 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Table(name="seo_translation_table")
  * @ORM\Entity
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 class SeoTranslation implements SeoTranslationInterface
 {

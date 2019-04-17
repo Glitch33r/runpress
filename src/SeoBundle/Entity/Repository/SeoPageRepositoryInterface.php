@@ -3,7 +3,7 @@
 namespace SeoBundle\Entity\Repository;
 
 /**
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 interface SeoPageRepositoryInterface
 {

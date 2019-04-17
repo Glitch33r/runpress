@@ -11,7 +11,7 @@ use NewsBundle\Form\Type\Dashboard\NewsCategoryType;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 final class NewsCategoryController extends CRUDController
 {

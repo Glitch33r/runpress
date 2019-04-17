@@ -5,7 +5,7 @@ namespace NewsBundle\Entity;
 use ComponentBundle\Entity\Title\TitleInterface;
 
 /**
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 interface NewsQuizOptionTranslationInterface extends TitleInterface
 {

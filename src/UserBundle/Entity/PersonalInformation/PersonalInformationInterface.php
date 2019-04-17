@@ -3,7 +3,7 @@
 namespace UserBundle\Entity\PersonalInformation;
 
 /**
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 interface PersonalInformationInterface
 {

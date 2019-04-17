@@ -10,7 +10,7 @@ use ComponentBundle\Entity\YesOrNo\YesOrNoInterface;
 
 /**
  * Interface NewsGalleryImageInterface
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 interface NewsGalleryImageInterface extends YesOrNoInterface, IdInterface, PositionInterface, ShowOnWebsiteInterface,
     ImgInterface

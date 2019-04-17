@@ -10,7 +10,7 @@ use DashboardBundle\Controller\CRUDController;
 use Doctrine\ORM\EntityManagerInterface;
 
 /**
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 final class BannerController extends CRUDController
 {

@@ -11,7 +11,7 @@ use DashboardBundle\Form\Type\AddSaveBtnSubscriber;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 class SeoPageType extends AbstractType
 {

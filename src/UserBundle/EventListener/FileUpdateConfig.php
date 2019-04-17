@@ -3,7 +3,7 @@
 namespace UserBundle\EventListener;
 
 /**
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 final class FileUpdateConfig
 {

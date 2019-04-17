@@ -8,7 +8,7 @@ use SeoBundle\Entity\Repository\SeoRepository;
 use DashboardBundle\Entity\Repository\DashboardRepository;
 
 /**
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 final class StaticPageRepository extends DashboardRepository implements StaticPageRepositoryInterface
 {

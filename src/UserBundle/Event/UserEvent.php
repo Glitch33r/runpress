@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use UserBundle\Entity\UserInterface;
 
 /**
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 class UserEvent extends Event
 {

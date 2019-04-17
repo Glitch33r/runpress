@@ -6,7 +6,7 @@ use SeoBundle\Utils\SeoManager;
 use Symfony\Component\Routing\RouterInterface;
 
 /**
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 final class BreadcrumbsGenerator
 {

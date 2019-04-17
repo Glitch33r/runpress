@@ -5,7 +5,7 @@ namespace StaticBundle\Entity\Repository;
 use StaticBundle\Entity\StaticPageInterface;
 
 /**
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 interface StaticPageRepositoryInterface
 {

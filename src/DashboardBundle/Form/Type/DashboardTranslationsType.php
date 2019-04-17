@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use A2lix\TranslationFormBundle\Form\Type\TranslationsType;
 
 /**
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 class DashboardTranslationsType extends AbstractType
 {

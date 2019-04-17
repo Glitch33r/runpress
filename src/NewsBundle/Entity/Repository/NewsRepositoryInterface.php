@@ -8,7 +8,7 @@ use NewsBundle\Entity\NewsInterface;
 use NewsBundle\Entity\NewsCategoryInterface;
 
 /**
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 interface NewsRepositoryInterface
 {

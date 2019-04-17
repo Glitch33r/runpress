@@ -6,7 +6,7 @@ use Twig\TwigFilter;
 use Twig\Extension\AbstractExtension;
 
 /**
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 class JsonDecodeExtension extends AbstractExtension
 {

@@ -12,7 +12,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @Gedmo\Loggable
  * @ORM\Entity
  * @ORM\Table(name="`user_o_auth_table`")
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 class UserOAuth implements UserOAuthInterface
 {

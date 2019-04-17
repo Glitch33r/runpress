@@ -8,7 +8,7 @@ use ComponentBundle\Entity\SystemName\SystemNameInterface;
 /**
  * Interface SeoPageInterface
  * @package SeoBundle\Entity
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 interface SeoPageInterface extends IdInterface, SystemNameInterface
 {

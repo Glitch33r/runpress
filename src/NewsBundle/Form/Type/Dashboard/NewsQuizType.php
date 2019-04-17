@@ -16,7 +16,7 @@ use DashboardBundle\Form\Type\DashboardPositionType;
 use DashboardBundle\Form\Type\AddSaveBtnSubscriber;
 
 /**
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 class NewsQuizType extends AbstractType
 {

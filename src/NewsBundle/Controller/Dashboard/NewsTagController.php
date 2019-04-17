@@ -10,7 +10,7 @@ use NewsBundle\Form\Type\Dashboard\NewsTagType;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 class NewsTagController extends CRUDController
 {

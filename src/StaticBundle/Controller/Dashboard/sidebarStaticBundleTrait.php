@@ -3,7 +3,7 @@
 namespace StaticBundle\Controller\Dashboard;
 
 /**
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 trait sidebarStaticBundleTrait
 {

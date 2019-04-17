@@ -31,7 +31,7 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 @ORM\Index(name="show_on_website_idx", columns={"show_on_website"}),
  *     })
  * @ORM\Entity(repositoryClass="BackendBundle\Entity\Repository\VideoRepository")
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 class Video implements YesOrNoInterface, IdInterface, __CallInterface, PositionInterface, ShowOnWebsiteInterface
 {

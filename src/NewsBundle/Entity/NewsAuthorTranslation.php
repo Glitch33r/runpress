@@ -23,7 +23,7 @@ use ComponentBundle\Entity\ShortDescription\ShortDescriptionInterface;
  *     })
  * @UniqueEntity\UniqueEntity(fields="slug")
  * @ORM\Entity
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 class NewsAuthorTranslation implements TitleInterface, SlugInterface, ShortDescriptionInterface
 {

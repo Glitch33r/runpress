@@ -30,7 +30,7 @@ use DashboardBundle\Form\Type\DashboardTranslationsType;
 use DashboardBundle\Form\Type\DashboardSelect2EntityType;
 
 /**
- * @author Ihor Drevetskyi <ihor.drevetskyi@gmail.com>
+ * @author Design studio origami <https://origami.ua>
  */
 class NewsType extends AbstractType
 {
