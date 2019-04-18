@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 use Symfony\Component\Validator\Constraints as Assert;
+use ComponentBundle\Entity\Position\PositionTrait;
 
 /**
  * NewsComment
@@ -25,6 +26,7 @@ class NewsComment
     use IdTrait;
     use ShowOnWebsiteTrait;
     use YesOrNoTrait;
+    use PositionTrait;
 
     /**
      * @var \NewsBundle\Entity\News
