@@ -54,6 +54,7 @@ class NewsCategory implements NewsCategoryInterface
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\OneToMany(targetEntity="NewsBundle\Entity\News", mappedBy="newsCategory", cascade={"persist","remove"})
+     * @ORM\OrderBy({"createdAt" = "DESC"})
      */
     private $news;
 
