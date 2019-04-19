@@ -19,7 +19,7 @@
                     Лента новостей
                 </h3>
 
-                <div class="last-news">
+                <div class="last-news rss-news">
                     <ul class="last-news__list infinite-scroll" data-itemSelector=".infinite-scroll__item">
                         {{  render(controller('NewsBundle\\Controller\\Frontend\\NewsController::getNewsElementsByCategoryAction',{
                             'page': 1, 'countInPage': 10, 'category': category, 'fromTwig': true

@@ -1007,3 +1007,25 @@
     margin-right: 22px;
   }
 }
+
+.rss-news .news-item__title {
+  font-size: 1.3rem;
+}
+
+.opinions:first-of-type .opinion__img-wrap {
+    width: 80px;
+    height: 80px;
+    margin: -5px 30px 0 0;
+    
+    &:before {
+      display: none;
+    }
+  
+    .opinion__img {
+      bottom: -20px;
+      left: -13px;
+      width: 132%;
+      height: 118px;
+      max-width: initial;
+    }
+}
