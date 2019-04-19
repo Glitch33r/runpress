@@ -53,7 +53,9 @@
                             {% if loop.index == 2 %}
                                 {{ render(controller('BannerBundle\\Controller\\Frontend\\BannerController::getBannerAction', {'type': 'aside_page', 'page': 'main'})) }}
                             {% endif %}
-                            <a href="{{ path('frontend_opinion_index') }}">
+                            <a href="{{ path('frontend_news_category_show', {
+                                'category':  category.translations[ category.defaultLocale].slug
+                            }) }}">
                                 <h3 class="page__sub-subtitle">
                                     {{ category.translate.title }}
                                 </h3>
