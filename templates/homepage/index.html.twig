@@ -47,7 +47,7 @@
 
                 {{ render(controller('FrontendBundle\\Controller\\DefaultController::initSidebarBannerAction')) }}
 
-                <div style="padding-left: 67.5px;">
+                <div class="sidebar__aside-cats">
                     {% if asideCategories|length %}
                         {% for category in asideCategories %}
                             {% if loop.index == 2 %}

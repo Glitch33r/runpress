@@ -617,11 +617,20 @@
   }
   &__socials {
     margin-bottom: cRem(16px);
-    padding-left: $grid-gutter-width * 1.5;
+    @include lg() {
+      padding-left: $grid-gutter-width * 1.5;
+    }
   }
   &__logo {
-    padding-left: $grid-gutter-width * 1.5;
+    @include lg() {
+      padding-left: $grid-gutter-width * 1.5;
+    }
     margin-bottom: cRem(16px);
+  }
+  &__aside-cats {
+    @include lg() {
+      padding-left: $grid-gutter-width * 1.5;
+    }
   }
   &__bnnr {
     position: relative;
