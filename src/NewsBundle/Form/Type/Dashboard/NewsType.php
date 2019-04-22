@@ -28,6 +28,7 @@ use DashboardBundle\Form\Type\DashboardCollectionType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use DashboardBundle\Form\Type\DashboardTranslationsType;
 use DashboardBundle\Form\Type\DashboardSelect2EntityType;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
  * @author Design studio origami <https://origami.ua>
@@ -43,9 +44,10 @@ class NewsType extends AbstractType
      * StaticContentType constructor.
      * @param Security $security
      */
-    public function __construct(Security $security)
+    public function __construct(Security $security, UrlGeneratorInterface $router)
     {
         $this->security = $security;
+        $this->router = $router;
     }
 
     /**
@@ -73,6 +75,17 @@ class NewsType extends AbstractType
                     ->add('translations', DashboardTranslationsType::class, [
                         'label' => false,
                         'fields' => [
+                            'slug' => [
+                                'field_type' => DashboardTextType::class,
+                                'label' => 'Ссылка',
+                                'helpBlock' => null,
+                                'maxLength' => 255,
+                                'mapped' => false,
+                                'required' => false,
+                                'attr' => [
+                                    'value' => $this->router->generate('frontend_news_show', ['slug' => $builder->getData()->translate()->getSlug()], 0)
+                                ]
+                            ],
                             'title' => [
                                 'field_type' => DashboardTextareaType::class,
                                 'label' => 'ui.title',
@@ -107,7 +120,7 @@ class NewsType extends AbstractType
                             ]
                         ],
                         'excluded_fields' => [
-                            'slug', 'id', 'locale', 'translatable', 'createdAt', 'updatedAt', 'treeTitle'
+                            'id', 'locale', 'translatable', 'createdAt', 'updatedAt', 'treeTitle'
                         ]
                     ])
                     ->add('newsCategory', DashboardSelect2EntityType::class, [

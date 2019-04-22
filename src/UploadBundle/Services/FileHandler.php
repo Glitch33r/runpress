@@ -170,6 +170,7 @@ class FileHandler implements FileHandlerInterface
 
         $flattened = new IMagick();
         $flattened->newImage($img->getImageWidth(), $img->getImageHeight(), new ImagickPixel("white"));
+        $flattened->setImageCompressionQuality(50);
         $flattened->compositeImage($img, imagick::COMPOSITE_OVER, 0, 0);
         $flattened->setImageFormat('jpeg');
         $flattened->trimImage(0);
