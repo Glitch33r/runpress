@@ -11,7 +11,7 @@
 {% endif %}
 
 {% if with_img %}
-    <li class="last-news__item news-item news-category__item" style="border-top: none;">
+    <li class="last-news__item news-item news-category__item infinite-scroll__item" style="border-top: none;">
         <a class="news-item__img-wrap news-category__img-wrap lazy-container" href="{{ href }}">
             <img class="b-lazy news-item__img" data-src="{{ asset(item.poster|json_decode['324x235']|default(asset('bundles/upload/images/no-image-400.png'))) }}" alt="">
         </a>
