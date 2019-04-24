@@ -102,3 +102,7 @@ dashboard_video_delete:
 dashboard_banner:
   resource: "@BannerBundle/Resources/config/routes/dashboard/banner.yaml"
   prefix:   /banner
+
+news_preview_page:
+  path: /preview/{id}
+  controller: BackendBundle\Controller\Dashboard\ArticlePreviewController::getPreviewAction

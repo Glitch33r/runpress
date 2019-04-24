@@ -6,19 +6,20 @@
     'newsEntity': element,
 })) }}
 
-
-<div class="comments single-news__comments">
-    {% for comment in comments %}
-        <div class="comments__item comment">
-            <div class="comment__img-wrap comment__img-wrap--with-img">
-                <img class="comment__img" src="{{ asset('bundles/frontend/img/temp/comments-1.png') }}"
-                     alt="">
+{% if comments is defined %}
+    <div class="comments single-news__comments">
+        {% for comment in comments %}
+            <div class="comments__item comment">
+                <div class="comment__img-wrap comment__img-wrap--with-img">
+                    <img class="comment__img" src="{{ asset('bundles/frontend/img/temp/comments-1.png') }}"
+                         alt="">
+                </div>
+                <blockqoute class="comment__text"><cite class="comment__author">{{ comment.name }}</cite>
+                    <br>
+                    <time class="comment__date">{{ comment.createdAt|date('d/m/Y H:i') }}</time>
+                    <p>{{ comment.content }}</p>
+                </blockqoute>
             </div>
-            <blockqoute class="comment__text"><cite class="comment__author">{{ comment.name }}</cite>
-                <br>
-                <time class="comment__date">{{ comment.createdAt|date('d/m/Y H:i') }}</time>
-                <p>{{ comment.content }}</p>
-            </blockqoute>
-        </div>
-    {% endfor %}
-</div>
+        {% endfor %}
+    </div>
+{% endif %}
