@@ -406,3 +406,66 @@ $(document).ready(function () {
     //     theme: {services: 'facebook,vkontakte,odnoklassniki'}
     // });
 });
+
+function findVideos() {
+  const videos = document.querySelectorAll(".video[data-lazy='true']");
+
+  for (let video of videos) {
+    setupVideo(video);
+  }
+}
+
+function setupVideo(video) {
+  const inner = video.querySelector(".video__inner");
+  const link = video.querySelector(".video__link");
+  const media = video.querySelector(".video__media");
+  const button = video.querySelector(".video__button");
+  const id = parseMediaURL(media);
+
+  video.addEventListener("click", () => {
+    let iframe = createIframe(id);
+
+    if (!isDesktop()) {
+      iframe.onload = () =>
+        (video.querySelector(".video__hint").innerHTML = video.dataset.hint);
+    }
+
+    link.remove();
+    button.remove();
+    inner.appendChild(iframe);
+  });
+
+  link.removeAttribute("href");
+  video.classList.add("video--enabled");
+}
+
+function parseMediaURL(media) {
+  let regexp = /https:\/\/i\.ytimg\.com\/vi\/([a-zA-Z0-9_-]+)\/hqdefault\.jpg/i;
+  let url = media.src;
+  let match = url.match(regexp);
+
+  return match[1];
+}
+
+function createIframe(id) {
+  let iframe = document.createElement("iframe");
+
+  iframe.setAttribute("allowfullscreen", "");
+  iframe.setAttribute("allow", "autoplay");
+  iframe.setAttribute("src", generateURL(id));
+  iframe.classList.add("video__media");
+
+  return iframe;
+}
+
+function generateURL(id) {
+  let query = "?rel=0&showinfo=0&autoplay=1";
+
+  return "https://www.youtube.com/embed/" + id + query;
+}
+
+function isDesktop() {
+  return window.matchMedia("(min-width: 992px)").matches;
+}
+
+findVideos();

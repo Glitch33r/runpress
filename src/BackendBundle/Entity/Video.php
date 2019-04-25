@@ -102,4 +102,11 @@ class Video implements YesOrNoInterface, IdInterface, __CallInterface, PositionI
             $this->publishAt = $publishAt;
         }
     }
+
+    public function getCode()
+    {
+        preg_match('/\/([^\/]+)$/', $this->getIframe(), $matches);
+        
+        return !empty($matches[1]) ? $matches[1] : '';
+    }
 }

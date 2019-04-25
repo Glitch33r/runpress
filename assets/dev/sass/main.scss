@@ -7,6 +7,12 @@
 @import "base";
 @import "reset";
 @import "animate";
+@import "video";
+
+// shame
+* {
+  font-family: sans-serif !important;
+}
 
 .lazy-container {
   $this: &;
@@ -158,6 +164,7 @@
     font: cRem(40px)/1em $font-stack-georgia;
     margin: 0.5em 0;
     display: block;
+    font-family: serif !important;
     color: #ffffff;
     &:hover {
       color: #cfcfcf;

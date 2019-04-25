@@ -5,9 +5,22 @@
     <div class="videos">
         {% for item in video %}
             {% if item.iframe is not null %}
-                <div class="video-wrap videos__item">
-                    <iframe class="video-wrap__video" src="{{ item.iframe }}" frameborder="0"
-                            allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <div class="video videos__item" data-hint="Видео загружено и готово к воспроизведению. Нажмите на кнопку ▶️ ниже чтобы начать просмотр."
+                data-lazy="true">
+                <span class="video__hint"></span>
+                <div class="video__inner">
+                <picture>
+                <a class="video__link"
+                href="https://www.youtube.com/watch?v={{ item.getCode() }}">
+                <source type="image/webp" srcset="https://i.ytimg.com/vi_webp/{{ item.getCode() }}/hqdefault.webp">
+                <img class="video__media" src="https://i.ytimg.com/vi/{{ item.getCode() }}/hqdefault.jpg"
+                alt="Подпись к видео">
+                </a>
+                </picture>
+                <button class="video__button" aria-label="Запустить видео">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="68" height="48"><path class="video__button-shape" d="M67 8c-1-3-3-6-6-6-5-2-27-2-27-2S12 0 7 2C4 2 2 5 1 8L0 24l1 16c1 3 3 6 6 6 5 2 27 2 27 2s22 0 27-2c3 0 5-3 6-6l1-16-1-16z"></path><path class="video__button-icon" d="M45 24L27 14v20"></path></svg>
+                </button>
+                </div>
                 </div>
             {% endif %}
         {% endfor %}

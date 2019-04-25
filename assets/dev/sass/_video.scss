@@ -1,0 +1,70 @@
+.video {
+    $block: &;
+
+    &__inner {
+      position: relative;
+      padding-bottom: 56.25%;
+      background-color: #000;
+      cursor: pointer;
+    }
+
+    &__hint {
+      display: block;
+      text-align: center;
+      color: $grey-color;
+      font-size: 12px;
+
+      &:not(:empty) {
+        margin-bottom: 0.5rem;
+      }
+    }
+
+    &__embed,
+    &__media {
+      position: absolute;
+      top: 0;
+      left: 0;
+      @include box(100%);
+      border-width: 0;
+    }
+
+    &__button {
+      @include center("both");
+      border-width: 0;
+      background-color: transparent;
+      @include box(68px, 48px);
+      padding: 0;
+      display: none;
+
+      &-shape {
+        fill: #212121;
+        fill-opacity: 0.8;
+      }
+
+      &-icon {
+        fill: #fff;
+      }
+
+      &:focus {
+        outline: 0;
+
+        .video__button-shape {
+          fill: red;
+          fill-opacity: 1;
+        }
+      }
+    }
+
+    &:hover {
+      .video__button-shape {
+        fill: red;
+        fill-opacity: 1;
+      }
+    }
+
+    &--enabled {
+      .video__button {
+        display: block;
+      }
+    }
+  }
