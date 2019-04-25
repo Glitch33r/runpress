@@ -40,7 +40,7 @@
                 </div>
 
                 <div class="logo sidebar__logo">
-                    <img src="{{ asset('bundles/frontend/img/logo-blue.svg') }}">
+                    <img class="b-lazy" data-src="{{ asset('bundles/frontend/img/logo-blue.svg') }}">
                 </div>
 
                 {% include 'default/_sidebar_socials.html.twig' %}
@@ -69,8 +69,8 @@
 
                                     <div class="opinion opinions__item">
                                         <a href="{{ href }}" class="opinion__img-wrap">
-                                            <img class="opinion__img"
-                                                 src="{{ (item.newsAuthor is not null ? item.newsAuthor.poster|json_decode.default_file : item.poster|json_decode['218x150'])|default(asset('bundles/upload/images/no-image-400.png')) }}"
+                                            <img class="b-lazy opinion__img"
+                                                 data-src="{{ (item.newsAuthor is not null ? item.newsAuthor.poster|json_decode.default_file : item.poster|json_decode['218x150'])|default(asset('bundles/upload/images/no-image-400.png')) }}"
                                                  alt="{{ item.translate.posterAlt }}">
                                         </a>
                                         <div class="opinion__info">
