@@ -55,6 +55,7 @@
 
   &__title {
     font: cRem(40px)/1em $font-stack-georgia;
+    font-family: serif!important;
     color: $primary-color;
     @include lg() {
       font-size: cRem(56px);
@@ -1026,4 +1027,8 @@
 
 .rss-news .news-item__title {
   font-size: 1.3rem;
+}
+
+.news-page .static-content > p:first-of-type, #slider-signature + p {
+  text-align: left;
 }
