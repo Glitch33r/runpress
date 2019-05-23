@@ -36,4 +36,5 @@ return [
     FOS\CKEditorBundle\FOSCKEditorBundle::class => ['all' => true],
     BannerBundle\BannerBundle::class => ['all' => true],
     Symfony\WebpackEncoreBundle\WebpackEncoreBundle::class => ['all' => true],
+    EWZ\Bundle\RecaptchaBundle\EWZRecaptchaBundle::class => ['all' => true],
 ];

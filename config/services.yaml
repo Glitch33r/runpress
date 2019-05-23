@@ -9,6 +9,7 @@ parameters:
     locale_supported: ['%locale%']
     search_shop_choices: 'news|news-category'
     search_default_type: 'news'
+    google_recaptcha_site_key: '%env(GOOGLE_RECAPTCHA_SITE_KEY)%'
 
 services:
     # default configuration for services in *this* file

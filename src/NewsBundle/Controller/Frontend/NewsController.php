@@ -28,6 +28,8 @@ use NewsBundle\Entity\Repository\NewsQuizRepository;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use EWZ\Bundle\RecaptchaBundle\Form\Type\EWZRecaptchaType;
+use EWZ\Bundle\RecaptchaBundle\Validator\Constraints\IsTrue as RecaptchaTrue;
 
 /**
  * @author Design studio origami <https://origami.ua>
@@ -525,6 +527,12 @@ final class NewsController extends AbstractController
             ->add('name', TextType::class)
             ->add('content', TextareaType::class)
             ->add('news', HiddenType::class, ['attr' => ['value' => $newsEntity->getId()], 'mapped' => false])
+            ->add('recaptcha', EWZRecaptchaType::class, [
+                'mapped' => false,
+                'constraints' => array(
+                    new RecaptchaTrue()
+                ),
+            ])
             ->add('save', SubmitType::class, ['label' => 'Отправить сообщение'])
             ->getForm();
 

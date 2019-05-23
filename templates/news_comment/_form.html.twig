@@ -12,7 +12,11 @@
     {{ form_widget(form.content, {'attr': {'class': 'form__input form__input--line--multi'}}) }}
 </div>
 
-<div class="form__group text-right">
+<div class="form__group">
+	{{ form_widget(form.recaptcha) }}
+</div>
+
+<div class="form__group">
     {{ form_widget(form.save, {'attr': {'class': 'btn'}}) }}
 </div>
 
