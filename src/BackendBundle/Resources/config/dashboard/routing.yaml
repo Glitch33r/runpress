@@ -106,3 +106,13 @@ dashboard_banner:
 news_preview_page:
   path: /preview/{id}
   controller: BackendBundle\Controller\Dashboard\ArticlePreviewController::getPreviewAction
+
+dashboard_migration_create:
+  path:     /migration/create
+  methods: [GET]
+  controller: BackendBundle\Controller\Dashboard\MigrationController::createAction
+
+dashboard_migration_run:
+  path:     /migration/run
+  methods: [GET]
+  controller: BackendBundle\Controller\Dashboard\MigrationController::runAction

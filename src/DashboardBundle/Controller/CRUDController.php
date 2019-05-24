@@ -428,8 +428,7 @@ abstract class CRUDController extends AbstractController implements CRUDControll
                         }
                     }
 
-                    $referer = $request->headers->get('referer');
-                    return new RedirectResponse($referer);
+                    return $this->redirectAfterEditAction($request);
 
                 } catch (\Exception $exception) {
                     $this->addFlash('flash_edit_error', $exception->getMessage());
@@ -536,4 +535,11 @@ abstract class CRUDController extends AbstractController implements CRUDControll
     {
         return $object;
     }
+
+    public function redirectAfterEditAction(Request $request)
+    {
+        $referer = $request->headers->get('referer');
+        return new RedirectResponse($referer);
+    }
+
 }

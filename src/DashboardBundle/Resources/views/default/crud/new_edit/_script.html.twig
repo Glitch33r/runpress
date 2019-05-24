@@ -151,6 +151,13 @@
         Select2.init();
         FormWidgets.init();
 
+        jQuery(window).bind('beforeunload', function(e){
+            if(e.target.activeElement.getAttribute('type') == 'submit')
+                return undefined;
+            else
+                return 'Are you sure you want to leave?';
+        });
+
         // Get that holds the collection
         var collectionHolder = $('.js-collection-widgets');
         // add a delete link to all of the existing form elements

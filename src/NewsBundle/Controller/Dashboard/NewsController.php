@@ -7,6 +7,7 @@ use SeoBundle\Entity\Seo;
 use NewsBundle\Entity\News;
 use Doctrine\ORM\EntityManagerInterface;
 use NewsBundle\Form\Type\Dashboard\NewsType;
+use Symfony\Component\HttpFoundation\Request;
 use DashboardBundle\Controller\CRUDController;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -122,7 +123,9 @@ final class NewsController extends CRUDController
 
         return [
             'newsCategory-translations-title' => ($category) ? $category->translate()->getTitle() : '',
-            'translations-title' => $item->translate()->getTitle(),
+            'translations-title' => $this->twig->render('@News/dashboard/news/list/_title.html.twig', [
+                'element' => $item
+            ]),
             'poster' => $this->twig->render('@Dashboard/default/crud/list/element/_img.html.twig', [
                 'element' => $item->getPoster()
             ]),
@@ -187,5 +190,29 @@ final class NewsController extends CRUDController
                 $this->generateUrl($this->getRouteElements()['delete'], ['id' => $id]),
             'action_delete_role' => $this->getGrantedRoles()['delete'],
         ]);
+    }
+
+    public function customActionInNewAction($object) {
+        $object->setUser($this->getUser());
+        return $object;       
+    }
+
+    public function customActionInEditAction($object) {
+        $object->setUser($this->getUser());
+        $object->setEditing(false);
+        return $object;       
+    }
+
+    public function getPortletBodyTemplateForForm(): string
+    {
+        return '@News/dashboard/news/form/_body.html.twig';
+    }
+
+    public function redirectAfterEditAction(Request $request)
+    {
+        return $this->redirectToRoute(
+            is_null($this->getRouteElements()['index']) ?
+                'dashboard_homepage_index' : $this->getRouteElements()['index']
+        );
     }
 }

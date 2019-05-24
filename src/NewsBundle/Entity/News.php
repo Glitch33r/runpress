@@ -14,6 +14,7 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 use ComponentBundle\Entity\Position\PositionTrait;
 use ComponentBundle\Entity\YesOrNo\YesOrNoInterface;
 use ComponentBundle\Entity\ShowOnWebsite\ShowOnWebsiteTrait;
+use UserBundle\Entity\User;
 
 /**
  * News
@@ -38,6 +39,23 @@ class News implements NewsInterface
     use PositionTrait;
     use ShowOnWebsiteTrait;
     use VideoTrait;
+
+    /**
+     * @Gedmo\Versioned
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", inversedBy="news")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="SET NULL")
+     * })
+     */
+    private $user;
+
+    /**
+     * @var boolean
+     *
+     * @Gedmo\Versioned
+     * @ORM\Column(name="editing", type="boolean", nullable=false)
+     */
+    protected $editing = YesOrNoInterface::NO;
 
     /**
      * @var boolean
@@ -433,5 +451,29 @@ class News implements NewsInterface
     public function setSignatureUrl(?string $signatureUrl): void
     {
         $this->signatureUrl = $signatureUrl;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getEditing(): ?bool
+    {
+        return $this->editing;
+    }
+
+    public function setEditing(bool $editing): self
+    {
+        $this->editing = $editing;
+
+        return $this;
     }
 }

@@ -11,6 +11,7 @@ use NewsBundle\Entity\NewsCategory;
 use UploadBundle\Form\Type\UploadType;
 use NewsBundle\Entity\NewsGalleryImage;
 use Symfony\Component\Form\AbstractType;
+use Doctrine\ORM\EntityManagerInterface;
 use SeoBundle\Form\Type\Dashboard\SeoType;
 use Symfony\Component\Security\Core\Security;
 use DashboardBundle\Form\Type\DashboardUrlType;
@@ -44,10 +45,11 @@ class NewsType extends AbstractType
      * StaticContentType constructor.
      * @param Security $security
      */
-    public function __construct(Security $security, UrlGeneratorInterface $router)
+    public function __construct(Security $security, UrlGeneratorInterface $router, EntityManagerInterface $em)
     {
         $this->security = $security;
         $this->router = $router;
+        $this->em = $em;
     }
 
     /**
@@ -247,6 +249,12 @@ class NewsType extends AbstractType
             )
             ->addEventSubscriber(new AddSeoSubscriber())
             ->addEventSubscriber(new AddSaveBtnSubscriber($this->security));
+
+            if($builder->getData()->getId()) {
+                $builder->getData()->setEditing(true);
+                $this->em->persist($builder->getData());
+                $this->em->flush();
+            }
     }
 
     /**

@@ -1,0 +1,11 @@
+<p>
+	{% if form.vars.data.updatedAt %}
+		Последнее изминение: <i>{{ form.vars.data.updatedAt.format('d.m.Y H:i') }}</i>
+	{% endif %}
+	{% if form.vars.data.user %}
+		&nbsp;
+		(<a href="{{ path('dashboard_user_edit', {'id': form.vars.data.user.getId()}) }}" target="blank">{{ form.vars.data.user.getEmail() }})
+		</a>
+	{% endif %}
+</p>
+{% include '@Dashboard/default/crud/form/_body.html.twig' with {'form': form} %}
