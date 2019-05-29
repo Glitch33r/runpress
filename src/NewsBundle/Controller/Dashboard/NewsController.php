@@ -95,6 +95,7 @@ final class NewsController extends CRUDController
     {
         return [
             'translations-title' => $this->translator->trans('ui.title', [], 'DashboardBundle'),
+            'views' => $this->translator->trans('ui.views', [], 'DashboardBundle'),
             'poster' => $this->translator->trans('ui.image', [], 'DashboardBundle'),
             'newsCategory-translations-title' => $this->translator->trans('ui.category', [], 'DashboardBundle'),
             'sharing' => [
@@ -123,6 +124,7 @@ final class NewsController extends CRUDController
 
         return [
             'newsCategory-translations-title' => ($category) ? $category->translate()->getTitle() : '',
+            'views' => $item->getViews(),
             'translations-title' => $this->twig->render('@News/dashboard/news/list/_title.html.twig', [
                 'element' => $item
             ]),

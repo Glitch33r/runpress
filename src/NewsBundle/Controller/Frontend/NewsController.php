@@ -431,6 +431,10 @@ final class NewsController extends AbstractController
                 );
         }
 
+        $element->setViews($element->getViews() + 1);
+        $this->em->persist($element);
+        $this->em->flush();
+
         $defaultLocale = $element->getDefaultLocale();
         $elementSlug = $element->translate($defaultLocale)->getSlug();
 

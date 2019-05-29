@@ -45,6 +45,7 @@ sidebar:
     сategory: "Категории"
 
 ui:
+  views: 'Просмотров'
   answer: 'Ответ'
   video: 'Видео'
   background: 'Фон'
