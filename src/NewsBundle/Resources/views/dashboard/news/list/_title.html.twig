@@ -1,4 +1,18 @@
+{% set newsCategory = element.newsCategory %}
+{% if newsCategory is not null %}
+    {% set href = path('frontend_news_show_with_category', {
+        'slug': element.translations[element.defaultLocale].slug,
+        'category':  newsCategory.translations[newsCategory.defaultLocale].slug
+    }) %}
+{% else %}
+    {% set href = path('frontend_news_show', {
+        'slug': element.translations[element.defaultLocale].slug
+    }) %}
+{% endif %}
+
 {% if element.editing %}
 	<i class="flaticon-danger text-danger" title="Редактируется"></i>&nbsp;
 {% endif %}
+
+<i class="flaticon-attachment text-info do-copy" data-to-copy="{{ app.request.getSchemeAndHttpHost() }}{{ href }}" title="Копировать ссылку"></i>&nbsp;
 {{ element.translate.title }}

@@ -5,6 +5,10 @@ fos_ck_editor:
       filebrowserBrowseRoute: elfinder
       filebrowserBrowseRouteParameters: []
       toolbar: full
+    plugins:
+      video:
+          path:     "/bundles/fosckeditor/plugins/video/"
+          filename: "plugin.js"
 
 framework:
   secret: '%env(APP_SECRET)%'

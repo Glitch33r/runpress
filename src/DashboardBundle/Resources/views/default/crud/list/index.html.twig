@@ -164,6 +164,20 @@
 
         jQuery(document).ready(function() {
             KTDefaultDatatableDemo.init();
+                        jQuery('body').on('click', '.do-copy', function() {
+                var self = this, input = jQuery('<input>', {
+                    value: jQuery(self).attr('data-to-copy'),
+                    class: 'hidden'
+                }).appendTo(jQuery('body'));
+                input[0].select();
+                document.execCommand('copy');
+                input.remove();
+                jQuery(self).toggleClass('text-danger text-info');
+                setTimeout(function() {
+                    jQuery(self).toggleClass('text-danger text-info')
+                }, 500)
+            });
+
         });
     </script>
 {% endblock %}
