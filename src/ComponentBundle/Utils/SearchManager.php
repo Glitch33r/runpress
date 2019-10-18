@@ -81,12 +81,12 @@ class SearchManager
                 foreach ($item['fields'] as $field) {
                     if (!empty($field['is_translate']) and !empty($field['field']) and $field['is_translate'] == true) {
                         $query
-                            ->addSelect('t')
-                            ->leftJoin('q.translations', 't')
+                            ->addSelect($field['field'] . 't')
+                            ->leftJoin('q.translations', $field['field'] . 't')
                             ->orWhere(
                                 $query
                                     ->expr()
-                                    ->like('LOWER(' . 't.' . $field['field'] . ')', ':searchQuery')
+                                    ->like('LOWER(' . $field['field'] . 't.' . $field['field'] . ')', ':searchQuery')
                             );
                     } elseif (!empty($field['field'])) {
                         $query

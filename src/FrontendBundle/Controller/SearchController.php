@@ -21,6 +21,14 @@ final class SearchController extends \ComponentBundle\Controller\Frontend\Search
                     'title' => [
                         'is_translate' => true,
                         'field' => 'title'
+                    ],
+                    'shortDescription' => [
+                        'is_translate' => true,
+                        'field' => 'shortDescription'
+                    ],
+                    'description' => [
+                        'is_translate' => true,
+                        'field' => 'description'
                     ]
                 ],
                 'sort' => [
