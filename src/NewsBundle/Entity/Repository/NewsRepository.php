@@ -276,6 +276,18 @@ final class NewsRepository extends DashboardRepository implements NewsRepository
         return self::getQueryForLimitElements($count)->getResult();
     }
 
+    public function getLimitForSliderElements(int $count = null): array
+    {
+        $query = self::getQueryBuilderForLimitElements($count);
+
+        $query
+            ->orderBy('q.isMain', 'DESC')
+            ->addOrderBy('q.publishAt', 'DESC')
+            ->addOrderBy('q.position', 'DESC');
+
+        return $query->getQuery()->getResult();
+    }
+
     /**
      * @param int|null $count
      * @return array|mixed

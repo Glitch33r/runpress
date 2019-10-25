@@ -164,7 +164,7 @@ final class HomepageController extends AbstractController
             }
         }
 
-        $newsSlider = $em->getRepository(News::class)->getLimitElements(6);
+        $newsSlider = $em->getRepository(News::class)->getLimitForSliderElements(6);
         $newsRAND = $em->getRepository(News::class)->getLimitRANDElements(2);
         $video = $em->getRepository(Video::class)->getLimitElements(2);
         $opinion = [];//$em->getRepository(Opinion::class)->getLimitElements(2);

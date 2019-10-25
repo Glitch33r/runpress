@@ -85,7 +85,7 @@ class NewsType extends AbstractType
                                 'mapped' => false,
                                 'required' => false,
                                 'attr' => [
-                                    'value' => $this->router->generate('frontend_news_show', ['slug' => $builder->getData()->translate()->getSlug()], 0)
+                                    'value' => $builder->getData()->translate()->getSlug() ? $this->router->generate('frontend_news_show', ['slug' => $builder->getData()->translate()->getSlug()], 0) : null
                                 ]
                             ],
                             'title' => [
