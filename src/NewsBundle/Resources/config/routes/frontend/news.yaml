@@ -1,3 +1,8 @@
+frontend_news_export_rss:
+  path:     /export/rss-feed
+  methods: [GET]
+  controller: NewsBundle\Controller\Frontend\NewsController::ExportRssAction
+  
 frontend_news_list:
   path:     /
   methods: [GET]

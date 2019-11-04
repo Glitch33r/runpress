@@ -767,4 +767,76 @@ final class NewsController extends AbstractController
             return $tpl;
         }
    }
+
+   public function ExportRssAction(Request $request)
+   {
+        $rootNode = new \SimpleXMLElement('<?xml version="1.0" encoding="utf-8"?><rss xmlns:rambler="http://news.rambler.ru" version="2.0"></rss>');
+
+        $channelNode = $rootNode->addChild('channel');
+        $channelNode->addChild('title', 'ranpress.ru | Новости Вологодской области');
+        $channelNode->addChild('link', 'https://ranpress.ru/');
+        $channelNode->addChild('description', '«Ранпресс» — интернет-издание, которое не только предлагает свежие новости, но представляет события с разных точек зрения.');
+
+        $news = $this->newsRepository = $this->em->getRepository(News::class)->getLimitElements(null);
+
+        foreach($news as $item) {
+            $itemNode = $channelNode->addChild('item');
+            $itemNode->addChild('title', $item->translate()->getTitle());
+
+            if($item->getNewsCategory()) {
+                $itemNode->addChild('category', $item->getNewsCategory()->translate()->getTitle());
+                $link = $this->generateUrl('frontend_news_show_with_category', [
+                    'category' => $item->getNewsCategory()->translate()->getSlug(),
+                    'slug' => $item->translate()->getSlug()
+                ], false);
+            } else {
+                $link = $this->generateUrl('frontend_news_show', ['slug' => $item->translate()->getSlug()], false);    
+            }
+
+            if($item->getNewsAuthor())
+                $itemNode->addChild('author', $item->getNewsAuthor()->translate()->getTitle());
+
+            if($item->getPoster()) {
+                $urls = json_decode($item->getPoster(), true);
+
+                if(!empty($urls['324x235']) && is_file($request->server->get('DOCUMENT_ROOT') . $urls['324x235'])) {
+                    $enclosure = $itemNode->addChild('enclosure');
+                    $enclosure->addAttribute('url', $request->getSchemeAndHttpHost() . $urls['324x235']);
+
+                    $imageSize = getimagesize($request->server->get('DOCUMENT_ROOT') . $urls['324x235']);
+                    if(!empty($imageSize['mime']))
+                        $enclosure->addAttribute('type', $imageSize['mime']);
+
+                    $enclosure->addAttribute('length', filesize($request->server->get('DOCUMENT_ROOT') . $urls['324x235'])); 
+                }
+            }
+
+            foreach($item->getGalleryImages() as $galleryImage) {
+                $urls = json_decode($galleryImage->getImg(), true);
+
+                if(!empty($urls['show']) && is_file($request->server->get('DOCUMENT_ROOT') . $urls['show'])) {
+                    $enclosure = $itemNode->addChild('enclosure');
+                    $enclosure->addAttribute('url', $request->getSchemeAndHttpHost() . $urls['show']);
+
+                    $imageSize = getimagesize($request->server->get('DOCUMENT_ROOT') . $urls['show']);
+                    if(!empty($imageSize['mime']))
+                        $enclosure->addAttribute('type', $imageSize['mime']);
+
+                    $enclosure->addAttribute('length', filesize($request->server->get('DOCUMENT_ROOT') . $urls['show']));
+                }
+            }
+
+            $itemNode->addChild('link', $link);
+            $itemNode->addChild('pubDate', $item->getPublishAt()->format('D, d M Y H:i:s O'));
+
+            $descriptionNode = $itemNode->addChild('description', null);
+            $descriptionNode = dom_import_simplexml($descriptionNode);
+            $descriptionNode
+                ->appendChild($descriptionNode->ownerDocument->createCDATASection($item->translate()->getDescription()));
+        }
+
+        return new Response($rootNode->asXML(), 200, [
+            'Content-type' => 'application/rss+xml; charset=utf-8',
+        ]);
+   }
 }
