@@ -1,3 +1,8 @@
+frontend_news_export_yandex_rss:
+  path:     /export/rss-yandex-feed
+  methods: [GET]
+  controller: NewsBundle\Controller\Frontend\NewsController::ExportYandexRssAction
+
 frontend_news_export_rss:
   path:     /export/rss-feed
   methods: [GET]
