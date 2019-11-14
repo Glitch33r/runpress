@@ -276,6 +276,15 @@ final class NewsRepository extends DashboardRepository implements NewsRepository
         return self::getQueryForLimitElements($count)->getResult();
     }
 
+    public function getByCreatedAtLimitElements(string $createdAt, int $count = null): array
+    {
+        return self::getQueryBuilderForLimitElements($count)
+        ->andWhere('q.createdAt >=:createdAt')
+        ->setParameter('createdAt', $createdAt)
+        ->getQuery()
+        ->getResult();
+    }
+
     public function getLimitForSliderElements(int $count = null): array
     {
         $query = self::getQueryBuilderForLimitElements($count);
