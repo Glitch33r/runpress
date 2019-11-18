@@ -857,7 +857,7 @@ final class NewsController extends AbstractController
         $channelNode->addChild('description', '«Ранпресс» — интернет-издание, которое не только предлагает свежие новости, но представляет события с разных точек зрения.');
 
         $news = $this->newsRepository = $this->em->getRepository(News::class)
-            ->getByCreatedAtLimitElements(date('Y-m-d', strtotime('now - 8 days')));
+            ->getForYandexRss(date('Y-m-d', strtotime('now - 8 days')));
 
         foreach($news as $item) {
             $itemNode = $channelNode->addChild('item');
@@ -916,8 +916,8 @@ final class NewsController extends AbstractController
                 ->appendChild($fulltextNode->ownerDocument->createCDATASection($item->translate()->getDescription()));
         }
 
-        return new Response($rootNode->asXML(), 200, [
-            'Content-type' => 'application/xml; charset=utf-8',
-        ]);
+        file_put_contents('rss-yandex-feed.xml', $rootNode->asXML());
+        
+        return new Response();
    }
 }

@@ -66,6 +66,14 @@ class News implements NewsInterface
     protected $isMain = YesOrNoInterface::NO;
 
     /**
+     * @var boolean
+     *
+     * @Gedmo\Versioned
+     * @ORM\Column(name="yandex_rss", type="boolean", nullable=false, options={"default": 1})
+     */
+    protected $yandexRss = YesOrNoInterface::YES;
+
+    /**
      * @var string
      *
      * @Gedmo\Versioned
@@ -391,6 +399,22 @@ class News implements NewsInterface
     public function setIsMain(bool $isMain): void
     {
         $this->isMain = $isMain;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getYandexRss(): ?bool
+    {
+        return $this->yandexRss;
+    }
+
+    /**
+     * @param bool $yandexRss
+     */
+    public function setYandexRss(bool $yandexRss): void
+    {
+        $this->yandexRss = $yandexRss;
     }
 
     /**

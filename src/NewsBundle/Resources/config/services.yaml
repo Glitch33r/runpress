@@ -32,3 +32,16 @@ services:
             - '@UploadBundle\Services\FileHandler'
         tags:
             - { name: doctrine.event_listener, event: preUpdate }
+
+    news.post_persist_listener:
+        class: NewsBundle\EventListener\PostPersistListener
+        arguments:
+            - '@NewsBundle\Controller\Frontend\NewsController'
+            - '@request_stack'
+        tags:
+            -
+                name: 'doctrine.orm.entity_listener'
+                event: 'postUpdate'
+                entity: 'NewsBundle\Entity\News'
+                lazy: true
+                method: 'UpdateYandexRss'

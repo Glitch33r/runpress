@@ -194,6 +194,13 @@ class NewsType extends AbstractType
                                 'divLg' => 'col-lg-6',
                                 'labelLg' => 'col-lg-6'
                             ])
+                            ->add('yandexRss', DashboardYesNoType::class, [
+                                'label' => 'Выгружать в Яндекс новости',
+                                'required' => false,
+                                'useFormGroup' => false,
+                                'divLg' => 'col-lg-6',
+                                'labelLg' => 'col-lg-6'
+                            ])
                     )
             )
             ->add(

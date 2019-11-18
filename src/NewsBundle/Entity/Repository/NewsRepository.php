@@ -285,6 +285,17 @@ final class NewsRepository extends DashboardRepository implements NewsRepository
         ->getResult();
     }
 
+    public function getForYandexRss(string $createdAt, int $count = null): array
+    {
+        return self::getQueryBuilderForLimitElements($count)
+        ->andWhere('q.createdAt >=:createdAt')
+        ->andWhere('q.yandexRss =:yandexRss')
+        ->setParameter('createdAt', $createdAt)
+        ->setParameter('yandexRss', YesOrNoInterface::YES)
+        ->getQuery()
+        ->getResult();
+    }
+
     public function getLimitForSliderElements(int $count = null): array
     {
         $query = self::getQueryBuilderForLimitElements($count);
