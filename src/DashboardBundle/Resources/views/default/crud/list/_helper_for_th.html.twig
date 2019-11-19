@@ -7,6 +7,9 @@
         field: '{{ key }}',
         title: '{{ element['title'] }}',
         textAlign: 'center',
+        {% if element['width'] is defined %}
+            width: {{ element['width'] }},
+        {% endif %}
         },
     {% else %}
         {

@@ -777,7 +777,7 @@ final class NewsController extends AbstractController
         $channelNode->addChild('link', 'https://ranpress.ru/');
         $channelNode->addChild('description', '«Ранпресс» — интернет-издание, которое не только предлагает свежие новости, но представляет события с разных точек зрения.');
 
-        $news = $this->newsRepository = $this->em->getRepository(News::class)
+        $news = $this->em->getRepository(News::class)
             ->getByCreatedAtLimitElements(date('Y-m-d', strtotime('now - 8 days')));
 
         foreach($news as $item) {
@@ -856,7 +856,7 @@ final class NewsController extends AbstractController
         $channelNode->addChild('language', 'ru');
         $channelNode->addChild('description', '«Ранпресс» — интернет-издание, которое не только предлагает свежие новости, но представляет события с разных точек зрения.');
 
-        $news = $this->newsRepository = $this->em->getRepository(News::class)
+        $news = $this->em->getRepository(News::class)
             ->getForYandexRss(date('Y-m-d', strtotime('now - 8 days')));
 
         foreach($news as $item) {

@@ -1,3 +1,8 @@
+dashboard_ajax_checkbox:
+  path:     /ajax/checkbox
+  controller: BackendBundle\Controller\Dashboard\DashboardController:ajaxCheckboxAction
+  methods:  POST
+
 dashboard_homepage_index:
   path:     /
   methods: [GET]

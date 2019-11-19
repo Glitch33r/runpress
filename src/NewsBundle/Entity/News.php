@@ -182,6 +182,11 @@ class News implements NewsInterface
         $this->comments = new ArrayCollection();
     }
 
+    public function getClassName()
+    {
+        return __NAMESPACE__ . '\\' . (new \ReflectionClass($this))->getShortName();
+    }
+
     /**
      * @return mixed
      */
