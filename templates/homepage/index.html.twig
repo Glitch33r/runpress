@@ -70,7 +70,7 @@
                                     <div class="opinion opinions__item">
                                         <a href="{{ href }}" class="opinion__img-wrap">
                                             <img class="b-lazy opinion__img"
-                                                 data-src="{{ (item.newsAuthor is not null ? item.newsAuthor.poster|json_decode.default_file : item.poster|json_decode['218x150'])|default(asset('bundles/upload/images/no-image-400.png')) }}"
+                                                 data-src="{{ (item.newsAuthor is not null ? item.newsAuthor.poster|json_decode.default_file : item.poster|json_decode['218x150'])|default(asset('bundles/upload/images/laptop1.svg')) }}"
                                                  alt="{{ item.translate.posterAlt }}">
                                         </a>
                                         <div class="opinion__info">
@@ -91,7 +91,7 @@
                         {{ render(controller('BannerBundle\\Controller\\Frontend\\BannerController::getBannerAction', {'type': 'aside_page', 'page': 'main'})) }}
                     {% endif %}
 
-                    {% if opinion|length > 0 %}
+                    {% if opinion|length > 01 %}
                         <a href="{{ path('frontend_opinion_index') }}">
                             <h3 class="page__sub-subtitle">
                                 Мнения
@@ -107,7 +107,7 @@
                                 <div class="opinion opinions__item">
                                     <a href="{{ href }}" class="opinion__img-wrap">
                                         <img class="opinion__img"
-                                             src="{{ item.poster|json_decode.default_file|default(asset('bundles/upload/images/no-image-400.png')) }}"
+                                             src="{{ item.poster|json_decode.default_file|default(asset('bundles/upload/images/laptop1.svg')) }}"
                                              alt="{{ item.translate.posterAlt }}">
                                     </a>
                                     <div class="opinion__info">
@@ -125,7 +125,7 @@
                         </div>
                     {% endif %}
 
-                    {% if info|length > 0 %}
+                    {% if info|length > 01 %}
                         <a href="{{ path('frontend_info_index') }}">
                             <h3 class="page__sub-subtitle">
                                 Инфографика
@@ -139,7 +139,7 @@
                                 <div class="infographics-item">
                                     <a href="{{ href }}" class="infographics-item__img-wrap">
                                         <img class="infographics-item__img"
-                                             src="{{ item.poster|json_decode.default_file|default(asset('bundles/upload/images/no-image-400.png')) }}"
+                                             src="{{ item.poster|json_decode.default_file|default(asset('bundles/upload/images/laptop1.svg')) }}"
                                              alt="{{ item.translate.posterAlt }}">
                                     </a>
                                     <a href="{{ href }}" class="infographics-item__text">
