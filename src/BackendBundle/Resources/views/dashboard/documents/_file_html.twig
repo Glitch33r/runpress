@@ -1,0 +1,5 @@
+{% if element|json_decode is not null and element|json_decode.admin is defined %}
+    <a href="{{ asset(element|json_decode.admin) }}" title="File exists">File</a>
+{% else %}
+    <a href="#" title="No file">File</a>
+{% endif %}

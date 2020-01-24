@@ -121,3 +121,23 @@ dashboard_migration_run:
   path:     /migration/run
   methods: [GET]
   controller: BackendBundle\Controller\Dashboard\MigrationController::runAction
+
+dashboard_documents_index:
+  path:     /documents/
+  controller: BackendBundle\Controller\Dashboard\DocumentsController:listAction
+  methods:  [GET, POST]
+
+dashboard_documents_new:
+  path:     /documents/new/
+  controller: BackendBundle\Controller\Dashboard\DocumentsController:newAction
+  methods:  [GET, POST]
+
+dashboard_documents_edit:
+  path:     /documents/edit/{id}
+  controller: BackendBundle\Controller\Dashboard\DocumentsController:editAction
+  methods:  [GET, POST]
+
+dashboard_documents_delete:
+  path:     /documents/delete/{id}
+  controller: BackendBundle\Controller\Dashboard\DocumentsController:deleteAction
+  methods:  GET

@@ -23,15 +23,11 @@
             <div class="col-12 col-lg-9">
                 <div class="sitemap">
                     <ul class="sitemap__list page-footer__sitemap">
-                        <li class="sitemap__item">
-                            <a class="sitemap__link" download="EA-price.docx" href="{{ asset('bundles/upload/files/EA-price.docx') }}">Реклама на сайте</a>
-                        </li>
-                        <li class="sitemap__item">
-                            <a class="sitemap__link" download="Material-Use-Agreement.docx" href="{{ asset('bundles/upload/files/Material-Use-Agreement.docx') }}">Использование материалов</a>
-                        </li>
-                        <li class="sitemap__item">
-                            <a class="sitemap__link" download="Privacy-Policy.docx" href="{{ asset('bundles/upload/files/Privacy Policy.docx') }}">Правила пользования</a>
-                        </li>
+                        {% for item in documents %}
+                            <li class="sitemap__item">
+                                <a class="sitemap__link" download="{{ item.translate.title }}" href="{{ asset(item.document|json_decode.default_file) }}">{{ item.translate.title }}</a>
+                            </li>
+                        {% endfor %}
                         <li class="sitemap__item">
                             <a class="sitemap__link" href="{{ path('frontend_contacts_page') }}">Контакты</a>
                         </li>

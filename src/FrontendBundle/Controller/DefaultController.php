@@ -11,6 +11,7 @@ use ComponentBundle\Utils\BreadcrumbsGenerator;
 use Doctrine\ORM\EntityManagerInterface;
 use NewsBundle\Entity\News;
 use FrontendBundle\Entity\Contacts;
+use BackendBundle\Entity\Documents;
 use ComponentBundle\Utils\Mailer;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
@@ -75,8 +76,11 @@ final class DefaultController extends \ComponentBundle\Controller\Frontend\Defau
 
     public function initFooterAction(EntityManagerInterface $em, Request $request)
     {
+        $documents = $em->getRepository(Documents::class)->getFrontendElements();
+        
         return $this->render('default/_footer.html.twig', [
             'request' => $request,
+            'documents' => $documents,
         ]);
     }
 

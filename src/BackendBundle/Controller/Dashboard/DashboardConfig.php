@@ -93,6 +93,12 @@ final class DashboardConfig extends \DashboardBundle\Controller\DashboardConfig
             $banner = self::sidebarBannerBundle();
             (!is_null($banner)) ? $settings['items'][] = $banner : null;
 
+            $documents = self::itemSidebar(['ROLE_DIRECTOR'], ['documents/edit'], [
+                'dashboard_documents_index', 'dashboard_documents_new'
+            ], 'flaticon-notes', false, null, null, 'Документы', [],
+                'dashboard_documents_index');
+            (!is_null($documents)) ? $settings['items'][] = $documents : null;
+
             $info = self::itemSidebar(['ROLE_DIRECTOR'], ['info/edit'], [
                 'dashboard_info_index', 'dashboard_info_new'
             ], 'flaticon-notes', false, null, null, 'Инфографика', [],
