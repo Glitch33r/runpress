@@ -653,6 +653,9 @@
 
 .static-content {
   line-height: 1.5;
+  ul {
+    list-style: disc;
+  }
   h2 {
     font-family: $font-stack-georgia;
     font-weight: 400;

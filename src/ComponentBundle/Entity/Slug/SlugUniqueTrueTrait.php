@@ -14,7 +14,7 @@ trait SlugUniqueTrueTrait
      * @var string
      *
      * @Gedmo\Versioned
-     * @Gedmo\Slug(fields={"title"}, unique=true)
+     * @Gedmo\Slug(fields={"title"}, unique=true, updatable=false)
      * @ORM\Column(name="slug", type="string", length=255, nullable=false, unique=true)
      */
     private $slug;
