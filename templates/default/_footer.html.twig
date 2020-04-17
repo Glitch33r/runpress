@@ -36,20 +36,11 @@
                         </li>
                     </ul>
                 </div>
-                <div class="page-footer__copyright">
-                    <p>Материалы данного сайта содержат информацию, не предназначенную для несовершеннолетних.</p>
-                    <p>При использовании материала или частичном цитировании, ссылка на ИА «Ранпресс» обязательна.</p>
-                    <p>Свидетельство о регистрации СМИ ИА № ФС 77-73472 от 17.08.2018. выдано Федеральной службой по надзору в сфере связи, информационных технологий и массовых коммуникаций (Роскомнадзор).</p>
-                    <p>Главный редактор — Кривченко Игнат Викторович.Учредитель ООО "Ранпресс".</p>
-                    <br>
-                    <p>Редакция ИА «Ранпресс»</p>
-                    <p>e-mail.:
-                        <a href="mailto:ran-press@yandex.ru">ran-press@yandex.ru</a>
-                       (для связи с нами и приема новостей). тел.:
-
-                        <a href="tel:+79005433311">+7 900 543 33 11 </a>
-                    </p>
-                </div>
+                {% if static['footer'] is defined and static['footer'].description is not empty %}
+                    <div class="page-footer__copyright">
+                        {{ static['footer'].description|raw }}
+                    </div>
+                {% endif %}
                 <div class="socials socials--theme--white page-footer__socials">
                     <ul class="socials__list">
                         <li class="socials__item">
