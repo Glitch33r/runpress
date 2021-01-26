@@ -12,6 +12,7 @@ use DashboardBundle\Form\Type\DashboardEmailType;
 use DashboardBundle\Form\Type\DashboardYesNoType;
 use DashboardBundle\Form\Type\DashboardChoiceType;
 use DashboardBundle\Form\Type\AddSaveBtnSubscriber;
+use DashboardBundle\Form\Type\DashboardPasswordType;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use BackendBundle\Controller\Dashboard\DashboardConfig;
@@ -67,6 +68,11 @@ class UserType extends AbstractType
                     ])
                     ->add('email', DashboardEmailType::class, [
                         'label' => 'ui.email',
+                        'translation_domain' => 'UserMessages',
+                        'maxLength' => 255
+                    ])
+                    ->add('password', DashboardPasswordType::class, [
+                        'label' => 'Пароль',
                         'translation_domain' => 'UserMessages',
                         'maxLength' => 255
                     ])

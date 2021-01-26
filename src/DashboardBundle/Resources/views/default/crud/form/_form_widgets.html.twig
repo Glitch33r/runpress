@@ -177,3 +177,10 @@
         <div class="kt-separator kt-separator--border-dashed kt-separator--space-lg kt-separator--portlet-fit kt-margin-10"></div>
     {% endspaceless %}
 {% endblock %}
+
+{% block dashboard_password_widget %}
+    {% spaceless %}
+        {% include '@Dashboard/default/crud/form/fields/_input_text.html.twig' with {'field': form} %}
+        <div class="kt-separator kt-separator--border-dashed kt-separator--space-lg kt-separator--portlet-fit kt-margin-10"></div>
+    {% endspaceless %}
+{% endblock %}

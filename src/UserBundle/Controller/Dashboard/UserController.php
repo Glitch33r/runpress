@@ -14,14 +14,16 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 final class UserController extends CRUDController
 {
+    public $encoderFactory;
+
     /**
      * @return array
      */
     public function getGrantedRoles(): array
     {
         return [
-            'index' => 'ROLE_DIRECTOR', 'new' => null,
-            'edit' => 'ROLE_DIRECTOR', 'delete' => null
+            'index' => 'ROLE_DIRECTOR', 'new' => 'ROLE_DIRECTOR',
+            'edit' => 'ROLE_DIRECTOR', 'delete' => 'ROLE_DIRECTOR'
         ];
     }
 
@@ -31,8 +33,8 @@ final class UserController extends CRUDController
     public function getRouteElements(): array
     {
         return [
-            'index' => 'dashboard_user_index', 'new' => null,
-            'edit' => 'dashboard_user_edit', 'delete' => null,
+            'index' => 'dashboard_user_index', 'new' => 'dashboard_user_new',
+            'edit' => 'dashboard_user_edit', 'delete' => 'dashboard_user_delete',
         ];
     }
 
@@ -133,4 +135,29 @@ final class UserController extends CRUDController
     {
         return new User();
     }
+
+    public function customActionInNewAction($object)
+    {
+        $factory = $this->encoderFactory;
+        $encoder = $factory->getEncoder($object);
+
+        $object->setSalt(md5(time()));
+        $pass = $encoder->encodePassword($object->getPassword(), $object->getSalt());
+        $object->setPassword($pass);
+
+        return $object;
+    }
+
+    public function customActionInEditAction($object)
+    {
+        $factory = $this->encoderFactory;
+        $encoder = $factory->getEncoder($object);
+
+        $object->setSalt(md5(time()));
+        $pass = $encoder->encodePassword($object->getPassword(), $object->getSalt());
+        $object->setPassword($pass);
+
+        return $object;
+    }
+
 }
