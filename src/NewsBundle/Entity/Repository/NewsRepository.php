@@ -607,16 +607,16 @@ final class NewsRepository extends DashboardRepository implements NewsRepository
 
        return $query->getQuery()->getResult();
    }
-//
-//    /**
-//     * @return array
-//     * @throws \Exception
-//     */
-//    public function getElementsForSiteMap(): array
-//    {
-//        return self::getQueryForLimitElements(null)->getArrayResult();
-//    }
-//
+
+   /**
+    * @return array
+    * @throws \Exception
+    */
+   public function getElementsForSiteMap(): array
+   {
+       return self::getQueryForLimitElements(null)->getArrayResult();
+   }
+
 
 //
 //    /**
