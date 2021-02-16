@@ -12,6 +12,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use ComponentBundle\Entity\Position\PositionTrait;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use ComponentBundle\Entity\ShowOnWebsite\ShowOnWebsiteTrait;
+use UserBundle\Entity\User;
 
 /**
  * NewsAuthor
@@ -51,6 +52,11 @@ class NewsAuthor implements NewsAuthorInterface
      */
     private $poster;
 
+    /**
+     * @ORM\OneToOne(targetEntity="UserBundle\Entity\User", inversedBy="author")
+     */
+    private $user;
+
     public function __toString(): string
     {
         return (string)$this->translate()->getTitle();
@@ -62,5 +68,17 @@ class NewsAuthor implements NewsAuthorInterface
     public function __construct()
     {
         $this->news = new ArrayCollection();
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
     }
 }

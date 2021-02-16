@@ -12,7 +12,7 @@ use UserBundle\Entity\PersonalInformation\PersonalInformationInterface;
  */
 interface UserInterface extends IdInterface, ImgInterface,
     CredentialsHolderInterface, \Symfony\Component\Security\Core\User\UserInterface,
-    ToggleableInterface, PersonalInformationInterface
+    ToggleableInterface, PersonalInformationInterface, \Serializable
 {
     /**
      *

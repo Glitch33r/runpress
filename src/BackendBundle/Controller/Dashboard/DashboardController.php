@@ -4,6 +4,7 @@ namespace BackendBundle\Controller\Dashboard;
 
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @author Design studio origami <https://origami.ua>
@@ -31,5 +32,12 @@ final class DashboardController extends \DashboardBundle\Controller\DashboardCon
         }
 
         exit();
+    }
+
+    public function indexAction(): Response
+    {
+        return $this->render('@Backend/templates/1/homepage/index.html.twig', [
+            'templateNumber' => 1,
+        ]);
     }
 }

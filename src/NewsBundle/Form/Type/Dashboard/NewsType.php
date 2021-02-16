@@ -141,7 +141,7 @@ class NewsType extends AbstractType
                         'class' => NewsAuthor::class,
                         'choice_label' => 'translate.title',
                         'query_builder' => function (EntityRepository $er) {
-                            return $er->getNewsAuthorForNewsForm();
+                            return $er->getNewsAuthorForNewsForm($this->security->getUser());
                         },
                     ])
                     ->add('video', DashboardTextType::class, [

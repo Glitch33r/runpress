@@ -1,0 +1,18 @@
+{% include '@Dashboard/default/crud/form/fields/_tabbable.html.twig' with {
+    'tabs': {
+    	'seo': {
+            'name': 'sidebar.configuration.seo'|trans([], 'DashboardBundle'),
+            'body': form_widget(form.seo)
+        },
+        'general_info': {
+            'name': 'ui.general_info'|trans([], 'DashboardBundle'),
+            'body': form_widget(form.translations.translations) ~form_widget(form.translations.poster)~ form_widget(form.translations.positionShowOnWebsite.showOnWebsite)~ form_widget(form.translations.positionShowOnWebsite.position)
+        },
+        'stat': {
+            'name': 'Статистика',
+            'body': render(controller('NewsBundle\\Controller\\Dashboard\\NewsAuthorController::getStatForForm', {
+	        	author: form.vars.value
+	    	}))
+        },
+    }
+} %}

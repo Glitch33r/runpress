@@ -10,6 +10,7 @@ use Doctrine\Common\Collections\Collection;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 use Doctrine\Common\Collections\ArrayCollection;
 use ComponentBundle\Entity\YesOrNo\YesOrNoInterface;
+use NewsBundle\Entity\NewsAuthor;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints as UniqueEntity;
 
@@ -205,6 +206,11 @@ class User implements UserInterface
      * @ORM\Column(name="phone_number", type="string", length=255, nullable=true)
      */
     private $phoneNumber;
+
+    /**
+     * @ORM\OneToOne(targetEntity="NewsBundle\Entity\NewsAuthor", mappedBy="user", cascade={"persist","remove"})
+     */
+    private $author;
 
     /**
      * User constructor.
@@ -691,5 +697,62 @@ class User implements UserInterface
     public function setPhoneNumber(?string $phone): void
     {
         $this->phoneNumber = $phone;
+    }
+
+    public function getAuthor(): ?NewsAuthor
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?NewsAuthor $author): self
+    {
+        $this->author = $author;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newUser = $author === null ? null : $this;
+        if ($newUser !== $author->getUser()) {
+            $author->setUser($newUser);
+        }
+
+        return $this;
+    }
+
+    /**
+     * The serialized data have to contain the fields used by the equals method and the username.
+     *
+     * @return string
+     */
+    public function serialize(): ?string
+    {
+        return serialize([
+            $this->password,
+            $this->salt,
+            $this->username,
+            $this->enabled,
+            $this->locked,
+            $this->id,
+            $this->email
+        ]);
+    }
+
+    /**
+     * @param string $serialized
+     */
+    public function unserialize($serialized): void
+    {
+        $data = unserialize($serialized);
+        // add a few extra elements in the array to ensure that we have enough keys when unserializing
+        // older data which does not include all properties.
+        $data = array_merge($data, array_fill(0, 2, null));
+
+        [
+            $this->password,
+            $this->salt,
+            $this->username,
+            $this->enabled,
+            $this->locked,
+            $this->id,
+            $this->email
+        ] = $data;
     }
 }

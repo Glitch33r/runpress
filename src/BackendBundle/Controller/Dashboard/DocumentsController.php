@@ -99,7 +99,9 @@ class DocumentsController extends CRUDController
         $repository = $this->getRepository($em);
 
         $iTotalRecords = $repository->countAllElementsForIndexDashboard();
-        $elements = $repository->allElementsForIndexDashboard($request);
+        $queryBuilder = $repository->allElementsForIndexDashboard($request);
+
+        $elements = $queryBuilder->getQuery();
 
         $helper = $this->dashboardManager->helperForIndexDashboard($iTotalRecords, $elements);
         $pagination = $helper['pagination'];

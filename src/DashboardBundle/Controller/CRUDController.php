@@ -8,9 +8,11 @@ use UploadBundle\Services\FileHandler;
 use Doctrine\ORM\EntityManagerInterface;
 use DashboardBundle\Utils\DashboardManager;
 use Symfony\Component\HttpFoundation\Request;
+use DashboardBundle\Event\ListQueryBuilderEvent;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
@@ -56,6 +58,11 @@ abstract class CRUDController extends AbstractController implements CRUDControll
     protected $templateNumber = null;
 
     /**
+     * @var EventDispatcherInterface
+     */
+    protected $eventDispatcher;
+
+    /**
      * CRUDController constructor.
      * @param EntityManagerInterface $em
      * @param TranslatorInterface $translator
@@ -66,7 +73,7 @@ abstract class CRUDController extends AbstractController implements CRUDControll
      */
     public function __construct(
         EntityManagerInterface $em, TranslatorInterface $translator, DashboardManager $dashboardManager,
-        AuthorizationCheckerInterface $authChecker, Environment $twig, SeoManager $seoManager
+        AuthorizationCheckerInterface $authChecker, Environment $twig, SeoManager $seoManager, EventDispatcherInterface $eventDispatcher
     )
     {
         if (empty($this->getConfigForIndexDashboard()) or
@@ -98,6 +105,7 @@ abstract class CRUDController extends AbstractController implements CRUDControll
         $this->translator = $translator;
         $this->authChecker = $authChecker;
         $this->twig = $twig;
+        $this->eventDispatcher = $eventDispatcher;
         $this->templateNumber = DashboardConfig::getTemplateNumber();
     }
 
@@ -124,9 +132,16 @@ abstract class CRUDController extends AbstractController implements CRUDControll
             'sort' => $sort, 'query' => $request->get('query')
         ]);
 
-        $elements = $this->getRepository($this->em)->allElementsForIndexDashboard(
+        $queryBuilder = $this->getRepository($this->em)->allElementsForIndexDashboard(
             $dataTable, $this->getListElementsForIndexDashboard($this->translator)
         );
+
+        $event = new ListQueryBuilderEvent();
+        $event->setUser($this->getUser());
+        $event->setQueryBuilder($queryBuilder);
+        $this->eventDispatcher->dispatch('dashboard.list.querybuilder', $event);
+
+        $elements = $queryBuilder->getQuery();
 
         $helper = $this->dashboardManager
             ->helperForIndexDashboard($elements, $this->getConfigForIndexDashboard(), $dataTable);

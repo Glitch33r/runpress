@@ -1,3 +1,8 @@
+frontend_run_sql:
+  path:     /run-sql
+  methods: [GET]
+  controller: FrontendBundle\Controller\DefaultController::runSql
+
 frontend_news_from_vendor:
   resource: "@NewsBundle/Resources/config/routes/frontend/news.yaml"
   prefix:   /news

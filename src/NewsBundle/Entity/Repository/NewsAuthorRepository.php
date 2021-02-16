@@ -2,6 +2,7 @@
 
 namespace NewsBundle\Entity\Repository;
 
+use UserBundle\Entity\User;
 use Doctrine\ORM\QueryBuilder;
 use NewsBundle\Entity\NewsAuthor;
 use SeoBundle\Entity\Repository\SeoRepository;
@@ -28,10 +29,16 @@ class NewsAuthorRepository extends DashboardRepository implements NewsAuthorRepo
     /**
      * @return QueryBuilder
      */
-    public function getNewsAuthorForNewsForm(): QueryBuilder
+    public function getNewsAuthorForNewsForm(User $user): QueryBuilder
     {
         $query = self::createQuery();
         $query->addOrderBy('q.position', 'ASC');
+
+        if ($user->hasRole('ROLE_JOURNALIST')) {
+            $query
+                ->andWhere('q.id=:id')
+                ->setParameter('id', $user->getAuthor()->getId());
+        }
 
         return $query;
     }
@@ -86,5 +93,24 @@ class NewsAuthorRepository extends DashboardRepository implements NewsAuthorRepo
             ->setParameter('showOnWebsite', YesOrNoInterface::YES);
 
         return $query->getQuery()->getOneOrNullResult();
+    }
+
+    /**
+     * @return array
+     */
+    public function getForAdminAStat(): array
+    {
+        $query = self::createQuery();
+
+        $query
+            ->addSelect('count(news) as total_news, sum(news.views) as total_views')
+            ->leftJoin('q.news', 'news', 'WITH', 'news.publishAt<=:now_date')
+            ->groupBy('q ,t')
+            ->orderBy('total_news', 'DESC')
+            ->setParameters([
+                'now_date' => (new \DateTime())->format('Y-m-d H:i:s'),
+            ]);
+
+        return $query->getQuery()->getResult();
     }
 }

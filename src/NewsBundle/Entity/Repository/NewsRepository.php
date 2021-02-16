@@ -5,6 +5,7 @@ namespace NewsBundle\Entity\Repository;
 use Doctrine\ORM\Query;
 use NewsBundle\Entity\News;
 use Doctrine\ORM\QueryBuilder;
+use NewsBundle\Entity\NewsAuthor;
 use NewsBundle\Entity\NewsInterface;
 use NewsBundle\Entity\NewsAuthorInterface;
 use NewsBundle\Entity\NewsCategoryInterface;
@@ -826,5 +827,63 @@ final class NewsRepository extends DashboardRepository implements NewsRepository
             ->setParameter('id', $id);
 
         return $query->getQuery()->getOneOrNullResult();
+    }
+
+    public function countNewsByAuthor(NewsAuthor $author, string $period)
+    {
+        $query = $this->createQueryBuilder('q')
+            ->select('count(q)')
+            ->join('q.newsAuthor', 'newsAuthor')
+            ->where('q.publishAt<=:publishAt')
+            ->andWhere('q.newsAuthor=:author')
+            ->setParameters([
+                'author' => $author,
+                'publishAt' => (new \Datetime())->format('Y-m-d H:i:s'),
+            ]);
+
+        switch ($period) {
+            default:
+            case 'week':
+                $query
+                    ->andWhere('q.publishAt>=:period')
+                    ->setParameter('period', (new \Datetime('- 1 week'))->format('Y-m-d H:i:s'));
+            break;
+            case 'month':
+                $query
+                    ->andWhere('q.publishAt>=:period')
+                    ->setParameter('period', (new \Datetime('- 1 month'))->format('Y-m-d H:i:s'));
+            break;
+            case '3_month':
+                $query
+                    ->andWhere('q.publishAt>=:period')
+                    ->setParameter('period', (new \Datetime('- 3 month'))->format('Y-m-d H:i:s'));
+            break;
+        }
+
+        return $query
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    public function getPopularByAuthor($author, $limit = null)
+    {
+        $query = $this->createQueryBuilder('q')
+            ->join('q.newsAuthor', 'newsAuthor')
+            ->where('q.publishAt<=:publishAt')
+            ->andWhere('q.views > 0')
+            ->andWhere('q.newsAuthor=:author')
+            ->orderBy('q.views', 'DESC')
+            ->setParameters([
+                'publishAt' => (new \Datetime())->format('Y-m-d H:i:s'),
+                'author' => $author,
+            ]);
+
+        if ($limit) {
+            $query->setMaxResults($limit);
+        }
+
+        return $query
+            ->getQuery()
+            ->getResult();
     }
 }

@@ -9,6 +9,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use DashboardBundle\Utils\DashboardManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 /**
@@ -27,7 +28,7 @@ interface CRUDControllerInterface
      */
     public function __construct(
         EntityManagerInterface $em, TranslatorInterface $translator, DashboardManager $dashboardManager,
-        AuthorizationCheckerInterface $authChecker, Environment $twig, SeoManager $manager
+        AuthorizationCheckerInterface $authChecker, Environment $twig, SeoManager $manager, EventDispatcherInterface $eventDispatcher
     );
 
     /**

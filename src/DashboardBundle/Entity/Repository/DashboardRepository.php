@@ -103,9 +103,9 @@ abstract class DashboardRepository extends EntityRepository implements Dashboard
      * @param array $listElementsForIndex
      * @return \Doctrine\ORM\Query|mixed
      */
-    public function allElementsForIndexDashboard(array $dataTable, array $listElementsForIndex): Query
+    public function allElementsForIndexDashboard(array $dataTable, array $listElementsForIndex): QueryBuilder
     {
-        return $this->allElementsForIndexDashboardQueryBuilder($dataTable, $listElementsForIndex)->getQuery();
+        return $this->allElementsForIndexDashboardQueryBuilder($dataTable, $listElementsForIndex);
     }
 
     /**

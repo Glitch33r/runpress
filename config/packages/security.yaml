@@ -68,6 +68,7 @@ security:
 
     role_hierarchy:
         ROLE_ADMIN_PANEL:  [ROLE_USER]
+        ROLE_JOURNALIST:  [ROLE_NEWS_CREATE_EDIT]
         ROLE_DEVELOPER:  [ROLE_DIRECTOR]
         #
         ROLE_CONTACT: [ROLE_ADMIN_PANEL, ROLE_CONTACT_LIST, ROLE_CONTACT_EDIT]
@@ -101,7 +102,7 @@ security:
         ROLE_BANNER_FULL: [ROLE_BANNER_CREATE_EDIT, ROLE_BANNER_DELETE]
         #
         ROLE_DIRECTOR:
-#        - ROLE_MANUFACTURER
+        - ROLE_JOURNALIST
         - ROLE_ADMIN_PANEL
         #
         - ROLE_CONTACT_FULL

@@ -3,6 +3,8 @@
 namespace UserBundle\Form\Type\Dashboard;
 
 use UserBundle\Entity\User;
+use NewsBundle\Entity\NewsAuthor;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Security\Core\Security;
 use DashboardBundle\Form\Type\DashboardFormType;
@@ -16,6 +18,7 @@ use DashboardBundle\Form\Type\DashboardPasswordType;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use BackendBundle\Controller\Dashboard\DashboardConfig;
+use DashboardBundle\Form\Type\DashboardSelect2EntityType;
 
 /**
  * @author Design studio origami <https://origami.ua>
@@ -55,6 +58,15 @@ class UserType extends AbstractType
                     ->create('generalGroup', DashboardFormType::class, [
                         'inherit_data' => true,
                         'tabName' => 'ui.general_info',
+                    ])
+                    ->add('author', DashboardSelect2EntityType::class, [
+                        'label' => 'select_author',
+                        'translation_domain' => 'NewsBundle',
+                        'class' => NewsAuthor::class,
+                        'choice_label' => 'translate.title',
+                        'query_builder' => function (EntityRepository $er) {
+                            return $er->getNewsAuthorForNewsForm($this->security->getUser());
+                        },
                     ])
                     ->add('name', DashboardTextType::class, [
                         'label' => 'ui.name_first',

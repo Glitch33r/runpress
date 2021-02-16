@@ -1,0 +1,28 @@
+<div class="row">
+    {% for data in authors %}
+        <div class="col-lg-6">
+            <div class="dashboard-stat alert-info p-2">
+                <div class="visual">
+                    {% set avatar = data[0].poster|json_decode %}
+                    {% if avatar %}
+                        <img src="{{ avatar['48x48'] }}" alt="{{ data[0].translate.title }}">
+                    {% endif %}
+                </div>
+                <div class="details">
+                    <div class="number">
+                        <span data-counter="counterup" data-value="{{ data.total_news }}">0</span>
+                         / 
+                        <span data-counter="counterup" data-value="{{ data.total_views }}">0</span>
+                    </div>
+                    <div class="desc">
+                        Всего новостей / просмотров
+                    </div>
+                </div>
+                <a rel="nofollow" class="more" href="{% if is_granted('ROLE_DIRECTOR') %}{{ path('dashboard_news_author_edit', {id: data[0].id}) }}{% else %}javascript:void(0){% endif %}">
+                    {{ data[0].translate.title }}
+                    <i class="fa fa-user-alt"></i>
+                </a>
+            </div>
+        </div>
+    {% endfor %}
+</div>

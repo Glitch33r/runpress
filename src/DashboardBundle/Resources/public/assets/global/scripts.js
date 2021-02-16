@@ -7,4 +7,9 @@ $(function() {
 	        checked: this.checked
 	    })
 	})
+
+	$("[data-counter='counterup']").counterUp({
+        delay: 10,
+        time: 1000
+    });
 });

@@ -2,6 +2,7 @@
 
 namespace NewsBundle\Entity\Repository;
 
+use UserBundle\Entity\User;
 use Doctrine\ORM\QueryBuilder;
 use NewsBundle\Entity\NewsAuthor;
 
@@ -13,7 +14,7 @@ interface NewsAuthorRepositoryInterface
     /**
      * @return QueryBuilder
      */
-    public function getNewsAuthorForNewsForm(): QueryBuilder;
+    public function getNewsAuthorForNewsForm(User $user): QueryBuilder;
 
     /**
      * @param int $id

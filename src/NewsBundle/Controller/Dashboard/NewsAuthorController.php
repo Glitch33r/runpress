@@ -4,6 +4,7 @@ namespace NewsBundle\Controller\Dashboard;
 
 use Twig\Environment;
 use SeoBundle\Entity\Seo;
+use NewsBundle\Entity\News;
 use NewsBundle\Entity\NewsAuthor;
 use Doctrine\ORM\EntityManagerInterface;
 use DashboardBundle\Controller\CRUDController;
@@ -139,5 +140,22 @@ class NewsAuthorController extends CRUDController
                 'element' => $item->getShowOnWebsite()
             ])
         ];
+    }
+
+    public function getPortletBodyTemplateForForm(): string
+    {
+        return '@News/dashboard/author/form/_portlet_body.html.twig';
+    }
+
+    public function getStatForForm($author)
+    {
+
+
+        return $this->render('@News/dashboard/author/form/_stat.html.twig', [
+            'per_week' => $this->em->getRepository(News::class)->countNewsByAuthor($author, 'week'),
+            'per_month' => $this->em->getRepository(News::class)->countNewsByAuthor($author, 'month'),
+            'per_3_month' => $this->em->getRepository(News::class)->countNewsByAuthor($author, '3_month'),
+            'posts' => $this->em->getRepository(News::class)->getPopularByAuthor($author, $limit = 50),
+        ]);
     }
 }

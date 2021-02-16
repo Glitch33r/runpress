@@ -1,0 +1,27 @@
+<div class="row">
+	<h3 class="col-lg-12">Публикаций</h3>
+	<div class="col-lg-3">За неделю:</div>
+	<div class="col-lg-9">{{ per_week }}</div>
+	<div class="col-lg-3">За месяц:</div>
+	<div class="col-lg-9">{{ per_month }}</div>
+	<div class="col-lg-3">За 3 месяца:</div>
+	<div class="col-lg-9">{{ per_3_month }}</div>
+	<h3 class="col-lg-12 mt-4">Популярные</h3>
+	{% for post in posts %}
+		{% if post.newsCategory %}
+		    {% set href = path('frontend_news_show_with_category', {
+		        'slug': post.translations[post.defaultLocale].slug,
+		        'category':  post.newsCategory.translations[post.newsCategory.defaultLocale].slug
+		    }) %}
+		{% else %}
+		    {% set href = path('frontend_news_show', {
+		        'slug': post.translations[post.defaultLocale].slug
+		    }) %}
+		{% endif %}
+		<div class="col-lg-9">
+			<a href="{{ href }}" target="_blank">{{ post.translate.title }}</a>
+		</div>
+		<div class="col-lg-3">{{ post.views }}</div>
+		<div class="col-lg-12 border-bottom my-2"></div>
+	{% endfor %}
+</div>
