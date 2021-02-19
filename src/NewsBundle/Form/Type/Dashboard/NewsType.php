@@ -135,7 +135,7 @@ class NewsType extends AbstractType
                         },
                     ])
                     ->add('newsAuthor', DashboardSelect2EntityType::class, [
-                        'required' => false,
+                        'required' => true,
                         'label' => 'select_author',
                         'translation_domain' => 'NewsBundle',
                         'class' => NewsAuthor::class,
@@ -143,6 +143,10 @@ class NewsType extends AbstractType
                         'query_builder' => function (EntityRepository $er) {
                             return $er->getNewsAuthorForNewsForm($this->security->getUser());
                         },
+                    ])
+                    ->add('authorAlias', DashboardTextType::class, [
+                        'label' => 'Псевдоним',
+                        'required' => false,
                     ])
                     ->add('video', DashboardTextType::class, [
                         'label' => 'ui.video',

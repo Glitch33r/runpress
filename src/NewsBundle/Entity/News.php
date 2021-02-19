@@ -171,6 +171,14 @@ class News implements NewsInterface
     private $signatureUrl;
 
     /**
+     * @var string
+     *
+     * @Gedmo\Versioned
+     * @ORM\Column(name="author_alias", type="string", nullable=true)
+     */
+    private $authorAlias;
+
+    /**
      * News constructor.
      */
     public function __construct()
@@ -480,6 +488,22 @@ class News implements NewsInterface
     public function setSignatureUrl(?string $signatureUrl): void
     {
         $this->signatureUrl = $signatureUrl;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAuthorAlias(): ?string
+    {
+        return $this->authorAlias;
+    }
+
+    /**
+     * @param string $authorAlias
+     */
+    public function setAuthorAlias(?string $authorAlias): void
+    {
+        $this->authorAlias = $authorAlias;
     }
 
     public function getUser(): ?User

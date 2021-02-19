@@ -129,15 +129,7 @@ final class DefaultController extends \ComponentBundle\Controller\Frontend\Defau
     {
         $conn = $this->getDoctrine()->getConnection();
 
-        $sql = 'ALTER TABLE news_author_table ADD user_id INT UNSIGNED DEFAULT NULL;';
-        $stmt = $conn->prepare($sql);
-        $stmt->execute();
-
-        $sql = 'ALTER TABLE news_author_table ADD CONSTRAINT FK_6EBC63CA76ED395 FOREIGN KEY (user_id) REFERENCES `user_table` (id);';
-        $stmt = $conn->prepare($sql);
-        $stmt->execute();
-
-        $sql = 'CREATE UNIQUE INDEX UNIQ_6EBC63CA76ED395 ON news_author_table (user_id);';
+        $sql = 'ALTER TABLE news_table ADD author_alias VARCHAR(255) DEFAULT NULL;';
         $stmt = $conn->prepare($sql);
         $stmt->execute();
 

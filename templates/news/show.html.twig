@@ -15,9 +15,15 @@
                     {% include '@Seo/frontend/_h1.html.twig' %}
                 </h1>
                 <blockquote class="quote">
-                    {% set author = element.getNewsAuthor() %}
+                    {% if element.authorAlias %}
+                        {% set author = element.authorAlias %}
+                    {% elseif element.newsAuthor %}        
+                        {% set author = element.newsAuthor.translate.title %}
+                    {% else %}
+                        {% set author = null %}
+                    {% endif %}
                     {% if author is not null %}
-                        <cite>{{ author.translate.title }}</cite>
+                        <cite>{{ author }}</cite>
                         <br>
                     {% endif %}
                     <time class="news-date" timestamp="{{ element.publishAt|date('d/m/Y H:i') }}">
