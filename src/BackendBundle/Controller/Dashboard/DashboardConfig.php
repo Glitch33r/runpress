@@ -131,6 +131,7 @@ final class DashboardConfig extends \DashboardBundle\Controller\DashboardConfig
                 'Директор' => 'ROLE_DIRECTOR',
                 'Пользователи' => 'ROLE_USER',
                 'Журналист' => 'ROLE_JOURNALIST',
+                'Гость' => 'ROLE_ADMIN_PANEL',
             ]
         ];
     }
