@@ -30,3 +30,7 @@ button {
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
 	background-color: $primary-color;
 }
+
+.g-recaptcha {
+	overflow: hidden;
+}

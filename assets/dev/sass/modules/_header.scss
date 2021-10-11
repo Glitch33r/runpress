@@ -96,7 +96,7 @@
 
     @include lg() {
       font-size: cRem(12px);
-      margin: 0 0 cRem(-12px) 5rem;
+      margin: 0 0 cRem(-12px) 3rem;
     }
 
     &--visible {
@@ -130,6 +130,7 @@
     @include lg() {
       display: flex;
       flex-wrap: wrap;
+      justify-content: space-between;
     }
 
     &--column {
